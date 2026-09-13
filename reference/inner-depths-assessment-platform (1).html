@@ -1,0 +1,1906 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Inner Depths — Assessment Platform</title>
+<link rel="icon" type="image/png" href="data:image/png;base64,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"/>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap');
+:root{
+  --mist:#F2F8F7; --seafoam:#DCEEEA; --lumen:#7FE6DE; --tidal:#46B3A9;
+  --current:#2E7D97; --depth:#12455A; --abyss:#0B2A38; --sand:#E4C79C; --coral:#D98873;
+  --ink:#0B2A38; --ink-soft:#3B5B67; --brand:#1AC2DF;
+  --display:"DM Serif Display",Georgia,serif; --body:"DM Sans",system-ui,-apple-system,sans-serif;
+  --shadow-sm:0 1px 3px rgba(11,42,56,.08); --shadow-md:0 6px 22px rgba(11,42,56,.10);
+  --line:#d7e8e4;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{font-family:var(--body);background:var(--mist);color:var(--ink);line-height:1.5;-webkit-font-smoothing:antialiased}
+button{font-family:inherit;cursor:pointer}
+input,select,textarea{font-family:inherit;font-size:.92rem}
+a{color:var(--current)}
+.hide{display:none!important}
+.mono{font-variant-numeric:tabular-nums}
+
+/* ---------- App frame ---------- */
+.app{display:flex;min-height:100vh}
+.side{width:230px;flex:0 0 230px;background:var(--abyss);color:#cfe6e0;display:flex;flex-direction:column;padding:18px 14px;position:sticky;top:0;height:100vh}
+.side .logo{display:flex;align-items:center;gap:9px;padding:6px 8px 16px}
+.side .logo img{width:34px;height:34px;border-radius:8px}
+.side .logo .bt1{font-family:var(--display);font-size:1.02rem;color:#fff;text-transform:uppercase;letter-spacing:.03em;line-height:1.05}
+.side .logo .bt1 span{color:var(--lumen)}
+.side .logo .bt2{font-size:.5rem;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:#7fa6ad;margin-top:2px}
+.nav{display:flex;flex-direction:column;gap:2px;margin-top:6px}
+.nav button{display:flex;align-items:center;gap:10px;width:100%;text-align:left;background:none;border:none;color:#a9c9c9;padding:10px 12px;border-radius:10px;font-size:.9rem;font-weight:500}
+.nav button svg{width:18px;height:18px;flex:0 0 auto}
+.nav button:hover{background:rgba(255,255,255,.06);color:#fff}
+.nav button.on{background:var(--current);color:#fff}
+.side .foot{margin-top:auto;font-size:.68rem;color:#6f9298;line-height:1.5;padding:10px 10px 2px;border-top:1px solid rgba(255,255,255,.08)}
+.main{flex:1;min-width:0;display:flex;flex-direction:column}
+.topbar{display:flex;align-items:center;justify-content:space-between;padding:16px 30px;border-bottom:1px solid var(--line);background:#fff}
+.topbar h1{font-family:var(--display);font-weight:400;font-size:1.5rem;color:var(--abyss)}
+.topbar .sub{font-size:.82rem;color:var(--ink-soft);margin-top:1px}
+.wrap{padding:26px 30px;max-width:1080px;width:100%}
+
+/* ---------- Buttons ---------- */
+.btn{border:1px solid var(--line);background:#fff;color:var(--depth);padding:.5rem .9rem;border-radius:10px;font-size:.85rem;font-weight:600;display:inline-flex;align-items:center;gap:7px}
+.btn svg{width:15px;height:15px}
+.btn:hover{border-color:var(--tidal)}
+.btn-primary{background:var(--current);border-color:var(--current);color:#fff}
+.btn-primary:hover{background:var(--depth);border-color:var(--depth)}
+.btn-ghost{background:none;border:none;color:var(--current);padding:.4rem .5rem}
+.btn-danger{color:var(--coral);border-color:#eccabf}
+.btn-danger:hover{background:#fbeee9}
+.btn-sm{padding:.32rem .6rem;font-size:.78rem;border-radius:8px}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+
+/* ---------- Cards / tables ---------- */
+.card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px;box-shadow:var(--shadow-sm)}
+.card+.card{margin-top:14px}
+.grid{display:grid;gap:14px}
+.grid.k3{grid-template-columns:repeat(3,1fr)}
+.grid.k4{grid-template-columns:repeat(4,1fr)}
+.stat{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+.stat .k{font-size:.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--tidal)}
+.stat .v{font-family:var(--display);font-size:1.9rem;color:var(--abyss);margin-top:6px;line-height:1}
+.stat .d{font-size:.76rem;color:var(--ink-soft);margin-top:4px}
+
+table{width:100%;border-collapse:collapse}
+th{font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);text-align:left;padding:10px 12px;border-bottom:1px solid var(--line)}
+td{padding:12px;border-bottom:1px solid var(--seafoam);font-size:.9rem;vertical-align:middle}
+tr:last-child td{border-bottom:none}
+tr.rowhover:hover{background:#f6fbfb}
+.tname{font-weight:600;color:var(--depth)}
+.tsub{font-size:.78rem;color:var(--ink-soft)}
+
+.badge{display:inline-flex;align-items:center;gap:5px;font-size:.7rem;font-weight:700;letter-spacing:.03em;text-transform:uppercase;padding:3px 9px;border-radius:999px}
+.badge i{width:6px;height:6px;border-radius:50%}
+.b-invited{background:#fef4ec;color:#b56a4e}.b-invited i{background:var(--coral)}
+.b-progress{background:#eaf3f6;color:var(--current)}.b-progress i{background:var(--current)}
+.b-complete{background:#e2f4ef;color:#1f7d69}.b-complete i{background:var(--tidal)}
+.b-shared{background:#e9f0ff;color:#3f5bd9}.b-shared i{background:#3f5bd9}
+.b-none{background:#eef2f3;color:#6b8790}.b-none i{background:#9db4bb}
+
+.eye{font-size:.72rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--tidal)}
+.sec-h{display:flex;align-items:center;justify-content:space-between;margin:0 0 12px}
+.sec-h h2{font-family:var(--display);font-weight:400;font-size:1.3rem;color:var(--abyss)}
+
+/* ---------- Forms ---------- */
+label.fl{display:block;font-size:.76rem;font-weight:600;color:var(--depth);margin:0 0 5px}
+.field{width:100%;border:1px solid var(--line);border-radius:10px;padding:.6rem .7rem;color:var(--ink);background:#fff}
+.field:focus{outline:none;border-color:var(--tidal);box-shadow:0 0 0 3px rgba(70,179,169,.14)}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.help{font-size:.76rem;color:var(--ink-soft);margin-top:5px;line-height:1.45}
+
+/* ---------- Modal ---------- */
+.scrim{position:fixed;inset:0;background:rgba(11,42,56,.42);display:grid;place-items:center;padding:20px;z-index:60}
+.modal{background:#fff;border-radius:18px;box-shadow:var(--shadow-md);width:100%;max-width:520px;max-height:88vh;overflow:auto}
+.modal .mh{padding:18px 22px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center}
+.modal .mh h3{font-family:var(--display);font-weight:400;font-size:1.25rem;color:var(--abyss)}
+.modal .mb{padding:20px 22px}
+.modal .mf{padding:14px 22px;border-top:1px solid var(--line);display:flex;justify-content:flex-end;gap:10px;position:sticky;bottom:0;background:#fff}
+.x{background:none;border:none;color:var(--ink-soft);font-size:1.3rem;line-height:1;width:30px;height:30px;border-radius:8px}
+.x:hover{background:var(--seafoam)}
+
+/* ---------- Link/share box ---------- */
+.linkbox{display:flex;gap:8px;align-items:stretch;margin-top:8px}
+.linkbox input{flex:1;font-size:.82rem;background:var(--mist);border:1px dashed var(--tidal);border-radius:10px;padding:.55rem .7rem;color:var(--depth)}
+.notice{font-size:.82rem;color:var(--ink-soft);background:#f6fbfb;border:1px solid var(--seafoam);border-left:3px solid var(--sand);border-radius:0 10px 10px 0;padding:10px 12px;line-height:1.5}
+.toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%);background:var(--abyss);color:#fff;padding:.7rem 1.2rem;border-radius:12px;font-size:.86rem;box-shadow:var(--shadow-md);z-index:80;opacity:0;transition:opacity .25s,transform .25s;pointer-events:none}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(-4px)}
+
+/* ---------- Toggle ---------- */
+.tog{position:relative;width:42px;height:24px;flex:0 0 auto}
+.tog input{opacity:0;width:0;height:0}
+.tog .tk{position:absolute;inset:0;background:#c7d8d5;border-radius:999px;transition:.2s}
+.tog .tk:before{content:"";position:absolute;width:18px;height:18px;left:3px;top:3px;background:#fff;border-radius:50%;transition:.2s;box-shadow:0 1px 2px rgba(0,0,0,.25)}
+.tog input:checked+.tk{background:var(--tidal)}
+.tog input:checked+.tk:before{transform:translateX(18px)}
+
+/* ---------- Assessment (respondent) ---------- */
+.assess-wrap{max-width:560px;margin:0 auto;padding:26px 18px 60px}
+.assess-top{display:flex;align-items:center;gap:10px;padding:6px 2px 18px}
+.assess-top img{width:34px;height:34px;border-radius:8px}
+.assess-top .bt1{font-family:var(--display);text-transform:uppercase;letter-spacing:.03em;color:var(--depth);font-size:1.02rem}
+.assess-top .bt1 span{color:var(--current)}
+.prog{height:6px;background:var(--seafoam);border-radius:999px;overflow:hidden;margin:0 0 20px}
+.prog>i{display:block;height:100%;background:var(--tidal);border-radius:999px;transition:width .3s}
+.q{margin:0 0 18px}
+.q .qt{font-size:1rem;color:var(--depth);font-weight:500;line-height:1.45;margin-bottom:2px}
+.q .src{font-size:.66rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:#6b8790;display:inline-flex;align-items:center;gap:5px;margin-bottom:10px}
+.q .src.prov{color:var(--coral)}
+.pa-scale{display:flex;gap:6px;flex-wrap:wrap}
+.seg{flex:1;min-width:84px;text-align:center;font-size:.78rem;font-weight:500;color:var(--depth);background:#fff;border:1px solid var(--line);border-radius:10px;padding:.55rem .3rem}
+.seg:hover{border-color:var(--tidal)}
+.seg.sel{background:var(--current);color:#fff;border-color:var(--current)}
+.slider-q{margin:0 0 22px}
+.slider-q input[type=range]{width:100%;accent-color:var(--tidal)}
+.slider-ends{display:flex;justify-content:space-between;font-size:.74rem;color:var(--ink-soft);margin-top:4px}
+.goalcard{display:flex;align-items:center;gap:12px;border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin-bottom:8px;background:#fff}
+.goalcard:hover{border-color:var(--tidal)}
+.goalcard.sel{border-color:var(--current);background:#f4fbfa;box-shadow:0 0 0 2px rgba(46,125,151,.12)}
+.goalcard .gt{font-weight:600;color:var(--depth);font-size:.92rem}
+.goalcard .rad{width:20px;height:20px;border-radius:50%;border:2px solid #c3d6d2;flex:0 0 auto}
+.goalcard.sel .rad{border-color:var(--current);background:var(--current);box-shadow:inset 0 0 0 3px #fff}
+.afoot{position:sticky;bottom:0;background:linear-gradient(transparent,var(--mist) 30%);padding:16px 0 6px;margin-top:10px}
+
+/* ---------- Result view (shared with PDF) ---------- */
+.result{max-width:720px;margin:0 auto}
+.pa-summary{background:var(--abyss);color:#eaf6f4;border-radius:18px;padding:22px 22px 20px}
+.pa-summary .eye{color:var(--lumen)}
+.pa-summary h2{font-family:var(--display);font-weight:400;font-size:1.7rem;color:#fff;margin:8px 0 8px}
+.pa-summary p{font-size:.92rem;color:#cfeae6;line-height:1.55}
+.pa-splitbar{display:flex;height:12px;border-radius:999px;overflow:hidden;margin:16px 0 10px;background:rgba(255,255,255,.1)}
+.pa-splitbar>span{display:block;height:100%}
+.pa-splitleg{display:flex;flex-wrap:wrap;gap:12px}
+.pa-splitleg>span{display:inline-flex;align-items:center;gap:6px;font-size:.78rem;color:#dff2ef}
+.pa-splitleg i{width:9px;height:9px;border-radius:3px;display:inline-block}
+.pa-mini{margin-top:16px;font-size:.82rem;color:#bfe6e0;background:rgba(255,255,255,.07);border-radius:10px;padding:10px 12px}
+.res-sec{margin-top:22px}
+.res-sec .eye{margin-bottom:8px;display:block}
+.rintro{font-size:.9rem;color:var(--ink-soft);line-height:1.55;margin:0 0 12px}
+.pa-flow{display:flex;flex-direction:column;gap:0}
+.pa-node{display:flex;gap:12px;padding:12px 0;position:relative}
+.pa-node:not(:last-child):after{content:"";position:absolute;left:15px;top:40px;bottom:-2px;width:2px;background:var(--seafoam)}
+.pa-node .num{width:32px;height:32px;flex:0 0 auto;border-radius:50%;color:#fff;display:grid;place-items:center;font-weight:700;font-size:.9rem;z-index:1}
+.pa-node .nt{font-weight:600;color:var(--depth);font-size:.95rem}
+.pa-node .nk{font-size:.68rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--tidal)}
+.pa-node .nd{font-size:.84rem;color:var(--ink-soft);line-height:1.45;margin-top:2px}
+.pa-dbar{display:flex;align-items:center;gap:10px;margin:8px 0}
+.pa-dbar .lb{flex:0 0 42%;font-size:.84rem;color:var(--depth)}
+.pa-dbar .tk{flex:1;height:9px;background:var(--seafoam);border-radius:999px;overflow:hidden}
+.pa-dbar .tk>span{display:block;height:100%;background:var(--tidal);border-radius:999px}
+.pa-dbar .vl{font-size:.8rem;font-weight:600;color:var(--current);width:38px;text-align:right}
+.style-row{margin:10px 0}
+.style-row .st{font-weight:600;color:var(--depth);font-size:.9rem;margin-bottom:8px}
+.style-track{display:flex;align-items:center;gap:8px}
+.style-track .end{font-size:.72rem;flex:1;color:var(--ink-soft)}
+.style-track .end.on{color:var(--depth);font-weight:600}
+.style-track .end.r{text-align:right}
+.style-track .bar{flex:1.6;height:8px;background:var(--seafoam);border-radius:999px;position:relative}
+.style-track .bar>span{position:absolute;top:50%;transform:translate(-50%,-50%);width:14px;height:14px;border-radius:50%;background:var(--tidal);border:2px solid #fff;box-shadow:0 1px 3px rgba(11,42,56,.3)}
+.style-strength{font-size:.85rem;color:var(--ink-soft);line-height:1.5;margin-top:8px}
+.prov-panel{border:1px dashed var(--tidal);background:#f6fbfb;border-radius:14px;padding:16px;margin-top:14px}
+.prov-panel .ph{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.prov-panel .pl{font-weight:600;color:var(--depth);font-size:.9rem}
+.prov-panel .pl .pf{font-weight:600;color:var(--coral)}
+.prov-tag{font-size:.66rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--tidal);background:#dbf0ec;padding:3px 9px;border-radius:20px}
+.prov-panel .pd{font-size:.85rem;color:var(--depth);line-height:1.5;margin-top:8px}
+.prov-fine{font-size:.74rem;color:var(--ink-soft);margin-top:10px;border-top:1px solid #e4eef0;padding-top:8px;line-height:1.5}
+.nf-row{display:flex;justify-content:space-between;gap:10px;padding:7px 0;border-top:1px solid var(--seafoam);font-size:.86rem}
+.nf-row:first-child{border-top:none}
+.nf-row .nk{color:var(--ink-soft)}.nf-row .nv{color:var(--depth);font-weight:500;text-align:right}
+.pill-ex{font-size:.62rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:3px 9px;border-radius:999px;background:rgba(70,179,169,.14);color:var(--tidal);border:1px solid rgba(70,179,169,.4)}
+.res-caveat{font-size:.8rem;color:#7f9aa1;line-height:1.5;margin-top:20px;border-left:3px solid var(--sand);padding-left:.85rem}
+
+/* curated (user-facing) hides admin-only bits */
+.admin-only{}
+.curated .admin-only{display:none!important}
+
+/* ---------- Selectable share checklist ---------- */
+.share-item{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid var(--seafoam)}
+.share-item:last-child{border-bottom:none}
+.share-item .si-t{font-size:.9rem;color:var(--depth);font-weight:500}
+.share-item .si-d{font-size:.78rem;color:var(--ink-soft)}
+.chk{width:20px;height:20px;border:2px solid #c3d6d2;border-radius:6px;flex:0 0 auto;display:grid;place-items:center;color:#fff}
+.chk.on{background:var(--tidal);border-color:var(--tidal)}
+.chk svg{width:13px;height:13px;opacity:0}
+.chk.on svg{opacity:1}
+
+/* ---------- User portal ---------- */
+.portal{max-width:720px;margin:0 auto;padding:28px 18px 60px}
+.portal-gate{max-width:460px;margin:60px auto;text-align:center}
+.portal-gate .g-ico{width:56px;height:56px;border-radius:16px;background:var(--seafoam);display:grid;place-items:center;color:var(--current);margin:0 auto 16px}
+.seg-mode{display:inline-flex;background:#fff;border:1px solid var(--line);border-radius:12px;padding:3px;gap:3px;margin-bottom:16px}
+.seg-mode button{border:none;background:none;padding:.4rem .9rem;border-radius:9px;font-size:.82rem;font-weight:600;color:var(--ink-soft)}
+.seg-mode button.on{background:var(--current);color:#fff}
+
+.empty{text-align:center;padding:50px 20px;color:var(--ink-soft)}
+.empty .ei{width:52px;height:52px;border-radius:14px;background:var(--seafoam);display:grid;place-items:center;color:var(--tidal);margin:0 auto 14px}
+.empty h3{font-family:var(--display);font-weight:400;font-size:1.3rem;color:var(--abyss);margin-bottom:6px}
+
+@media(max-width:820px){
+  .side{width:64px;flex-basis:64px}
+  .side .logo .bt1,.side .logo .bt2,.nav button span,.side .foot{display:none}
+  .nav button{justify-content:center}
+  .grid.k3,.grid.k4{grid-template-columns:1fr 1fr}
+  .wrap{padding:18px}
+}
+@media print{
+  .side,.topbar,.afoot,.no-print{display:none!important}
+  body{background:#fff}
+  .wrap,.result{padding:0;max-width:none}
+  .pa-summary{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .card,.pa-summary,.prov-panel{break-inside:avoid}
+}
+
+/* ============ REPORT STYLES (print-first, ID design system) ============ */
+.rpt{color:var(--ink);font-family:var(--body)}
+.rpt-pg{padding:34px 0 8px;break-inside:auto}
+.rpt-pg+.rpt-pg{break-before:page;border-top:0}
+
+/* cover */
+.rpt-cover{position:relative;color:#fff;border-radius:20px;overflow:hidden;min-height:330px;display:flex;
+  background:linear-gradient(150deg,#12455A 0%,#0B2A38 55%,#07202B 100%)}
+.rc-bg{position:absolute;inset:0;opacity:.5;
+  background:
+    radial-gradient(720px 300px at 78% -8%,rgba(127,230,222,.42),transparent 62%),
+    radial-gradient(520px 260px at 8% 108%,rgba(46,125,151,.55),transparent 68%)}
+.rc-bg:after{content:"";position:absolute;left:0;right:0;bottom:-2px;height:92px;
+  background:radial-gradient(120% 100% at 50% 100%,rgba(127,230,222,.20),transparent 70%)}
+.rc-inner{position:relative;z-index:1;padding:30px 34px;display:flex;flex-direction:column;width:100%}
+.rc-brand{display:flex;align-items:center;gap:11px}
+.rc-brand img{width:38px;height:38px;border-radius:9px}
+.rc-bt{font-family:var(--display);font-size:1.06rem;letter-spacing:.05em;color:#fff;line-height:1.05}
+.rc-bs{font-size:.56rem;font-weight:600;letter-spacing:.26em;text-transform:uppercase;color:#7fc6c9;margin-top:3px}
+.rc-mid{margin-top:auto;padding:26px 0 20px}
+.rc-kick{font-size:.66rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--lumen);margin-bottom:9px}
+.rpt-cover h1{font-family:var(--display);font-weight:400;font-size:2.5rem;line-height:1.08;color:#fff;letter-spacing:-.01em}
+.rc-sub{font-size:.94rem;color:#bfe0dd;margin-top:9px;max-width:46ch;line-height:1.5}
+.rc-meta{display:flex;gap:34px;border-top:1px solid rgba(255,255,255,.16);padding-top:15px;flex-wrap:wrap}
+.rc-meta div{display:flex;flex-direction:column;gap:3px}
+.rc-meta span{font-size:.6rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#7fa9ad}
+.rc-meta b{font-size:.92rem;color:#eaf6f4;font-weight:600}
+
+/* section heads */
+.rpt-sh{display:flex;gap:14px;align-items:flex-start;margin:0 0 16px}
+.rpt-n{font-family:var(--display);font-size:1.5rem;color:var(--lumen);line-height:1;padding-top:2px;
+  -webkit-text-stroke:.6px var(--tidal)}
+.rpt-sh h2{font-family:var(--display);font-weight:400;font-size:1.42rem;color:var(--abyss);line-height:1.2}
+.rpt-sh p{font-size:.87rem;color:var(--ink-soft);margin-top:4px;line-height:1.5;max-width:62ch}
+.rpt-sub{font-size:.7rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--tidal);margin:20px 0 9px}
+
+/* hero */
+.rpt-hero{background:linear-gradient(140deg,#12455A,#0B2A38);color:#fff;border-radius:16px;padding:22px 24px}
+.rh-kick{font-size:.64rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--lumen)}
+.rpt-hero h2{font-family:var(--display);font-weight:400;font-size:1.75rem;color:#fff;margin:8px 0 8px;line-height:1.15}
+.rpt-hero p{font-size:.92rem;color:#cfe9e5;line-height:1.55;max-width:60ch}
+.rh-bar{display:flex;height:13px;border-radius:999px;overflow:hidden;margin:18px 0 12px;background:rgba(255,255,255,.12)}
+.rh-bar>span{display:block;height:100%}
+.rh-leg{display:flex;gap:20px;flex-wrap:wrap}
+.rpl{display:flex;align-items:center;gap:7px}
+.rpl i{width:9px;height:9px;border-radius:3px;flex:none}
+.rpl-l{font-size:.8rem;color:#dff2ef}
+.rpl-v{font-size:.8rem;font-weight:700;color:#fff}
+.rh-note{margin-top:14px;font-size:.83rem;color:#bfe6e0;background:rgba(255,255,255,.08);border-radius:10px;padding:10px 12px;line-height:1.5}
+
+/* why / drivers */
+.rpt-why{margin-top:26px}
+.rpt-drivers{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+.rd-row{display:flex;align-items:center;gap:12px;padding:7px 0}
+.rd-l{flex:0 0 44%;font-size:.87rem;color:var(--depth)}
+.rd-tk{flex:1;height:9px;background:var(--seafoam);border-radius:999px;overflow:hidden}
+.rd-tk>span{display:block;height:100%;background:linear-gradient(90deg,var(--tidal),var(--current));border-radius:999px}
+.rd-v{font-size:.82rem;font-weight:700;color:var(--current);width:38px;text-align:right}
+
+/* traits */
+.rpt-traits{display:grid;gap:12px}
+.tr-card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:15px 17px;break-inside:avoid}
+.tr-t{font-weight:600;color:var(--depth);font-size:.95rem;margin-bottom:11px}
+.tr-track{display:flex;align-items:center;gap:10px}
+.tr-end{flex:1;font-size:.74rem;color:#8ba6ad}
+.tr-end.on{color:var(--depth);font-weight:600}
+.tr-end.r{text-align:right}
+.tr-bar{flex:1.5;height:8px;background:var(--seafoam);border-radius:999px;position:relative}
+.tr-bar>span{position:absolute;top:50%;transform:translate(-50%,-50%);width:15px;height:15px;border-radius:50%;
+  background:var(--tidal);border:2.5px solid #fff;box-shadow:0 1px 4px rgba(11,42,56,.32)}
+.tr-strength{font-size:.86rem;color:var(--ink-soft);line-height:1.5;margin-top:11px}
+.tr-skill{margin-top:11px;background:var(--mist);border-left:3px solid var(--tidal);border-radius:0 10px 10px 0;
+  padding:10px 12px;font-size:.85rem;color:var(--depth);line-height:1.5}
+.tr-sk-l{display:block;font-size:.6rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--tidal);margin-bottom:4px}
+
+/* plan */
+.rpt-plan{display:flex;flex-direction:column}
+.rp-step{display:flex;gap:14px;padding:13px 0;position:relative;break-inside:avoid}
+.rp-step:not(:last-child):after{content:"";position:absolute;left:17px;top:46px;bottom:-4px;width:2px;background:var(--seafoam)}
+.rp-num{width:36px;height:36px;flex:none;border-radius:50%;color:#fff;display:grid;place-items:center;
+  font-weight:700;font-size:.95rem;z-index:1}
+.rp-k{font-size:.63rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--tidal)}
+.rp-t{font-weight:600;color:var(--depth);font-size:1rem;margin-top:2px}
+.rp-d{font-size:.86rem;color:var(--ink-soft);line-height:1.5;margin-top:4px;max-width:64ch}
+
+/* callouts */
+.rpt-callout{background:var(--seafoam);border-radius:14px;padding:15px 17px;margin-top:18px;break-inside:avoid}
+.rpt-callout.soft{background:var(--mist);border:1px solid var(--line)}
+.rc-l{font-size:.63rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--tidal);margin-bottom:7px}
+.rc-i{font-size:.87rem;color:var(--depth);line-height:1.55}
+.rc-i+.rc-i{margin-top:7px}
+
+/* tables */
+.rpt-tbl{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.rpt-tbl th{font-size:.63rem;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:var(--ink-soft);
+  text-align:left;padding:11px 14px;background:var(--mist);border-bottom:1px solid var(--line)}
+.rpt-tbl td{padding:11px 14px;border-bottom:1px solid var(--seafoam);font-size:.86rem;vertical-align:middle}
+.rpt-tbl tr:last-child td{border-bottom:none}
+.rpt-tbl.compact td{padding:9px 14px}
+.rt-n{font-weight:600;color:var(--depth)}
+.rt-d{font-size:.81rem;color:var(--ink-soft);line-height:1.45}
+.rt-bar{display:flex;align-items:center;gap:9px}
+.rt-tk{flex:1;height:8px;background:var(--seafoam);border-radius:999px;overflow:hidden;min-width:60px}
+.rt-tk>span{display:block;height:100%;background:var(--current);border-radius:999px}
+.rt-v{font-weight:700;color:var(--depth);width:26px;text-align:right}
+.rt-band{font-size:.58rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:2px 7px;border-radius:999px}
+.rt-band.hi{background:#fbe9e3;color:#b56a4e}
+.rt-band.lo{background:#e7f2f6;color:var(--current)}
+.rt-band.mid{background:#eef3f4;color:#6b8790}
+
+/* routing panel */
+.rpt-routing{border:1px dashed var(--tidal);background:#f6fbfb;border-radius:14px;padding:16px 18px;margin-top:18px}
+.rr-h{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.rr-t{font-weight:600;color:var(--depth);font-size:.93rem}
+.rr-tag{font-size:.62rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--tidal);
+  background:#dbf0ec;padding:3px 10px;border-radius:999px}
+.rr-g{display:flex;gap:8px;align-items:baseline;margin-top:10px;font-size:.87rem;color:var(--depth)}
+.rr-g span{font-size:.63rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-soft)}
+.rr-n{font-size:.86rem;color:var(--depth);line-height:1.5;margin-top:8px}
+.rr-m{font-size:.8rem;color:var(--ink-soft);margin-top:8px}
+.rr-f{font-size:.75rem;color:var(--ink-soft);line-height:1.5;margin-top:11px;border-top:1px solid #e0eced;padding-top:9px}
+.rpt-fine{font-size:.75rem;color:var(--ink-soft);line-height:1.5;margin-top:9px}
+.rpt-conf{font-size:.76rem;font-weight:600;color:#b56a4e;background:#fdf3ee;border:1px solid #f0d9cd;
+  border-radius:10px;padding:10px 13px;margin-bottom:18px;line-height:1.45}
+
+/* workshop CTA */
+.rpt-cta{background:linear-gradient(140deg,#12455A,#0B2A38);color:#fff;border-radius:18px;padding:28px 30px;position:relative;overflow:hidden}
+.rpt-cta:after{content:"";position:absolute;right:-60px;top:-60px;width:260px;height:260px;border-radius:50%;
+  background:radial-gradient(circle,rgba(127,230,222,.26),transparent 68%)}
+.ct-k{font-size:.64rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--lumen)}
+.rpt-cta h2{font-family:var(--display);font-weight:400;font-size:1.85rem;color:#fff;margin:9px 0 9px}
+.rpt-cta p{font-size:.92rem;color:#cfe9e5;line-height:1.55;max-width:58ch}
+.ct-grid{display:grid;grid-template-columns:1fr 1fr;gap:13px;margin-top:20px;position:relative;z-index:1}
+.ct-i{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);border-radius:12px;padding:13px 15px}
+.ct-it{font-weight:600;color:#fff;font-size:.9rem}
+.ct-id{font-size:.81rem;color:#bfe0dd;line-height:1.45;margin-top:5px}
+.ct-f{margin-top:18px;font-size:.85rem;color:var(--lumen);font-weight:500;position:relative;z-index:1}
+
+/* legal */
+.rpt-legal{font-size:.72rem;color:#8ba6ad;line-height:1.55;margin-top:26px;padding-top:13px;border-top:1px solid var(--line)}
+
+@media print{
+  .rpt-cover,.rpt-hero,.rpt-cta{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .rpt-pg{padding-top:22px}
+  .tr-card,.rp-step,.rpt-callout,.rpt-tbl,.rpt-routing{break-inside:avoid}
+  .rpt-sh{break-after:avoid}
+}
+@media(max-width:640px){.ct-grid{grid-template-columns:1fr}.rpt-cover h1{font-size:2rem}}
+
+
+/* report picker + preview */
+.rpt-pick{display:flex;align-items:center;gap:13px;padding:13px 0;border-bottom:1px solid var(--seafoam)}
+.rpt-pick:last-of-type{border-bottom:none}
+.rp-ic{width:38px;height:38px;flex:none;border-radius:11px;background:var(--seafoam);display:grid;place-items:center;color:var(--current)}
+.rp-ic svg{width:18px;height:18px}
+.rp-tx{flex:1;min-width:0}
+.rp-nm{font-weight:600;color:var(--depth);font-size:.92rem}
+.rp-ds{font-size:.79rem;color:var(--ink-soft);line-height:1.45;margin-top:2px}
+.rp-ac{display:flex;gap:6px;flex:none}
+.rpt-preview{background:#fff;border:1px solid var(--line);border-radius:16px;padding:26px 30px 30px;box-shadow:var(--shadow-sm)}
+
+</style>
+</head>
+<body>
+<div id="root"></div>
+<div id="toast" class="toast"></div>
+<script>
+/* ============================================================
+   INNER DEPTHS — ASSESSMENT PLATFORM
+   Admin dashboard + gated user portal + respondent flow.
+   Embeds the VERBATIM validated v12 PA engine (below).
+   Persistence: window.storage (falls back to in-memory).
+   ============================================================ */
+
+/* ===================== VERBATIM v12 PA ENGINE ===================== */
+var PA_SCALE=[{v:1,l:"Not at all"},{v:2,l:"A little"},{v:3,l:"Somewhat"},{v:4,l:"Quite a bit"},{v:5,l:"Very much"}];
+var PA_ITEMS=[
+  {id:"anx_som_1",construct:"anxiety",subscale:"somatic",tier:1,source:"published",text:"Before an important dive, my body feels tense or my stomach feels unsettled."},
+  {id:"anx_som_2",construct:"anxiety",subscale:"somatic",tier:1,source:"published",text:"I notice my heart racing or my breathing tightening as a session approaches."},
+  {id:"anx_wor_1",construct:"anxiety",subscale:"worry",tier:1,source:"published",text:"I worry that I won\u2019t perform the way I know I can."},
+  {id:"anx_wor_2",construct:"anxiety",subscale:"worry",tier:1,source:"published",text:"I keep thinking about failing or falling short before I even begin."},
+  {id:"anx_con_1",construct:"anxiety",subscale:"concentration",tier:1,source:"published",text:"When it matters, I find it hard to keep my focus on the task in front of me."},
+  {id:"anx_con_2",construct:"anxiety",subscale:"concentration",tier:1,source:"published",text:"My attention jumps around instead of settling on what I\u2019m doing."},
+  {id:"anx_dir_1",construct:"direction",subscale:"interpretation",tier:1,source:"published",reverse:true,text:"When I feel keyed-up before a dive, that feeling helps me rather than hurts me."},
+  {id:"anx_dir_2",construct:"direction",subscale:"interpretation",tier:1,source:"published",text:"I read nervous energy as a sign something is wrong."},
+  /* v12 provisional: reliability items — balance the debilitative scale (2 fwd / 2 rev). source flagged. */
+  {id:"anx_dir_3",construct:"direction",subscale:"interpretation",tier:1,source:"adapted",provisional:true,reverse:true,text:"A rush of nerves before a dive tells me I\u2019m ready, not that I\u2019m in trouble."},
+  {id:"anx_dir_4",construct:"direction",subscale:"interpretation",tier:1,source:"adapted",provisional:true,text:"If my heart is pounding beforehand, I take it as a warning sign."},
+  {id:"reinv_msc_1",construct:"reinvestment",subscale:"movement_self_consciousness",tier:1,source:"published",text:"I am conscious of how my technique looks while I\u2019m doing it."},
+  {id:"reinv_msc_2",construct:"reinvestment",subscale:"movement_self_consciousness",tier:1,source:"adapted",provisional:true,text:"I catch myself watching my own form instead of just letting it happen."},
+  {id:"reinv_cmp_1",construct:"reinvestment",subscale:"conscious_motor_processing",tier:1,source:"published",text:"Under pressure I try to consciously control movements that are usually automatic."},
+  {id:"reinv_cmp_2",construct:"reinvestment",subscale:"conscious_motor_processing",tier:1,source:"published",text:"I mentally walk through each step of my technique even when I know it well."},
+  {id:"reinv_dec_1",construct:"reinvestment",subscale:"decision_reinvestment",tier:1,source:"published",text:"After a session I replay my decisions over and over, second-guessing them."},
+  {id:"reinv_dec_2",construct:"reinvestment",subscale:"decision_reinvestment",tier:1,source:"adapted",provisional:true,text:"I go back over the choices I made in a session, wondering if I got them wrong."},
+  {id:"eff_1",construct:"self_efficacy",subscale:"confidence",tier:1,source:"original",text:"I trust that I can stay calm and in control during a demanding dry breath-hold session."},
+  {id:"eff_2",construct:"self_efficacy",subscale:"confidence",tier:1,source:"original",text:"I believe I can reach the training targets I set for myself."},
+  {id:"eff_3",construct:"self_efficacy",subscale:"confidence",tier:1,source:"original",text:"When contractions or the urge to breathe build, I feel able to ride them out (dry, within my limits)."},
+  {id:"ss_1",construct:"sensation",subscale:"seeking",tier:1,source:"original",text:"The intensity and risk of depth disciplines is part of what draws me to freediving."},
+  {id:"ss_2",construct:"sensation",subscale:"seeking",tier:1,source:"original",text:"I\u2019m drawn to pushing into new, more intense experiences rather than staying comfortable."},
+  {id:"ach_map_1",construct:"achievement",subscale:"mastery_approach",tier:2,source:"published",text:"My aim is to master the skill itself and keep improving."},
+  {id:"ach_pav_1",construct:"achievement",subscale:"performance_avoidance",tier:2,source:"published",text:"I mostly want to avoid doing worse than others or worse than before."},
+  {id:"rf_pro_1",construct:"regulatory",subscale:"promotion",tier:2,source:"published",text:"I focus on gains \u2014 extending my range and achieving what I\u2019m hoping for."},
+  {id:"rf_pre_1",construct:"regulatory",subscale:"prevention",tier:2,source:"published",text:"I focus on safety and being careful not to make mistakes."},
+  {id:"cope_mon_1",construct:"coping",subscale:"monitoring",tier:2,source:"published",text:"When something feels off in my body, I want as much detail about it as possible."},
+  {id:"cope_blu_1",construct:"coping",subscale:"blunting",tier:2,source:"published",reverse:true,text:"I cope best by distracting myself from uncomfortable sensations rather than analyzing them."},
+  {id:"st_neg_1",construct:"selftalk",subscale:"negative",tier:2,source:"published",text:"Before or during a dive I hear thoughts like \u201cI can\u2019t do this\u201d or \u201csomething will go wrong\u201d."},
+  {id:"st_ins_1",construct:"selftalk",subscale:"instructional",tier:2,source:"published",reverse:true,text:"I use short cue-words to direct my technique (e.g. \u201crelax shoulders\u201d, \u201cslow exhale\u201d)."},
+  {id:"flow_1",construct:"flow",subscale:"disposition",tier:2,source:"published",text:"In good sessions I lose track of time and self-consciousness \u2014 it just flows."},
+  /* v12 provisional: setback/adversity behavioral-avoidance response. NEW construct — app-original, exploratory, dry-land only. */
+  {id:"avoid_beh_1",construct:"avoidance",subscale:"behavioral",tier:1,source:"original",provisional:true,text:"After a dive goes badly, I find reasons to put off getting back in for a while."},
+  {id:"avoid_beh_2",construct:"avoidance",subscale:"behavioral",tier:1,source:"original",provisional:true,reverse:true,text:"When something rattles me, I make a point of doing it again soon so it doesn\u2019t grow into a block."}
+];
+var PA_STATE=[
+  {id:"state_arousal",label:"Right now, my physical activation is\u2026",lo:"Flat",hi:"Buzzing"},
+  {id:"state_conf",label:"Right now, my confidence is\u2026",lo:"Shaky",hi:"Solid"},
+  {id:"state_focus",label:"Right now, my focus is\u2026",lo:"Scattered",hi:"Locked-in"}
+];
+function PA_n01(x){return (x-1)/4;}
+/* ---- personality / style layer (Big Five, reframed as neutral two-sided spectra) ----
+   Personality is descriptive only: it never enters routing. Every pole carries a
+   genuine strength and a freediving-relevant fit; nothing is framed as a deficit.
+   Grounded in five-factor personality-and-performance research (see project doc). */
+var PA_STYLE_ITEMS=[
+  {id:"p_ext_1",dim:"ext",text:"Being around lively groups tends to energise me."},
+  {id:"p_ext_2",dim:"ext",reverse:true,text:"I do my best thinking and recharging on my own."},
+  {id:"p_con_1",dim:"con",text:"I like to plan my training and then follow the plan."},
+  {id:"p_con_2",dim:"con",reverse:true,text:"I\u2019d rather keep things loose and train by feel than follow a set routine."},
+  {id:"p_opn_1",dim:"opn",text:"I enjoy experimenting with new techniques and ideas."},
+  {id:"p_opn_2",dim:"opn",reverse:true,text:"I\u2019d rather refine what already works than try something new."},
+  {id:"p_agr_1",dim:"agr",text:"I put a lot into cooperating and getting along with training partners."},
+  {id:"p_agr_2",dim:"agr",reverse:true,text:"I tend to do my own thing, even if it doesn\u2019t suit everyone."},
+  {id:"p_emo_1",dim:"emo",text:"I feel emotions and body sensations strongly and vividly."},
+  {id:"p_emo_2",dim:"emo",reverse:true,text:"It takes a lot to rattle me \u2014 I stay on an even keel."}
+];
+/* each dimension: two neutral poles, a strength for each side + balanced, and an
+   optional growth skill framed as building on a strength (never fixing a flaw). */
+var PA_STYLE={
+  ext:{title:"Where your energy comes from",lo:"Recharges in quiet",hi:"Recharges around people",
+    loStrength:"You\u2019re at home in the calm, inward, solitary side of freediving \u2014 a real asset in a sport that rewards stillness.",
+    hiStrength:"You draw energy from training partners and the shared stoke of a dive community.",
+    midStrength:"You flex between quiet focus and shared energy \u2014 use whichever a session needs.",
+    loSkill:"Solo dry practice will feel natural; dip into the community on your own terms.",
+    hiSkill:"Lean on buddy sessions and the Cove \u2014 connection will keep you consistent."},
+  con:{title:"How you like to work",lo:"Flexible & spontaneous",hi:"Structured & methodical",
+    loStrength:"You adapt easily and train by feel \u2014 great for rolling with conditions and staying unforced.",
+    hiStrength:"Planning and follow-through come naturally \u2014 consistency like this is one of the strongest drivers of steady progress.",
+    midStrength:"You mix planning with going by feel, and can lean either way.",
+    loSkill:"One small fixed routine (a short pre-dive sequence) makes your adaptability even more reliable \u2014 and it\u2019s quickly learned.",
+    hiSkill:"An occasional \u2018train by feel\u2019 day keeps your structure from turning rigid."},
+  opn:{title:"How you approach the new",lo:"Prefers the proven",hi:"Curious & experimental",
+    loStrength:"You build deep mastery by refining what works \u2014 reliability is a genuine strength.",
+    hiStrength:"You try new drills readily \u2014 curiosity like this tends to speed up learning.",
+    midStrength:"You balance the proven with the new.",
+    loSkill:"Sampling one new drill now and then, at your own pace, can unlock a plateau.",
+    hiSkill:"Anchoring your experiments around one repeatable core drill keeps gains consistent."},
+  agr:{title:"How you team up",lo:"Independent & candid",hi:"Cooperative",
+    loStrength:"You\u2019re self-reliant and straight-talking \u2014 handy for holding your own line and speaking up on safety.",
+    hiStrength:"You invest in getting along \u2014 exactly what builds the trust freediving safety depends on.",
+    midStrength:"You cooperate while keeping your own line.",
+    loSkill:"You can still build deep buddy trust that keeps diving safe \u2014 on your own terms.",
+    hiSkill:"Buddy features and shared plans will suit you well."},
+  emo:{title:"How you experience feeling",lo:"Even-keel",hi:"Strongly feeling",
+    loStrength:"You stay steady when things get intense \u2014 a calm platform to build precision on.",
+    hiStrength:"You feel body sensations and emotions vividly \u2014 that rich body-awareness is exactly the signal freedivers learn to work with.",
+    midStrength:"You feel things clearly but aren\u2019t easily thrown.",
+    loSkill:"Sharpening subtle body-awareness on top of that steadiness adds fine control.",
+    hiSkill:"Your plan\u2019s regulation skills turn strong signal into steady control \u2014 a learnable skill, not a fixed trait."}
+};
+var PA_STYLE_ORDER=["ext","con","opn","agr","emo"];
+function PA_styleScores(R){
+  var by={};PA_STYLE_ITEMS.forEach(function(it){var raw=R[it.id];if(raw==null)return;var v=it.reverse?6-raw:raw;(by[it.dim]=by[it.dim]||[]).push(v);});
+  var out={};PA_STYLE_ORDER.forEach(function(dim){var a=by[dim];out[dim]=a&&a.length?a.reduce(function(s,x){return s+x;},0)/a.length:3;});
+  return out;
+}
+function PA_style(R){
+  var sc=PA_styleScores(R);
+  return PA_STYLE_ORDER.map(function(dim){
+    var v=sc[dim], D=PA_STYLE, def=D[dim], side=v>=3.4?"hi":(v<=2.6?"lo":"mid");
+    return {dim:dim,title:def.title,lo:def.lo,hi:def.hi,pos:Math.round((v-1)/4*100),side:side,
+      strength:side==="hi"?def.hiStrength:side==="lo"?def.loStrength:def.midStrength,
+      skill:side==="hi"?def.hiSkill:side==="lo"?def.loSkill:""};
+  });
+}
+function PA_score(R){
+  var byKey={};
+  PA_ITEMS.forEach(function(it){var raw=R[it.id];if(raw==null)return;var val=it.reverse?6-raw:raw;var k=it.construct+":"+it.subscale;(byKey[k]=byKey[k]||[]).push(val);});
+  function mean(a){return a.length?a.reduce(function(s,x){return s+x;},0)/a.length:null;}
+  var s={};for(var k in byKey)s[k]=mean(byKey[k]);
+  function g(k){return s[k]!=null?s[k]:3;}
+  var reinvestment=(g("reinvestment:conscious_motor_processing")+g("reinvestment:movement_self_consciousness")+g("reinvestment:decision_reinvestment"))/3;
+  return {somatic:g("anxiety:somatic"),worry:g("anxiety:worry"),concentration:g("anxiety:concentration"),
+    debilitative:g("direction:interpretation"),reinvestment:reinvestment,efficacy:g("self_efficacy:confidence"),
+    sensation:g("sensation:seeking"),promotion:g("regulatory:promotion"),
+    prevention:g("regulatory:prevention"),monitoring:g("coping:monitoring"),negativeSelfTalk:g("selftalk:negative"),flow:g("flow:disposition"),
+    /* --- fix 2: previously-collected-but-unscored items now consumed --- */
+    masteryApproach:g("achievement:mastery_approach"),performanceAvoidance:g("achievement:performance_avoidance"),
+    blunting:g("coping:blunting"),instructionalSelfTalk:g("selftalk:instructional"),
+    /* v12 provisional: behavioral-avoidance response (exploratory, app-original) */
+    avoidance:g("avoidance:behavioral")};
+}
+var PA_PATHWAYS=[
+  {id:"regulation",label:"Arousal & worry regulation",colour:"#46B3A9",
+   score:function(c){return 0.30*PA_n01(c.somatic)+0.30*PA_n01(c.worry)+0.25*PA_n01(c.debilitative)+0.15*(1-PA_n01(c.efficacy));},
+   factors:[{k:"somatic",w:0.30,label:"how much your body tenses up"},{k:"worry",w:0.30,label:"pre-dive worry"},{k:"debilitative",w:0.25,label:"reading nerves as a bad sign"},{k:"efficacy",w:0.15,invert:true,label:"less trust in staying in control"}],
+   lead:"Managing physical activation and pre-dive worry is where your profile points most strongly \u2014 one of the best-evidenced areas to train."},
+  {id:"attentional_control",label:"Attentional control & automaticity",colour:"#2E7D97",
+   score:function(c){return 0.55*PA_n01(c.reinvestment)+0.30*PA_n01(c.concentration)+0.15*(1-PA_n01(c.worry));},
+   factors:[{k:"reinvestment",w:0.55,label:"over-controlling movements you already own"},{k:"concentration",w:0.30,label:"attention drifting under pressure"},{k:"worry",w:0.15,invert:true,label:"relatively low worry"}],
+   lead:"Keeping attention where it belongs \u2014 and letting well-trained skills run themselves rather than over-controlling them \u2014 is where your profile points most strongly."},
+  /* v12 provisional: third pathway for coverage (confidence / self-belief / flow). Weights reasoned, NOT validated. */
+  {id:"confidence_flow",label:"Confidence & flow",colour:"#3E8FA6",provisional:true,
+   score:function(c){return 0.50*(1-PA_n01(c.efficacy))+0.30*(1-PA_n01(c.flow))+0.20*PA_n01(c.negativeSelfTalk);},
+   factors:[{k:"efficacy",w:0.50,invert:true,label:"less trust in your own capability"},{k:"flow",w:0.30,invert:true,label:"harder to drop into absorbed, self-forgetting focus"},{k:"negativeSelfTalk",w:0.20,label:"the inner critic speaking up"}],
+   lead:"Building durable self-belief \u2014 and getting out of your own way so absorbed focus can happen \u2014 is where your profile points most strongly."}
+];
+function PA_route(c){
+  var raw=PA_PATHWAYS.map(function(p){return {id:p.id,ref:p,raw:Math.max(0,p.score(c))};});
+  var total=raw.reduce(function(s,x){return s+x.raw;},0)||1;
+  raw.forEach(function(x){x.pct=Math.round((x.raw/total)*100);});
+  var drift=100-raw.reduce(function(s,x){return s+x.pct;},0); if(raw.length)raw[0].pct+=drift;
+  raw.sort(function(a,b){return b.raw-a.raw;});
+  /* blend flag uses PA_BLEND_MARGIN so it can't silently drift from PA_resolve's
+     routing after calibration. NOTE: this compares the top-two PATHWAY pcts here,
+     whereas PA_resolve applies the same margin after the full 3-pathway split \u2014
+     slightly different geometries. Kept linked deliberately (same "is this person
+     balanced?" concept); decouple only if real data shows they should differ.
+     PA_BLEND_MARGIN is assigned below; PA_route is never called before then. */
+  return {ranked:raw,dominant:raw[0],blend:(raw.length>1&&Math.abs(raw[0].pct-raw[1].pct)<=PA_BLEND_MARGIN)};
+}
+function PA_mods(c){
+  var m=[];
+  if(c.negativeSelfTalk>=3.5)m.push({tag:"Self-talk",text:"Frequent negative self-talk \u2014 layer in reframing and a prepared cue script."});
+  /* fix 2: instructional self-talk now scored (selftalk:instructional). Low use = opportunity to add cue-words. */
+  if(c.instructionalSelfTalk<=2.5)m.push({tag:"Self-talk",text:"You make little use of instructional cue-words \u2014 building a short prepared cue script (\u201crelax shoulders\u201d, \u201cslow exhale\u201d) is a quick, well-evidenced gain."});
+  /* fix 2: coping style now uses the real blunting item alongside monitoring, not monitoring alone. */
+  if(c.monitoring>=3.5&&c.blunting<=2.5)m.push({tag:"Coping style",text:"You lean toward monitoring (wanting internal detail). Surface the sensations rather than hiding them \u2014 but pair with tolerance framing."});
+  if(c.blunting>=3.5&&c.monitoring<2.5)m.push({tag:"Coping style",text:"You lean toward blunting (less internal detail). Favour distraction / automaticity cues and keep sensation dashboards minimal."});
+  if(c.promotion-c.prevention>=1)m.push({tag:"Framing",text:"Promotion-focused \u2014 goals framed as gains (\u201cextend your range\u201d) will fit you better."});
+  if(c.prevention-c.promotion>=1)m.push({tag:"Framing",text:"Prevention-focused \u2014 goals framed as safety/control (\u201cstay calm and controlled\u201d) will fit you better."});
+  /* fix 2: achievement-goal orientation now scored (achievement:*). Avoidance-dominant profiles benefit from mastery reframing. */
+  if(c.performanceAvoidance-c.masteryApproach>=1)m.push({tag:"Goal focus",text:"Performance-avoidance leaning \u2014 reframing targets around personal mastery (\u201cimprove the skill\u201d) rather than not-failing tends to lower pressure and sustain motivation."});
+  if(c.masteryApproach-c.performanceAvoidance>=1.5)m.push({tag:"Goal focus",text:"Strong mastery orientation \u2014 a real asset; keep goals framed around skill improvement and it will keep driving steady progress."});
+  return m;
+}
+function PA_nft(routing){
+  return {device:"Muse EEG headband + auxiliary lead \u2248 Cz (approximate central-band rhythm)",
+    fid:"Muse reads frontal/temporal band power well; a true sensorimotor-rhythm (SMR) montage is approximated, not measured \u2014 any SMR-style target is labelled as an approximation.",
+    primary:routing.dominant.ref.id==="regulation"?"Down-regulate pre-session hyperarousal (frontal-alpha up-regulation / calm-state training)":"Support quiet, non-over-engaged processing (approx. SMR up-regulation)",
+    secondary:routing.dominant.ref.id==="regulation"?"Frontal-alpha stability for a settled, sustained state":"External-focus attention anchoring with alpha-reactivity feedback",
+    length:"6 short sessions over ~3 weeks; a sham-control comparison is recommended before any effect is claimed",
+    guard:["Dry, pre-dive mental preparation only \u2014 never in-water or live breath-hold supervision.","Log-only breath-hold metrics; live guided holds are reserved for the expert tier with a required present supervisor.","All EEG outputs are exploratory \u2014 no biomarker is shown as ground truth."]};
+}
+/* pathway id -> in-app programs + the mechanism sentence that explains the pairing */
+var PA_PROGMAP={
+  regulation:{nf:"calm",mw:"nerves",mech:"The module trains a settling frontal-alpha state \u2014 calm on command \u2014 and the program reframes the nerves themselves instead of fighting them."},
+  attentional_control:{nf:"focus",mw:"focus",mech:"The module gives feedback on a quiet, non-over-engaged state (approx. SMR), and the program loosens step-by-step self-control so trained technique can run itself."},
+  /* v12 provisional: confidence_flow -> existing Confidence & self-belief program. nf left as calm pending a flow-vs-belief split decision. */
+  confidence_flow:{nf:"calm",mw:"confidence",mech:"The program surfaces and tests the core beliefs under the doubt, and the module trains a settled state that makes absorbed, self-forgetting focus easier to reach.",provisional:true}
+};
+function PA_explain(c,path){
+  return (path.factors||[]).map(function(x){var v01=x.invert?(1-PA_n01(c[x.k])):PA_n01(c[x.k]);return {label:x.label,val:c[x.k],contrib:x.w*v01};}).sort(function(a,b){return b.contrib-a.contrib;});
+}
+/* fix 3: panic-literacy swap is now an explicit, inspectable gate rather than a
+   label-substring match. It fires ONLY when the profile is genuinely body-led:
+   (a) somatic is elevated in absolute terms (>= PA_PANIC_SOMATIC_MIN), AND
+   (b) somatic clearly leads the other anxiety components (worry, concentration)
+       by a margin (>= PA_PANIC_SOMATIC_LEAD).
+   A neutral (all-3) profile fails (a), so it can never route to a clinical
+   panic program. Thresholds are named constants so they are easy to review/tune. */
+var PA_PANIC_SOMATIC_MIN=3.5;    /* somatic must be at least "quite a bit"-ish */
+var PA_PANIC_SOMATIC_LEAD=0.5;   /* and lead worry & concentration by >= this */
+function PA_panicGate(c){
+  return c.somatic>=PA_PANIC_SOMATIC_MIN
+      && (c.somatic-c.worry)>=PA_PANIC_SOMATIC_LEAD
+      && (c.somatic-c.concentration)>=PA_PANIC_SOMATIC_LEAD;
+}
+function PA_reco(c,routing){
+  var dom=routing.dominant.ref, map=PA_PROGMAP[dom.id]||{}, drivers=PA_explain(c,dom), mw=map.mw;
+  if(dom.id==="regulation"&&PA_panicGate(c))mw="panic"; /* body-led -> panic literacy (explicit gate) */
+  return {nf:map.nf,mw:mw,mech:map.mech,drivers:drivers,swapped:(mw!==map.mw)};
+}
+/* ============================================================================
+   v12 PROVISIONAL: two-input routing (scores + stated goal).
+   Rationale: when the score profile is DIFFERENTIATED, scores lead and a stated
+   goal is surfaced as a secondary thread. When the profile is BALANCED (no
+   pathway leads by PA_BLEND_MARGIN), the tool ACKNOWLEDGES the balance and lets
+   the person's stated goal orient the plan \u2014 labelled as goal-driven, not
+   score-detected. Goals that are situation-defined (setback, avoidance) route by
+   the MECHANISM the assessment measured, not to a single fixed program.
+   PA_BLEND_MARGIN is provisional and must be set from real intake data before
+   this drives live recommendations (validate-before-routing checkpoint).
+   ========================================================================== */
+var PA_BLEND_MARGIN=12; /* PROVISIONAL \u2014 set empirically from real distribution */
+/* goal id -> how it routes. type:"pathway" defers to a pathway; type:"program"
+   goes straight to a program; type:"mechanism" picks a program from the profile. */
+var PA_GOALS=[
+  {id:"calm_nerves",  label:"Calm my dive-day nerves",                    type:"pathway",  pathway:"regulation"},
+  {id:"overthinking", label:"Stop overthinking / micromanaging my technique", type:"pathway", pathway:"attentional_control"},
+  {id:"depth_confidence", label:"Build confidence to push a deeper depth", type:"pathway", pathway:"confidence_flow"},
+  {id:"flow",         label:"Get into flow more consistently",            type:"pathway",  pathway:"confidence_flow", note:"shares the focus program provisionally", provProgram:"focus"},
+  {id:"body_panic",   label:"Handle strong body sensations / panic",      type:"program",  program:"panic"},
+  {id:"avoidance",    label:"Approach something I've been putting off",    type:"mechanism", context:"avoidance"},
+  {id:"setback",      label:"Bounce back from a setback",                 type:"mechanism", context:"setback"},
+  {id:"none",         label:"Not sure yet / general foundation",          type:"none"}
+];
+function PA_goal(id){for(var i=0;i<PA_GOALS.length;i++)if(PA_GOALS[i].id===id)return PA_GOALS[i];return null;}
+
+/* Given a balanced/ambiguous situation-goal, choose a program by which mechanism
+   dominates the person's measured response. Uses constructs the engine already
+   scores (reinvestment, negativeSelfTalk/avoidance, avoidance:behavioral). */
+function PA_mechanismProgram(c,context){
+  /* three candidate mechanisms, scored 0..1 */
+  var mAvoid = PA_n01(c.avoidance);                 /* behavioral retreat -> fear ladder */
+  var mReinv = PA_n01(c.reinvestment);              /* over-analysis / control -> focus  */
+  var mSelf  = 0.5*PA_n01(c.negativeSelfTalk)+0.5*(1-PA_n01(c.efficacy)); /* harsh self-judgement -> setback */
+  var ranked=[{m:"fear",v:mAvoid,label:"behavioral avoidance"},
+              {m:"focus",v:mReinv,label:"over-analysis / reinvestment"},
+              {m:"setback",v:mSelf,label:"harsh self-judgement & withdrawal"}];
+  ranked.sort(function(a,b){return b.v-a.v;});
+  var lead=ranked[0].v-ranked[1].v;
+  return {program:ranked[0].m, driver:ranked[0].label, ranked:ranked,
+          decisive:(lead>=0.11), /* provisional; 0.11 sits just under the 0.125 scale-step so a one-point mechanism lead reliably routes despite float rounding */
+          fallback:(context==="setback"?"setback":"fear")};
+}
+
+/* Master routing: returns a resolved plan + an explicit, honest "basis" tag. */
+function PA_resolve(c,routing,goalId){
+  var goal=PA_goal(goalId||"none");
+  var lead=routing.ranked.length>1?(routing.ranked[0].pct-routing.ranked[1].pct):100;
+  var scoreLed=lead>=PA_BLEND_MARGIN;
+  /* situation/mechanism goals resolve by measured response, independent of pathway */
+  if(goal&&goal.type==="mechanism"){
+    var mp=PA_mechanismProgram(c,goal.context);
+    var prog=mp.decisive?mp.program:mp.fallback;
+    return {basis:"goal+mechanism",program:prog,nf:(prog==="focus"?"focus":"calm"),
+            note:"Your goal is situation-defined; the plan follows how you tend to respond ("+mp.driver+").",
+            mechanism:mp,goal:goal,scoreLed:scoreLed,balanced:!scoreLed};
+  }
+  if(goal&&goal.type==="program"){
+    var pm=PA_PROGMAP; var nf=(goal.program==="panic"?"calm":"calm");
+    return {basis:"goal+program",program:goal.program,nf:nf,
+            note:"Routed to the program your stated goal names directly.",goal:goal,scoreLed:scoreLed,balanced:!scoreLed};
+  }
+  if(scoreLed){
+    /* scores lead; goal (if any & different) becomes a secondary thread */
+    var reco=PA_reco(c,routing);
+    var goalPath=(goal&&goal.type==="pathway")?goal.pathway:null;
+    var secondary=(goalPath&&goalPath!==routing.dominant.ref.id)?goalPath:null;
+    return {basis:"score-led",program:reco.mw,nf:reco.nf,mech:reco.mech,swapped:reco.swapped,
+            secondaryPathway:secondary,goal:goal,scoreLed:true,balanced:false,
+            note:secondary?"Your scores point clearly here; your stated goal is queued as a secondary focus.":"Your scores point clearly to this focus."};
+  }
+  /* BALANCED: acknowledge, then let the goal orient */
+  if(goal&&goal.type==="pathway"){
+    var map=PA_PROGMAP[goal.pathway]||{};
+    var prog=goal.provProgram||map.mw;
+    return {basis:"balanced+goal",program:prog,nf:map.nf||"calm",
+            note:"Your profile is evenly balanced across areas \u2014 a stable platform, not a deficit. Since no single area stands out, your plan follows the goal you chose.",
+            goal:goal,scoreLed:false,balanced:true};
+  }
+  /* balanced + no goal -> foundational */
+  return {basis:"balanced+foundational",program:"foundational",nf:null,
+          note:"Your profile is evenly balanced across areas \u2014 a genuine strength. There's no single stand-out to target, so a short foundational program fits best. Pick a goal any time to focus the work.",
+          goal:goal,scoreLed:false,balanced:true};
+}
+/* =================== END VERBATIM v12 PA ENGINE =================== */
+
+/* Goal-elicitation cards use PA_GOALS (the routing goals PA_resolve consumes). */
+
+/* ============================================================
+   APP CORE — storage, state, helpers, router
+   ============================================================ */
+
+/* ---------- storage layer (window.storage w/ in-memory fallback) ---------- */
+var MEM={}; var HAS_STORE=(typeof window!=="undefined"&&window.storage&&typeof window.storage.get==="function");
+async function sGet(k){
+  if(HAS_STORE){try{var r=await window.storage.get(k);return r?JSON.parse(r.value):null;}catch(e){return null;}}
+  return (k in MEM)?JSON.parse(MEM[k]):null;
+}
+async function sSet(k,v){
+  var s=JSON.stringify(v);
+  if(HAS_STORE){try{await window.storage.set(k,s);return true;}catch(e){}}
+  MEM[k]=s;return true;
+}
+async function sDel(k){
+  if(HAS_STORE){try{await window.storage.delete(k);return;}catch(e){}}
+  delete MEM[k];
+}
+
+/* ---------- data model ----------
+   DB.people : [{id,name,email,phone,note,created}]
+   DB.assessments[personId] : {status, token, responses, state, goal, profile, resolved,
+                               started, completed, share:{granted,items:{...},mode}}
+   status: 'invited' | 'progress' | 'complete'
+------------------------------------------------------------- */
+var DB={people:[],assessments:{}};
+async function loadDB(){
+  var d=await sGet("id_db");
+  if(d){DB=d;}
+  if(!DB.people)DB.people=[];
+  if(!DB.assessments)DB.assessments={};
+}
+async function saveDB(){ await sSet("id_db",DB); }
+
+function uid(p){return (p||"id")+"_"+Date.now().toString(36)+Math.random().toString(36).slice(2,7);}
+function token(){return Math.random().toString(36).slice(2,10)+Math.random().toString(36).slice(2,6);}
+function esc(s){return String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");}
+function ico(p,w){return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="'+(w||1.8)+'" stroke-linecap="round" stroke-linejoin="round">'+p+'</svg>';}
+function fmtDate(t){if(!t)return "—";var d=new Date(t);return d.toLocaleDateString(undefined,{month:"short",day:"numeric",year:"numeric"});}
+function fmtDateTime(t){if(!t)return "—";var d=new Date(t);return d.toLocaleDateString(undefined,{month:"short",day:"numeric"})+" · "+d.toLocaleTimeString(undefined,{hour:"numeric",minute:"2-digit"});}
+
+var IC={
+  dash:'<rect x="3" y="3" width="7" height="9" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="12" width="7" height="9" rx="1.5"/><rect x="3" y="16" width="7" height="5" rx="1.5"/>',
+  people:'<circle cx="9" cy="8" r="3.2"/><path d="M3.5 20a5.5 5.5 0 0 1 11 0"/><path d="M16 5.5a3 3 0 0 1 0 5.6M18 20a5.5 5.5 0 0 0-3-4.9"/>',
+  results:'<path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/>',
+  send:'<path d="M22 2 11 13M22 2l-7 20-4-9-9-4z"/>',
+  info:'<circle cx="12" cy="12" r="9"/><path d="M12 8v.01M11 12h1v4h1"/>',
+  plus:'<path d="M12 5v14M5 12h14"/>',
+  eye:'<path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/>',
+  eyeoff:'<path d="M9.9 4.24A9.1 9.1 0 0 1 12 4c6.5 0 10 8 10 8a18 18 0 0 1-2.16 3.19M6.6 6.6A18 18 0 0 0 2 12s3.5 7 10 7a9 9 0 0 0 4-.9M1 1l22 22"/>',
+  copy:'<rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/>',
+  pdf:'<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 15h1.5a1.5 1.5 0 0 0 0-3H8v5M14 12v5M18 12h-2v5"/>',
+  check:'<path d="M20 6 9 17l-5-5"/>',
+  lock:'<rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/>',
+  share:'<circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/>',
+  trash:'<path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/>',
+  back:'<path d="M19 12H5M12 19l-7-7 7-7"/>',
+  chart:'<path d="M3 3v18h18"/><path d="M7 14l3-4 3 3 5-7"/>'
+};
+
+/* ---------- runtime state ---------- */
+var UI={route:"dashboard", personId:null, resultMode:"long", curated:false};
+var TOAST_T=null;
+function toast(msg){var t=document.getElementById("toast");t.textContent=msg;t.classList.add("show");clearTimeout(TOAST_T);TOAST_T=setTimeout(function(){t.classList.remove("show");},1900);}
+
+/* ---------- respondent-link detection ---------- */
+function parseHash(){
+  var h=location.hash||"";
+  var m=h.match(/^#\/a\/([a-z0-9]+)/i);       // respondent assessment link
+  if(m)return {kind:"assess",token:m[1]};
+  var p=h.match(/^#\/r\/([a-z0-9]+)/i);        // shared result (user portal deep link)
+  if(p)return {kind:"result",token:p[1]};
+  return {kind:"app"};
+}
+
+/* ---------- lookups ---------- */
+function personById(id){for(var i=0;i<DB.people.length;i++)if(DB.people[i].id===id)return DB.people[i];return null;}
+function assessByToken(tok){
+  for(var pid in DB.assessments){var a=DB.assessments[pid];if(a&&a.token===tok)return {pid:pid,a:a};}
+  return null;
+}
+function ensureAssessment(pid){
+  if(!DB.assessments[pid]){
+    DB.assessments[pid]={status:"invited",token:token(),responses:{},state:{},goal:"none",
+      started:null,completed:null,profile:null,resolved:null,
+      share:{granted:false,mode:"curated",items:defaultShareItems()}};
+  }
+  if(!DB.assessments[pid].share)DB.assessments[pid].share={granted:false,mode:"curated",items:defaultShareItems()};
+  return DB.assessments[pid];
+}
+function defaultShareItems(){
+  return {summary:true, plan:true, drivers:true, style:true, neuro:false, resolution:false, constructs:false, alternates:false};
+}
+
+/* ---------- link builder ---------- */
+function baseUrl(){return location.origin+location.pathname;}
+function assessLink(tok){return baseUrl()+"#/a/"+tok;}
+function resultLink(tok){return baseUrl()+"#/r/"+tok;}
+
+
+/* ============================================================
+   ADMIN — shell + dashboard + people + results
+   ============================================================ */
+var LOGO="data:image/png;base64,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";
+function root(){return document.getElementById("root");}
+
+function adminShell(inner){
+  var nav=[["dashboard","Dashboard",IC.dash],["people","People",IC.people],["results","Results",IC.results]];
+  var titleMap={dashboard:["Dashboard","Overview of assessments and activity"],
+    people:["People","Your assessment list — invite, track, and open results"],
+    results:["Results","Completed profiles — review, curate sharing, export PDFs"]};
+  var t=titleMap[UI.route]||["Inner Depths",""];
+  return '<div class="app">'
+    +'<aside class="side">'
+      +'<div class="logo"><img src="'+LOGO+'" alt=""/><div><div class="bt1">Inner&nbsp;<span>Depths</span></div><div class="bt2">Assessment Platform</div></div></div>'
+      +'<nav class="nav">'+nav.map(function(n){return '<button data-nav="'+n[0]+'" class="'+(UI.route===n[0]?"on":"")+'">'+ico(n[2])+'<span>'+n[1]+'</span></button>';}).join("")+'</nav>'
+      +'<div class="foot">Interim testing tool. Supports dry training &amp; pre-dive mental preparation only. Results are provisional (v12) and awaiting validation before driving live recommendations.</div>'
+    +'</aside>'
+    +'<main class="main">'
+      +'<div class="topbar"><div><h1>'+esc(t[0])+'</h1><div class="sub">'+esc(t[1])+'</div></div>'
+        +(UI.route==="people"?'<button class="btn btn-primary" data-act="addPerson">'+ico(IC.plus)+'Add person</button>':'')
+      +'</div>'
+      +'<div class="wrap">'+inner+'</div>'
+    +'</main>'
+  +'</div>';
+}
+
+/* ---------- Dashboard ---------- */
+function viewDashboard(){
+  var ppl=DB.people.length;
+  var invited=0,progress=0,complete=0,shared=0;
+  DB.people.forEach(function(p){var a=DB.assessments[p.id];if(!a){invited++;return;}
+    if(a.status==="complete")complete++;else if(a.status==="progress")progress++;else invited++;
+    if(a.share&&a.share.granted)shared++;});
+  var recent=DB.people.slice().map(function(p){return {p:p,a:DB.assessments[p.id]};})
+    .filter(function(x){return x.a&&x.a.completed;})
+    .sort(function(a,b){return b.a.completed-a.a.completed;}).slice(0,5);
+
+  var s=''
+    +'<div class="grid k4">'
+      +stat("People",ppl,"in your list")
+      +stat("Completed",complete,"profiles ready")
+      +stat("In progress",progress,"started, not done")
+      +stat("Shared",shared,"granted to users")
+    +'</div>';
+  s+='<div class="card" style="margin-top:16px">'
+    +'<div class="sec-h"><h2>Recently completed</h2>'+(recent.length?'<button class="btn btn-sm" data-nav="results">View all</button>':'')+'</div>';
+  if(!recent.length){
+    s+=emptyBlock(IC.chart,"No completed assessments yet","Add a person, send them the assessment link, and their profile will appear here once finished.");
+  }else{
+    s+='<table><thead><tr><th>Name</th><th>Profile</th><th>Completed</th><th>Sharing</th><th></th></tr></thead><tbody>';
+    recent.forEach(function(x){
+      s+='<tr class="rowhover"><td class="tname">'+esc(x.p.name)+'</td>'
+        +'<td>'+(x.a.profile?esc(x.a.profile.label):"—")+'</td>'
+        +'<td class="tsub">'+fmtDate(x.a.completed)+'</td>'
+        +'<td>'+shareBadge(x.a)+'</td>'
+        +'<td style="text-align:right"><button class="btn btn-sm" data-open="'+x.p.id+'">Open</button></td></tr>';
+    });
+    s+='</tbody></table>';
+  }
+  s+='</div>';
+  s+='<div class="notice" style="margin-top:16px">'+ico(IC.info)+' &nbsp;This is an interim tool for testing the Performance Assessment engine. Nothing here is a diagnosis; every profile is provisional pending validation against real intake data.</div>';
+  return s;
+}
+function stat(k,v,d){return '<div class="stat"><div class="k">'+esc(k)+'</div><div class="v mono">'+v+'</div><div class="d">'+esc(d)+'</div></div>';}
+function emptyBlock(icn,h,sub){return '<div class="empty"><div class="ei">'+ico(icn)+'</div><h3>'+esc(h)+'</h3><p>'+esc(sub)+'</p></div>';}
+
+/* ---------- People list ---------- */
+function statusBadge(a){
+  if(!a||a.status==="invited")return '<span class="badge b-invited"><i></i>Invited</span>';
+  if(a.status==="progress")return '<span class="badge b-progress"><i></i>In progress</span>';
+  return '<span class="badge b-complete"><i></i>Complete</span>';
+}
+function shareBadge(a){
+  if(a&&a.share&&a.share.granted)return '<span class="badge b-shared"><i></i>Shared</span>';
+  return '<span class="badge b-none"><i></i>Not shared</span>';
+}
+function viewPeople(){
+  if(!DB.people.length){
+    return '<div class="card">'+emptyBlock(IC.people,"No people yet","Add someone to send them the Performance Assessment. You control everything they can see.")
+      +'<div style="text-align:center;margin-top:-8px"><button class="btn btn-primary" data-act="addPerson">'+ico(IC.plus)+'Add your first person</button></div></div>';
+  }
+  var s='<div class="card"><table><thead><tr><th>Name</th><th>Contact</th><th>Status</th><th>Sharing</th><th style="text-align:right">Actions</th></tr></thead><tbody>';
+  DB.people.forEach(function(p){
+    var a=DB.assessments[p.id];
+    var contact=esc(p.email||p.phone||"—");
+    s+='<tr class="rowhover"><td><div class="tname">'+esc(p.name)+'</div>'+(p.note?'<div class="tsub">'+esc(p.note)+'</div>':'')+'</td>'
+      +'<td class="tsub">'+contact+'</td>'
+      +'<td>'+statusBadge(a)+'</td>'
+      +'<td>'+shareBadge(a||{})+'</td>'
+      +'<td style="text-align:right;white-space:nowrap">'
+        +'<button class="btn btn-sm" data-send="'+p.id+'">'+ico(IC.send)+'Send</button> '
+        +(a&&a.status==="complete"?'<button class="btn btn-sm" data-open="'+p.id+'">'+ico(IC.eye)+'Open</button> ':'')
+        +'<button class="btn btn-sm btn-danger" data-del="'+p.id+'">'+ico(IC.trash)+'</button>'
+      +'</td></tr>';
+  });
+  s+='</tbody></table></div>';
+  return s;
+}
+
+/* ---------- Results list ---------- */
+function viewResults(){
+  var done=DB.people.map(function(p){return {p:p,a:DB.assessments[p.id]};})
+    .filter(function(x){return x.a&&x.a.status==="complete";})
+    .sort(function(a,b){return (b.a.completed||0)-(a.a.completed||0);});
+  if(!done.length){
+    return '<div class="card">'+emptyBlock(IC.results,"No results yet","Once someone completes the assessment, their profile lands here for review, curation, and PDF export.")+'</div>';
+  }
+  var s='<div class="card"><table><thead><tr><th>Name</th><th>Leading profile</th><th>Split</th><th>Completed</th><th>Sharing</th><th style="text-align:right">Actions</th></tr></thead><tbody>';
+  done.forEach(function(x){
+    var pr=x.a.profile||{};
+    s+='<tr class="rowhover"><td class="tname">'+esc(x.p.name)+'</td>'
+      +'<td>'+esc(pr.label||"—")+'</td>'
+      +'<td class="tsub mono">'+(pr.pct!=null?pr.pct+"%":"—")+'</td>'
+      +'<td class="tsub">'+fmtDate(x.a.completed)+'</td>'
+      +'<td>'+shareBadge(x.a)+'</td>'
+      +'<td style="text-align:right;white-space:nowrap">'
+        +'<button class="btn btn-sm" data-open="'+x.p.id+'">'+ico(IC.eye)+'Open</button> '
+        +'<button class="btn btn-sm" data-reports="'+x.p.id+'">'+ico(IC.pdf)+'Reports</button> '
+        +'<button class="btn btn-sm" data-share="'+x.p.id+'">'+ico(IC.share)+'Share</button>'
+      +'</td></tr>';
+  });
+  s+='</tbody></table></div>';
+  return s;
+}
+
+
+/* ============================================================
+   RESULT RENDERER — computes engine output & renders sections.
+   Used by: admin full view, curated user view, and PDF/print.
+   opts: {curated:bool, items:{summary,plan,drivers,style,neuro,resolution}, mode:'long'|'summary', personName}
+   ============================================================ */
+
+/* Run the verbatim engine over stored responses. Mirrors v12 renderPAResult. */
+function computeResult(a){
+  var R=a.responses||{}, ST=a.state||{};
+  var c=PA_score(R);
+  var routing=PA_route(c);
+  var dom=routing.dominant.ref;
+  var rec=PA_reco(c,routing);
+  var nft=PA_nft(routing);
+  var mods=PA_mods(c);
+  var style=PA_style(R);
+  var resolved=PA_resolve(c,routing,a.goal||"none");
+  return {c:c,routing:routing,dom:dom,rec:rec,nft:nft,mods:mods,style:style,resolved:resolved,state:ST};
+}
+
+/* Persist a compact profile snapshot for list views. */
+function snapshotProfile(a){
+  try{
+    var r=computeResult(a);
+    a.profile={id:r.dom.id,label:r.dom.label,pct:r.routing.dominant.pct,
+      nf:r.rec.nf,mw:r.rec.mw};
+    a.resolved={basis:r.resolved.basis,note:r.resolved.note};
+  }catch(e){a.profile=null;}
+}
+
+function basisTag(b){return {"score-led":"Scores lead","balanced+goal":"Balanced — goal leads",
+  "balanced+foundational":"Balanced — foundational","goal+mechanism":"Goal — by response style",
+  "goal+program":"Goal — direct"}[b]||b;}
+
+function renderResult(a,opts){
+  opts=opts||{}; var items=opts.items||defaultShareItems(); var curated=!!opts.curated; var summaryOnly=(opts.mode==="summary");
+  var r=computeResult(a);
+  var dom=r.dom, routing=r.routing, rec=r.rec;
+
+  // In curated mode, only show enabled items. In admin mode, show all.
+  function on(key){ return curated? !!items[key] : true; }
+
+  var out='<div class="result'+(curated?' curated':'')+'">';
+
+  // header line (name / date) for PDF context
+  if(opts.personName){
+    out+='<div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:14px">'
+      +'<div class="eye">Performance profile</div>'
+      +'<div class="tsub">'+esc(opts.personName)+' · '+fmtDate(a.completed)+'</div></div>';
+  }
+
+  /* 1. SUMMARY HERO */
+  if(on("summary")){
+    var splitBar=routing.ranked.map(function(x){return '<span style="width:'+x.pct+'%;background:'+x.ref.colour+'"></span>';}).join("");
+    var splitLeg=routing.ranked.map(function(x){return '<span><i style="background:'+x.ref.colour+'"></i>'+esc(x.ref.label)+' · '+x.pct+'%</span>';}).join("");
+    var foM=nfMod("foundation"), nfM=nfMod(rec.nf), mwP=mwProg(rec.mw);
+    out+='<div class="pa-summary"><div class="eye">Your profile · at a glance</div>'
+      +'<h2>'+esc(dom.label)+'</h2><p>'+esc(dom.lead)+'</p>'
+      +'<div class="pa-splitbar">'+splitBar+'</div><div class="pa-splitleg">'+splitLeg+'</div>'
+      +(routing.blend?'<p style="margin-top:10px;font-size:.82rem;color:var(--lumen)">Your top two areas are close — a <b style="color:#fff">blended profile</b>. Start with the lead, borrow from the next when a session calls for it.</p>':'')
+      +'<div class="pa-mini"><b>Do next:</b> 1 · set your baseline &nbsp;→&nbsp; 2 · '+esc(foM.n)+' &nbsp;→&nbsp; 3 · '+esc(nfM.n)+' + '+esc(mwP.n)+'</div>'
+    +'</div>';
+  }
+
+  if(summaryOnly){
+    // Summary form: hero + a one-line plan + provisional disclaimer only.
+    out+='<div class="res-caveat">Provisional (v12). This snapshot reflects the two-input routing (assessment scores + stated goal); blend margin and adapted items are awaiting validation before driving live recommendations. Dry training &amp; pre-dive preparation only.</div>';
+    out+='</div>';
+    return out;
+  }
+
+  /* 1b. PROVISIONAL RESOLUTION PANEL (admin, or if shared) */
+  if(on("resolution")){
+    var res=r.resolved;
+    var gLabel=(res.goal&&res.goal.id!=="none")?res.goal.label:null;
+    out+='<div class="prov-panel"><div class="ph">'
+      +'<div class="pl">How this plan was decided <span class="pf">· provisional</span></div>'
+      +'<span class="prov-tag">'+esc(basisTag(res.basis))+'</span></div>'
+      +(gLabel?'<div class="pd"><b>Goal:</b> '+esc(gLabel)+'</div>':'<div class="pd" style="color:var(--ink-soft)">No goal set — general foundation.</div>')
+      +'<div class="pd">'+esc(res.note)+'</div>'
+      +(res.secondaryPathway?'<div class="pd" style="color:var(--tidal)">Secondary thread queued: <b>'+esc(res.secondaryPathway)+'</b> (from goal).</div>':'')
+      +(res.mechanism?'<div class="pd" style="color:var(--ink-soft);font-size:.8rem">Response-style read: '+res.mechanism.ranked.map(function(x){return esc(x.label)+" "+Math.round(x.v*100)+"%";}).join(" · ")+'</div>':'')
+      +'<div class="prov-fine">v12 two-input routing (scores + stated goal). Blend margin (PA_BLEND_MARGIN) and adapted items are provisional and awaiting validation against real data before driving live recommendations.</div>'
+    +'</div>';
+  }
+
+  /* 2. PLAN */
+  if(on("plan")){
+    var foM2=nfMod("foundation"), nfM2=nfMod(rec.nf), mwP2=mwProg(rec.mw);
+    out+='<div class="res-sec"><span class="eye">Your starting plan</span>'
+      +'<p class="rintro">Because <b>'+esc(dom.label.toLowerCase())+'</b> leads, we pair a matched neurofeedback module with a Mind Work program. Follow the path top to bottom.</p>'
+      +'<div class="pa-flow">'
+        +planNode("var(--current)","1","Set your baseline","First","A subjective check-in and a short resting capture so the sensors calibrate to you.")
+        +planNode(foM2.c,"2",foM2.n,"Foundation","A calm breathing lead-in that runs under every pathway.")
+        +planNode(nfM2.c,"3",nfM2.n,"Neurofeedback","Matched to your focus · exploratory.")
+        +planNode(mwP2.c,"4",mwP2.n,"Mind Work","CBT for performance, matched to your focus."+(rec.swapped?" Body signals led, so this leans on panic-literacy.":""))
+      +'</div>';
+    if(r.mods.length){
+      out+='<div class="card" style="background:var(--seafoam);border:none;margin-top:10px"><div style="font-size:.72rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--tidal)">Personal tweaks</div>';
+      r.mods.forEach(function(m){out+='<div style="font-size:.86rem;color:var(--depth);line-height:1.5;margin-top:6px"><b>'+esc(m.tag)+':</b> '+esc(m.text)+'</div>';});
+      out+='</div>';
+    }
+    out+='</div>';
+  }
+
+  /* 3. DRIVERS */
+  if(on("drivers")){
+    var top=rec.drivers.slice(0,3), tot=top.reduce(function(s,x){return s+x.contrib;},0)||1;
+    var sa=r.state.state_arousal||3;
+    var today=sa>=4?"You're arriving over-aroused — lead with the breathing down-regulation before anything technical."
+      :sa<=2?"You're arriving flat — a short activating routine before the main work fits better today."
+      :"You're arriving in a workable middle band — go straight into your focus area.";
+    out+='<div class="res-sec"><span class="eye">Why this is your focus</span>'
+      +'<p class="rintro">These answers pushed hardest toward your leading area — the taller the bar, the more it shaped the result.</p><div class="card">';
+    top.forEach(function(dr){var share=Math.round(dr.contrib/tot*100);
+      out+='<div class="pa-dbar"><span class="lb">'+esc(dr.label)+'</span><div class="tk"><span style="width:'+Math.max(6,share)+'%"></span></div><span class="vl mono">'+share+'%</span></div>';});
+    out+='</div><div class="rintro" style="margin-top:10px"><b>Today:</b> '+esc(today)+'</div></div>';
+  }
+
+  /* 4. STYLE */
+  if(on("style")){
+    out+='<div class="res-sec"><span class="eye">Your style</span>'
+      +'<p class="rintro">No style here is better than another — they only change how we coach you. Light indications; the tendencies (and the skills that pair with them) are trainable.</p>';
+    r.style.forEach(function(sd){var mpos=Math.max(6,Math.min(94,sd.pos));
+      out+='<div class="card"><div class="style-row"><div class="st">'+esc(sd.title)+'</div>'
+        +'<div class="style-track"><span class="end'+(sd.side==="lo"?" on":"")+'">'+esc(sd.lo)+'</span>'
+        +'<div class="bar"><span style="left:'+mpos+'%"></span></div>'
+        +'<span class="end r'+(sd.side==="hi"?" on":"")+'">'+esc(sd.hi)+'</span></div>'
+        +'<div class="style-strength">'+esc(sd.strength)+'</div></div></div>';
+    });
+    out+='</div>';
+  }
+
+  /* 5. NEUROFEEDBACK (admin-only by default) */
+  if(on("neuro")){
+    var nft=r.nft;
+    out+='<div class="res-sec"><span class="eye">Neurofeedback detail</span>'
+      +'<div class="card"><span class="pill-ex">Exploratory</span>'
+      +'<p class="rintro" style="margin:8px 0 10px">'+esc(nft.fid)+'</p>'
+      +'<div class="nf-row"><span class="nk">Device</span><span class="nv">'+esc(nft.device)+'</span></div>'
+      +'<div class="nf-row"><span class="nk">Primary</span><span class="nv">'+esc(nft.primary)+'</span></div>'
+      +'<div class="nf-row"><span class="nk">Secondary</span><span class="nv">'+esc(nft.secondary)+'</span></div>'
+      +'<div class="nf-row"><span class="nk">Structure</span><span class="nv">'+esc(nft.length)+'</span></div></div></div>';
+  }
+
+  /* 6. FULL CONSTRUCT PROFILE (expert extra) */
+  if(on("constructs")){
+    var cc=r.c;
+    var rows=[["Somatic anxiety",cc.somatic],["Cognitive worry",cc.worry],["Concentration disruption",cc.concentration],
+      ["Debilitative interpretation",cc.debilitative],["Reinvestment / over-control",cc.reinvestment],
+      ["Self-efficacy",cc.efficacy],["Sensation-seeking",cc.sensation]];
+    out+='<div class="res-sec"><span class="eye">Full construct profile</span>'
+      +'<p class="rintro">The underlying scores behind the pathway split \u2014 each on the 1\u20135 response scale.</p><div class="card">';
+    rows.forEach(function(row){
+      var val=(row[1]==null||isNaN(row[1]))?null:row[1];
+      var w=(val==null)?2:Math.round(Math.max(2,(val-1)/4*100));
+      out+='<div class="pa-dbar"><span class="lb" style="flex-basis:48%;font-size:.84rem">'+esc(row[0])+'</span>'
+        +'<div class="tk"><span style="width:'+w+'%;background:var(--current)"></span></div>'
+        +'<span class="vl mono">'+(val==null?"\u2014":val.toFixed(1)+"/5")+'</span></div>';
+    });
+    out+='</div></div>';
+  }
+
+  /* 7. ALSO CONSIDER \u2014 non-dominant pathways (expert extra) */
+  if(on("alternates")){
+    var alts=routing.ranked.slice(1);
+    if(alts.length){
+      out+='<div class="res-sec"><span class="eye">Also consider</span>'
+        +'<p class="rintro">The pathways that did not lead \u2014 useful context for what a shifted profile would surface.</p>';
+      alts.forEach(function(x){
+        out+='<div class="card" style="margin-top:8px"><div style="display:flex;align-items:center;gap:8px;margin-bottom:4px">'
+          +'<span style="width:10px;height:10px;border-radius:3px;background:'+x.ref.colour+'"></span>'
+          +'<span style="font-weight:600;color:var(--depth);font-size:.92rem">'+esc(x.ref.label)+'</span>'
+          +'<span class="mono" style="margin-left:auto;font-size:.82rem;color:var(--current);font-weight:600">'+x.pct+'%</span></div>'
+          +'<div style="font-size:.86rem;color:var(--ink-soft);line-height:1.5">'+esc(x.ref.lead)+'</div></div>';
+      });
+      out+='</div>';
+    }
+  }
+
+  out+='<div class="res-caveat">Provisional (v12). Every profile reflects two-input routing (scores + stated goal); blend margin and adapted items await validation before driving live recommendations. This tool supports dry training and pre-dive mental preparation only — never in-water coaching or live breath-hold supervision.</div>';
+  out+='</div>';
+  return out;
+}
+function planNode(color,num,title,kicker,desc){
+  return '<div class="pa-node"><div class="num" style="background:'+color+'">'+num+'</div>'
+    +'<div><div class="nk">'+esc(kicker)+'</div><div class="nt">'+esc(title)+'</div><div class="nd">'+esc(desc)+'</div></div></div>';
+}
+
+/* nfMod / mwProg / colour helpers — small maps mirroring the app's labels. */
+function nfMod(id){var m={
+  foundation:{n:"Foundation calm",c:"#2E7D97"},
+  calm:{n:"Down-regulation training",c:"#2E7D97"},
+  focus:{n:"Attention-stability training",c:"#46B3A9"},
+  stability:{n:"Focus-stability training",c:"#46B3A9"}
+};return m[id]||{n:(id?id:"Foundation"),c:"#2E7D97"};}
+function mwProg(id){var m={
+  nerves:{n:"Dive-day nerves",c:"#2E7D97"},
+  confidence:{n:"Confidence & self-belief",c:"#3E8FA6"},
+  fear:{n:"Fear & avoidance",c:"#D98873"},
+  panic:{n:"Body sensations & panic literacy",c:"#D98873"},
+  focus:{n:"Focus & overthinking",c:"#46B3A9"},
+  setback:{n:"Setback recovery",c:"#7FA6AD"},
+  foundational:{n:"Foundational program",c:"#2E7D97"}
+};return m[id]||{n:(id?id:"Program"),c:"#2E7D97"};}
+
+
+/* ============================================================
+   MODALS + RESPONDENT FLOW + USER PORTAL
+   ============================================================ */
+var MODAL=null;
+function openModal(html){MODAL=html;paint();}
+function closeModal(){MODAL=null;paint();}
+function modalWrap(title,body,foot){
+  return '<div class="scrim" data-scrim="1"><div class="modal"><div class="mh"><h3>'+esc(title)+'</h3><button class="x" data-close="1">&times;</button></div>'
+    +'<div class="mb">'+body+'</div>'+(foot?'<div class="mf">'+foot+'</div>':'')+'</div></div>';
+}
+
+/* ---------- Add person ---------- */
+function addPersonModal(){
+  var body='<div><label class="fl">Name</label><input class="field" id="np_name" placeholder="e.g. Maya Okafor"/></div>'
+    +'<div class="row2" style="margin-top:12px">'
+      +'<div><label class="fl">Email <span style="color:var(--ink-soft);font-weight:400">(optional)</span></label><input class="field" id="np_email" placeholder="maya@example.com"/></div>'
+      +'<div><label class="fl">Phone <span style="color:var(--ink-soft);font-weight:400">(optional)</span></label><input class="field" id="np_phone" placeholder="+1 …"/></div>'
+    +'</div>'
+    +'<div style="margin-top:12px"><label class="fl">Note <span style="color:var(--ink-soft);font-weight:400">(optional)</span></label><input class="field" id="np_note" placeholder="e.g. intermediate, targeting 30m"/></div>'
+    +'<div class="help">Contact details are only used by you to send the assessment link. Nothing is emailed automatically — you copy the link and send it however you like.</div>';
+  var foot='<button class="btn" data-close="1">Cancel</button><button class="btn btn-primary" data-savePerson="1">Add person</button>';
+  return modalWrap("Add person",body,foot);
+}
+
+/* ---------- Send (generate link + message) ---------- */
+function sendModal(pid){
+  var p=personById(pid); var a=ensureAssessment(pid);
+  var link=assessLink(a.token);
+  var msg="Hi "+(p.name?p.name.split(" ")[0]:"there")+" — here's your Inner Depths performance assessment. It takes about 10 minutes, all dry, and maps out where to focus your mental training. Open it here: "+link;
+  var body='<div class="notice">'+ico(IC.info)+' &nbsp;Sending is manual in this interim tool. Copy the link or the ready-made message and send it by email or text yourself. The link opens the assessment for '+esc(p.name)+' only.</div>'
+    +'<div style="margin-top:14px"><label class="fl">Assessment link</label>'
+      +'<div class="linkbox"><input id="sl_link" value="'+esc(link)+'" readonly/><button class="btn" data-copy="sl_link">'+ico(IC.copy)+'Copy</button></div></div>'
+    +'<div style="margin-top:14px"><label class="fl">Ready-to-send message</label>'
+      +'<textarea class="field" id="sl_msg" rows="4" style="resize:vertical">'+esc(msg)+'</textarea>'
+      +'<div class="linkbox" style="margin-top:8px"><button class="btn" data-copy="sl_msg">'+ico(IC.copy)+'Copy message</button>'
+        +(p.email?'<a class="btn" href="mailto:'+encodeURIComponent(p.email)+'?subject='+encodeURIComponent("Your Inner Depths assessment")+'&body='+encodeURIComponent(msg)+'">'+ico(IC.send)+'Open email</a>':'')
+        +(p.phone?'<a class="btn" href="sms:'+encodeURIComponent(p.phone)+'?&body='+encodeURIComponent(msg)+'">'+ico(IC.send)+'Open text</a>':'')
+      +'</div></div>';
+  var foot='<button class="btn btn-primary" data-close="1">Done</button>';
+  return modalWrap("Send assessment · "+p.name,body,foot);
+}
+
+
+/* ---------- Reports modal (tier picker) ---------- */
+var TIER_META=[
+  ["athlete","Athlete report","For the diver. Full profile, their traits, and how to train with each one \u2014 a usable product on its own.",IC.chart],
+  ["workshop","Workshop report","Full profile with lighter guidance. The applied protocols are what the workshop teaches.",IC.people],
+  ["coach","Coach dossier","Confidential. Technical appendix, routing rationale, session plan and progression markers.",IC.lock]
+];
+function reportsModal(pid){
+  var p=personById(pid);
+  var body='<div class="help" style="margin:0 0 14px">Choose an output. Preview it in-app, or export straight to PDF.</div>';
+  TIER_META.forEach(function(t){
+    body+='<div class="rpt-pick"><div class="rp-ic">'+ico(t[3])+'</div>'
+      +'<div class="rp-tx"><div class="rp-nm">'+esc(t[1])+'</div><div class="rp-ds">'+esc(t[2])+'</div></div>'
+      +'<div class="rp-ac"><button class="btn btn-sm" data-preview="'+pid+':'+t[0]+'">Preview</button>'
+      +'<button class="btn btn-sm btn-primary" data-export="'+pid+':'+t[0]+'">PDF</button></div></div>';
+  });
+  return modalWrap("Reports \u00b7 "+p.name,body,'<button class="btn" data-close="1">Close</button>');
+}
+
+/* ---------- Share control (admin curates what user sees) ---------- */
+var SHARE_META=[
+  ["summary","Profile summary","Leading area, split bar, and next steps"],
+  ["plan","Starting plan","The 4-step neurofeedback + Mind Work path"],
+  ["drivers","Why this is the focus","Which answers drove the result"],
+  ["style","Style profile","Coaching-style tendencies (non-judgmental)"],
+  ["neuro","Neurofeedback detail","Device montage & exploratory targets (technical)"],
+  ["resolution","Routing rationale","Provisional 'how this was decided' panel"],
+  ["constructs","Full construct profile","All seven raw construct scores (1\u20135)"],
+  ["alternates","Also consider","The non-dominant pathways and what they would surface"]
+];
+function shareModal(pid){
+  var p=personById(pid); var a=ensureAssessment(pid);
+  var sh=a.share; var link=resultLink(a.token);
+  var body='<div style="display:flex;align-items:center;justify-content:space-between;gap:12px">'
+      +'<div><div class="fl" style="margin:0">Share results with '+esc(p.name)+'</div><div class="help" style="margin-top:2px">When on, they can open a curated, read-only view of the sections you enable below.</div></div>'
+      +'<label class="tog"><input type="checkbox" id="sh_grant" '+(sh.granted?"checked":"")+'/><span class="tk"></span></label>'
+    +'</div>';
+  body+='<div id="sh_body" '+(sh.granted?"":'style="opacity:.5;pointer-events:none"')+'>';
+  body+='<div style="margin-top:16px"><div class="fl">What they can see</div>';
+  SHARE_META.forEach(function(m){
+    var onx=!!sh.items[m[0]];
+    body+='<div class="share-item"><div class="chk'+(onx?" on":"")+'" data-shitem="'+m[0]+'">'+ico(IC.check,3)+'</div>'
+      +'<div><div class="si-t">'+esc(m[1])+'</div><div class="si-d">'+esc(m[2])+'</div></div></div>';
+  });
+  body+='</div>';
+  body+='<div style="margin-top:16px"><label class="fl">User result link</label>'
+    +'<div class="linkbox"><input id="sh_link" value="'+esc(link)+'" readonly/><button class="btn" data-copy="sh_link">'+ico(IC.copy)+'Copy</button></div>'
+    +'<div class="help">Anyone with this link and access granted sees only the curated view. Turn the toggle off any time to revoke.</div></div>';
+  body+='</div>';
+  var foot='<button class="btn" data-close="1">Cancel</button><button class="btn btn-primary" data-saveShare="'+pid+'">Save sharing</button>';
+  return modalWrap("Sharing · "+p.name,body,foot);
+}
+
+/* ============================================================
+   RESPONDENT FLOW (opened via #/a/<token>)
+   Steps: intro -> goal -> items -> style -> state -> submit
+   ============================================================ */
+var RESP={pid:null,a:null,step:"intro",idx:0};
+function respItems(){return PA_ITEMS;}  // solo tier = all items collected; engine tiers internally
+
+function renderRespondent(ctx){
+  var found=assessByToken(ctx.token);
+  if(!found){ return respShell(respMsg("Link not found","This assessment link isn't valid. Please check with whoever sent it to you.")); }
+  RESP.pid=found.pid; RESP.a=found.a;
+  var a=found.a; var p=personById(found.pid);
+  if(a.status==="complete"){
+    return respShell(respMsg("All done","Thanks "+(p?esc(p.name.split(" ")[0]):"")+" — you've already completed this assessment. Your results have been shared back to you if access was granted.",true));
+  }
+  a.status=a.status==="invited"?"progress":a.status;
+  if(!a.started){a.started=Date.now();}
+
+  var step=RESP.step;
+  if(step==="intro")return respShell(respIntro(p));
+  if(step==="goal")return respShell(respGoal());
+  if(step==="items")return respShell(respItemsScreen());
+  if(step==="style")return respShell(respStyleScreen());
+  if(step==="state")return respShell(respStateScreen());
+  return respShell(respIntro(p));
+}
+function respShell(inner){
+  return '<div class="assess-wrap"><div class="assess-top"><img src="'+LOGO+'" alt=""/><div><div class="bt1">Inner&nbsp;<span>Depths</span></div></div></div>'+inner+'</div>';
+}
+function respMsg(h,sub,ok){
+  return '<div class="card" style="text-align:center;padding:36px 22px">'
+    +'<div class="ei" style="width:52px;height:52px;border-radius:14px;background:'+(ok?"var(--seafoam)":"#fbeee9")+';display:grid;place-items:center;color:'+(ok?"var(--tidal)":"var(--coral)")+';margin:0 auto 14px">'+ico(ok?IC.check:IC.info)+'</div>'
+    +'<h3 style="font-family:var(--display);font-weight:400;font-size:1.4rem;color:var(--abyss);margin-bottom:6px">'+esc(h)+'</h3>'
+    +'<p style="color:var(--ink-soft);line-height:1.55">'+esc(sub)+'</p></div>';
+}
+function respIntro(p){
+  return '<div class="card">'
+    +'<div class="eye">Performance assessment</div>'
+    +'<h2 style="font-family:var(--display);font-weight:400;font-size:1.7rem;color:var(--abyss);margin:8px 0 10px">Map where to focus your mental training</h2>'
+    +'<p style="color:var(--ink-soft);line-height:1.6">Hi '+(p?esc(p.name.split(" ")[0]):"there")+'. This takes about 10 minutes. You\'ll answer a set of short statements, tell us your goal, and check in on how you feel right now. There are no right answers — it just helps match your training.</p>'
+    +'<div class="notice" style="margin-top:14px">'+ico(IC.info)+' &nbsp;This is dry preparation only. It\'s not a medical assessment and never covers in-water or breath-hold coaching.</div>'
+    +'<div class="afoot"><button class="btn btn-primary" style="width:100%;justify-content:center" data-rstep="goal">Begin</button></div>'
+  +'</div>';
+}
+function respGoal(){
+  var a=RESP.a;
+  var cards=PA_GOALS.map(function(g){var sel=(a.goal===g.id);
+    return '<div class="goalcard'+(sel?" sel":"")+'" data-goal="'+g.id+'"><div style="flex:1"><div class="gt">'+esc(g.label)+'</div></div><div class="rad"></div></div>';}).join("");
+  return '<div class="prog"><i style="width:16%"></i></div>'
+    +'<div class="eye">Step 1 of 4 · Your goal</div>'
+    +'<h2 style="font-family:var(--display);font-weight:400;font-size:1.4rem;color:var(--abyss);margin:6px 0 4px">What do you most want to work on?</h2>'
+    +'<p class="rintro">Pick the one that fits best right now. It frames the rest — you can\'t get it wrong.</p>'
+    +cards
+    +'<div class="afoot"><button class="btn btn-primary" style="width:100%;justify-content:center" data-rstep="items" '+(a.goal&&a.goal!=="none"||a.goal==="none"?"":"disabled")+'>Continue</button></div>';
+}
+function respItemsScreen(){
+  var items=respItems(); var a=RESP.a;
+  var answered=items.filter(function(it){return a.responses[it.id]!=null;}).length;
+  var pct=16+Math.round(answered/items.length*44);
+  var s='<div class="prog"><i style="width:'+pct+'%"></i></div>'
+    +'<div class="eye">Step 2 of 4 · Statements</div>'
+    +'<h2 style="font-family:var(--display);font-weight:400;font-size:1.4rem;color:var(--abyss);margin:6px 0 4px">How much does each fit you?</h2>'
+    +'<p class="rintro">Think about your typical dry training and pre-dive experience.</p>';
+  items.forEach(function(it){
+    var sel=a.responses[it.id];
+    var srcCls=it.provisional?"src prov":"src";
+    var srcTxt=it.provisional?"Provisional item":(it.source==="original"?"App-original":(it.source==="adapted"?"Adapted":"Published"));
+    s+='<div class="q"><div class="qt">'+esc(it.text)+'</div><div class="'+srcCls+'"><span class="dot" style="width:6px;height:6px;border-radius:50%;background:currentColor;display:inline-block"></span>'+esc(srcTxt)+'</div>'
+      +'<div class="pa-scale" data-item="'+it.id+'">'+PA_SCALE.map(function(o){return '<span class="seg'+(sel===o.v?" sel":"")+'" data-val="'+o.v+'">'+esc(o.l)+'</span>';}).join("")+'</div></div>';
+  });
+  var done=answered===items.length;
+  s+='<div class="afoot"><button class="btn btn-primary" style="width:100%;justify-content:center" data-rstep="style" '+(done?"":"disabled")+'>'+(done?"Continue":answered+" / "+items.length+" answered")+'</button></div>';
+  return s;
+}
+function respStyleScreen(){
+  var items=PA_STYLE_ITEMS; var a=RESP.a;
+  var answered=items.filter(function(it){return a.responses[it.id]!=null;}).length;
+  var pct=60+Math.round(answered/items.length*24);
+  var s='<div class="prog"><i style="width:'+pct+'%"></i></div>'
+    +'<div class="eye">Step 3 of 4 · Style</div>'
+    +'<h2 style="font-family:var(--display);font-weight:400;font-size:1.4rem;color:var(--abyss);margin:6px 0 4px">A few more, about your style</h2>'
+    +'<p class="rintro">No style is better than another — these only shape how we\'d coach you.</p>';
+  items.forEach(function(it){
+    var sel=a.responses[it.id];
+    s+='<div class="q"><div class="qt">'+esc(it.text)+'</div>'
+      +'<div class="pa-scale" data-item="'+it.id+'">'+PA_SCALE.map(function(o){return '<span class="seg'+(sel===o.v?" sel":"")+'" data-val="'+o.v+'">'+esc(o.l)+'</span>';}).join("")+'</div></div>';
+  });
+  var done=answered===items.length;
+  s+='<div class="afoot"><button class="btn btn-primary" style="width:100%;justify-content:center" data-rstep="state" '+(done?"":"disabled")+'>'+(done?"Continue":answered+" / "+items.length+" answered")+'</button></div>';
+  return s;
+}
+var STATE_SLIDERS=[
+  {id:"state_arousal",label:"Right now, my physical activation is…",lo:"Flat / under-aroused",hi:"Buzzing / over-aroused"},
+  {id:"state_conf",label:"Right now, my confidence is…",lo:"Shaky",hi:"Solid"},
+  {id:"state_focus",label:"Right now, my focus is…",lo:"Scattered",hi:"Locked-in"}
+];
+function respStateScreen(){
+  var a=RESP.a;
+  var s='<div class="prog"><i style="width:92%"></i></div>'
+    +'<div class="eye">Step 4 of 4 · Right now</div>'
+    +'<h2 style="font-family:var(--display);font-weight:400;font-size:1.4rem;color:var(--abyss);margin:6px 0 4px">How are you arriving today?</h2>'
+    +'<p class="rintro">A quick check-in on your current state.</p>';
+  STATE_SLIDERS.forEach(function(sl){
+    var v=a.state[sl.id]||3;
+    s+='<div class="slider-q"><div class="qt" style="font-size:.95rem;color:var(--depth);margin-bottom:8px">'+esc(sl.label)+'</div>'
+      +'<input type="range" min="1" max="5" step="1" value="'+v+'" data-state="'+sl.id+'"/>'
+      +'<div class="slider-ends"><span>'+esc(sl.lo)+'</span><span>'+esc(sl.hi)+'</span></div></div>';
+  });
+  s+='<div class="afoot"><button class="btn btn-primary" style="width:100%;justify-content:center" data-rsubmit="1">Finish &amp; submit</button></div>';
+  return s;
+}
+
+/* ============================================================
+   USER PORTAL (opened via #/r/<token>) — curated result view
+   ============================================================ */
+function renderUserPortal(ctx){
+  var found=assessByToken(ctx.token);
+  if(!found)return respShell(respMsg("Link not found","This results link isn't valid. Please check with whoever shared it."));
+  var a=found.a; var p=personById(found.pid);
+  if(a.status!=="complete")return respShell(respMsg("Not ready yet","Your assessment results aren't ready to view. Once completed and shared, they'll appear here.",false));
+  if(!a.share||!a.share.granted){
+    return respShell('<div class="portal-gate"><div class="g-ico">'+ico(IC.lock)+'</div>'
+      +'<h3 style="font-family:var(--display);font-weight:400;font-size:1.5rem;color:var(--abyss);margin-bottom:8px">Results not shared yet</h3>'
+      +'<p style="color:var(--ink-soft);line-height:1.6">Your profile is complete, but access hasn\'t been granted yet. Check back once it\'s shared with you.</p></div>');
+  }
+  var inner='<div class="assess-top" style="max-width:720px;margin:0 auto 4px"><img src="'+LOGO+'" alt=""/><div><div class="bt1">Inner&nbsp;<span>Depths</span></div></div></div>';
+  inner+='<div class="portal">'+renderResult(a,{curated:true,items:a.share.items,mode:"long",personName:p?p.name:""})+'</div>';
+  return inner;
+}
+
+
+/* ============================================================
+   ROUTER + EVENTS + ADMIN RESULT DETAIL + PDF/PRINT
+   ============================================================ */
+
+/* ---------- Admin result detail (open a completed person) ---------- */
+function viewPersonResult(pid){
+  var p=personById(pid); var a=DB.assessments[pid];
+  if(!a||a.status!=="complete"){
+    return '<div class="card">'+emptyBlock(IC.info,"Not completed yet",esc(p?p.name:"This person")+" hasn't finished the assessment.")
+      +'<div style="text-align:center"><button class="btn" data-send="'+pid+'">'+ico(IC.send)+'Send link</button></div></div>';
+  }
+  var s='<div class="no-print" style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:16px;flex-wrap:wrap">'
+    +'<button class="btn btn-ghost" data-nav="results">'+ico(IC.back)+'Back to results</button>'
+    +'<div style="display:flex;gap:8px;flex-wrap:wrap">'
+      +'<button class="btn" data-share="'+pid+'">'+ico(IC.share)+'Sharing</button>'
+      +'<button class="btn" data-reports="'+pid+'">'+ico(IC.pdf)+'Reports</button>'
+    +'</div></div>';
+  // Admin sees the FULL result (all sections), regardless of share settings.
+  s+='<div class="card" style="padding:22px">'+renderResult(a,{curated:false,mode:"long",personName:p.name})+'</div>';
+  return s;
+}
+
+
+/* ---------- Report preview (in-app) ---------- */
+function viewPreview(pid,tier){
+  var p=personById(pid);
+  var names={athlete:"Athlete report",workshop:"Workshop report",coach:"Coach dossier"};
+  var s='<div class="no-print" style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:18px;flex-wrap:wrap">'
+    +'<button class="btn btn-ghost" data-open="'+pid+'">'+ico(IC.back)+'Back to profile</button>'
+    +'<div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">'
+      +'<div class="seg-mode">'
+        +['athlete','workshop','coach'].map(function(t){
+          return '<button data-preview="'+pid+':'+t+'" class="'+(t===tier?"on":"")+'">'+esc(names[t].split(" ")[0])+'</button>';}).join("")
+      +'</div>'
+      +'<button class="btn btn-primary" data-export="'+pid+':'+tier+'">'+ico(IC.pdf)+'Export PDF</button>'
+    +'</div></div>';
+  s+='<div class="rpt-preview rpt">'+buildReport(pid,tier)+'</div>';
+  return s;
+}
+
+/* ---------- PDF / print export ---------- */
+/* Client-side: opens a print window with the chosen result form and the
+   design system inlined, then triggers the browser's Save-as-PDF.
+   (Server-generated PDF is the production fidelity upgrade — see note.) */
+function exportReport(pid,tier){
+  var p=personById(pid), a=DB.assessments[pid];
+  if(!a||a.status!=="complete"){toast("No completed assessment");return;}
+  var names={athlete:"Athlete Report",workshop:"Workshop Report",coach:"Coach Dossier"};
+  var body=buildReport(pid,tier);
+  var css=document.querySelector("style").innerHTML;
+  var w=window.open("","_blank");
+  if(!w){toast("Allow pop-ups to export the report");return;}
+  w.document.write('<!DOCTYPE html><html><head><meta charset="utf-8"/><title>Inner Depths \u2014 '+esc(p.name)+' \u2014 '+names[tier]+'</title>'
+    +'<style>'+css+'</style>'
+    +'<style>body{background:#fff;padding:0}.rptwrap{max-width:820px;margin:0 auto;padding:26px 30px 40px}@page{margin:14mm}</style>'
+    +'</head><body><div class="rptwrap rpt">'+body+'</div></body></html>');
+  w.document.close();
+  setTimeout(function(){try{w.focus();w.print();}catch(e){}},420);
+}
+
+/* Preview a tier in-app (no print dialog) */
+function previewReport(pid,tier){
+  UI.route="preview"; UI.personId=pid; UI.previewTier=tier; MODAL=null; paint(); window.scrollTo(0,0);
+}
+
+/* ---------- main paint ---------- */
+function paint(){
+  var ctx=parseHash();
+  if(ctx.kind==="assess"){ root().innerHTML=renderRespondent(ctx); bindRespondent(); return; }
+  if(ctx.kind==="result"){ root().innerHTML=renderUserPortal(ctx); return; }
+  // admin app
+  var inner;
+  if(UI.route==="dashboard")inner=viewDashboard();
+  else if(UI.route==="people")inner=viewPeople();
+  else if(UI.route==="results")inner=viewResults();
+  else if(UI.route==="person")inner=viewPersonResult(UI.personId);
+  else if(UI.route==="preview")inner=viewPreview(UI.personId,UI.previewTier);
+  else inner=viewDashboard();
+  root().innerHTML=adminShell(inner)+(MODAL||"");
+  bindAdmin();
+}
+
+/* ---------- admin events ---------- */
+function bindAdmin(){
+  var r=root();
+  r.querySelectorAll("[data-nav]").forEach(function(b){b.onclick=function(){UI.route=b.getAttribute("data-nav");UI.personId=null;MODAL=null;paint();};});
+  r.querySelectorAll("[data-open]").forEach(function(b){b.onclick=function(){UI.route="person";UI.personId=b.getAttribute("data-open");MODAL=null;paint();};});
+  r.querySelectorAll('[data-act="addPerson"]').forEach(function(b){b.onclick=function(){openModal(addPersonModal());};});
+  r.querySelectorAll("[data-send]").forEach(function(b){b.onclick=function(){var pid=b.getAttribute("data-send");ensureAssessment(pid);saveDB();openModal(sendModal(pid));};});
+  r.querySelectorAll("[data-share]").forEach(function(b){b.onclick=function(){var pid=b.getAttribute("data-share");ensureAssessment(pid);openModal(shareModal(pid));};});
+  r.querySelectorAll("[data-reports]").forEach(function(b){b.onclick=function(){openModal(reportsModal(b.getAttribute("data-reports")));};});
+  r.querySelectorAll("[data-export]").forEach(function(b){b.onclick=function(){var v=b.getAttribute("data-export").split(":");exportReport(v[0],v[1]);};});
+  r.querySelectorAll("[data-preview]").forEach(function(b){b.onclick=function(){var v=b.getAttribute("data-preview").split(":");previewReport(v[0],v[1]);};});
+  r.querySelectorAll("[data-del]").forEach(function(b){b.onclick=function(){var pid=b.getAttribute("data-del");delPerson(pid);};});
+
+  // modal-scoped
+  r.querySelectorAll("[data-close]").forEach(function(b){b.onclick=closeModal;});
+  var scrim=r.querySelector('[data-scrim]');if(scrim)scrim.onclick=function(e){if(e.target===scrim)closeModal();};
+  r.querySelectorAll("[data-copy]").forEach(function(b){b.onclick=function(){copyField(b.getAttribute("data-copy"));};});
+
+  var save=r.querySelector('[data-savePerson]');if(save)save.onclick=savePerson;
+  var saveShare=r.querySelector('[data-saveShare]');if(saveShare)saveShare.onclick=function(){saveShareFn(saveShare.getAttribute("data-saveShare"));};
+
+  // share modal live interactions
+  var grant=r.querySelector('#sh_grant');
+  if(grant)grant.onclick=function(){var b=r.querySelector('#sh_body');if(b){b.style.opacity=grant.checked?"1":".5";b.style.pointerEvents=grant.checked?"auto":"none";}};
+  r.querySelectorAll("[data-shitem]").forEach(function(el){el.onclick=function(){el.classList.toggle("on");};});
+}
+
+function copyField(id){
+  var el=document.getElementById(id);if(!el)return;
+  var txt=el.value!=null?el.value:el.textContent;
+  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(function(){toast("Copied");},function(){legacyCopy(el);});}
+  else legacyCopy(el);
+}
+function legacyCopy(el){try{el.select&&el.select();document.execCommand("copy");toast("Copied");}catch(e){toast("Copy failed — select manually");}}
+
+function savePerson(){
+  var name=(document.getElementById("np_name")||{}).value||"";
+  name=name.trim(); if(!name){toast("Name is required");return;}
+  var pers={id:uid("p"),name:name,
+    email:((document.getElementById("np_email")||{}).value||"").trim(),
+    phone:((document.getElementById("np_phone")||{}).value||"").trim(),
+    note:((document.getElementById("np_note")||{}).value||"").trim(),
+    created:Date.now()};
+  DB.people.unshift(pers);
+  ensureAssessment(pers.id);
+  saveDB();
+  MODAL=null; UI.route="people"; paint();
+  toast("Added "+pers.name);
+}
+function delPerson(pid){
+  var p=personById(pid);
+  if(!confirm("Delete "+(p?p.name:"this person")+" and their assessment? This can't be undone."))return;
+  DB.people=DB.people.filter(function(x){return x.id!==pid;});
+  delete DB.assessments[pid];
+  saveDB(); paint(); toast("Deleted");
+}
+function saveShareFn(pid){
+  var a=ensureAssessment(pid);
+  var grant=document.getElementById("sh_grant");
+  a.share.granted=grant?grant.checked:false;
+  root().querySelectorAll("[data-shitem]").forEach(function(el){
+    a.share.items[el.getAttribute("data-shitem")]=el.classList.contains("on");
+  });
+  saveDB(); MODAL=null; paint();
+  toast(a.share.granted?"Sharing on":"Sharing off");
+}
+
+/* ---------- respondent events ---------- */
+function bindRespondent(){
+  var r=root();
+  r.querySelectorAll("[data-rstep]").forEach(function(b){b.onclick=function(){RESP.step=b.getAttribute("data-rstep");saveDB();paint();window.scrollTo(0,0);};});
+  r.querySelectorAll("[data-goal]").forEach(function(el){el.onclick=function(){RESP.a.goal=el.getAttribute("data-goal");saveDB();paint();};});
+  r.querySelectorAll("[data-item]").forEach(function(sc){
+    sc.querySelectorAll("[data-val]").forEach(function(seg){
+      seg.onclick=function(){var id=sc.getAttribute("data-item");RESP.a.responses[id]=parseInt(seg.getAttribute("data-val"),10);saveDB();
+        var y=window.scrollY;paint();window.scrollTo(0,y);};
+    });
+  });
+  r.querySelectorAll("[data-state]").forEach(function(sl){
+    sl.oninput=function(){RESP.a.state[sl.getAttribute("data-state")]=parseInt(sl.value,10);};
+    sl.onchange=function(){saveDB();};
+  });
+  var sub=r.querySelector("[data-rsubmit]");
+  if(sub)sub.onclick=function(){
+    // ensure all state sliders captured with defaults
+    STATE_SLIDERS.forEach(function(s){if(RESP.a.state[s.id]==null)RESP.a.state[s.id]=3;});
+    RESP.a.status="complete"; RESP.a.completed=Date.now();
+    snapshotProfile(RESP.a);
+    saveDB();
+    root().innerHTML=respShell(respMsg("Submitted — thank you","Your responses are in. If your coach grants access, you'll be able to see your performance profile from the link they share.",true));
+    window.scrollTo(0,0);
+  };
+}
+
+
+/* ============================================================
+   REPORT TIERS — marketable PDF outputs
+   Tiers: 'athlete'  — profile + trait-to-training application
+          'workshop' — full profile, lighter guidance, workshop CTA
+          'coach'    — technical appendix + coaching plan (elite use)
+   All tiers branded & personalised (name, date, report ID).
+   ============================================================ */
+
+function reportId(a,tier){
+  var t={athlete:"AP",workshop:"WS",coach:"CX"}[tier]||"RP";
+  return "ID-"+t+"-"+String(a.token||"").slice(0,6).toUpperCase();
+}
+
+/* ---------- shared chrome ---------- */
+function rptCover(p,a,tier,meta){
+  var titles={athlete:"Performance Profile",workshop:"Performance Profile",coach:"Coaching Dossier"};
+  var subs={
+    athlete:"Your mental performance profile and how to train with it",
+    workshop:"Your mental performance profile",
+    coach:"Full technical profile, routing rationale and session plan"
+  };
+  return '<section class="rpt-cover">'
+    +'<div class="rc-bg"></div>'
+    +'<div class="rc-inner">'
+      +'<div class="rc-brand"><img src="'+LOGO+'" alt=""/>'
+        +'<div><div class="rc-bt">INNER DEPTHS</div><div class="rc-bs">Mental Performance</div></div></div>'
+      +'<div class="rc-mid">'
+        +'<div class="rc-kick">'+esc(meta.kicker)+'</div>'
+        +'<h1>'+esc(titles[tier])+'</h1>'
+        +'<p class="rc-sub">'+esc(subs[tier])+'</p>'
+      +'</div>'
+      +'<div class="rc-meta">'
+        +'<div><span>Prepared for</span><b>'+esc(p.name)+'</b></div>'
+        +'<div><span>Date</span><b>'+fmtDate(a.completed)+'</b></div>'
+        +'<div><span>Report</span><b class="mono">'+esc(reportId(a,tier))+'</b></div>'
+      +'</div>'
+    +'</div>'
+  +'</section>';
+}
+
+function rptSectionHead(n,title,sub){
+  return '<div class="rpt-sh"><span class="rpt-n mono">'+n+'</span><div><h2>'+esc(title)+'</h2>'
+    +(sub?'<p>'+esc(sub)+'</p>':'')+'</div></div>';
+}
+
+/* ---------- the profile hero (shared, styled up) ---------- */
+function rptProfileHero(r,tier){
+  var dom=r.dom, routing=r.routing;
+  var bars=routing.ranked.map(function(x){return '<span style="width:'+x.pct+'%;background:'+x.ref.colour+'"></span>';}).join("");
+  var leg=routing.ranked.map(function(x){
+    return '<div class="rpl"><i style="background:'+x.ref.colour+'"></i><span class="rpl-l">'+esc(x.ref.label)+'</span><span class="rpl-v mono">'+x.pct+'%</span></div>';
+  }).join("");
+  return '<div class="rpt-hero">'
+    +'<div class="rh-kick">Leading profile</div>'
+    +'<h2>'+esc(dom.label)+'</h2>'
+    +'<p>'+esc(dom.lead)+'</p>'
+    +'<div class="rh-bar">'+bars+'</div>'
+    +'<div class="rh-leg">'+leg+'</div>'
+    +(routing.blend?'<div class="rh-note">Your top two areas sit close together — a <b>blended profile</b>. Lead with the first; borrow from the second when a session calls for it.</div>':'')
+  +'</div>';
+}
+
+/* ---------- trait → training (the athlete tier's core value) ---------- */
+function rptTraits(r,withSkill){
+  var out='<div class="rpt-traits">';
+  r.style.forEach(function(sd){
+    var pos=Math.max(6,Math.min(94,sd.pos));
+    out+='<div class="tr-card">'
+      +'<div class="tr-t">'+esc(sd.title)+'</div>'
+      +'<div class="tr-track"><span class="tr-end'+(sd.side==="lo"?" on":"")+'">'+esc(sd.lo)+'</span>'
+        +'<div class="tr-bar"><span style="left:'+pos+'%"></span></div>'
+        +'<span class="tr-end r'+(sd.side==="hi"?" on":"")+'">'+esc(sd.hi)+'</span></div>'
+      +'<div class="tr-strength">'+esc(sd.strength)+'</div>'
+      +(withSkill?'<div class="tr-skill"><span class="tr-sk-l">Train this</span>'+esc(sd.skill||midSkill(sd))+'</div>':'')
+    +'</div>';
+  });
+  return out+'</div>';
+}
+
+
+/* Mid-band traits get guidance too — the engine leaves .skill empty at mid. */
+function midSkill(sd){
+  var m={ext:"You can work solo or with partners equally well \u2014 pick per session rather than defaulting to one.",
+    con:"You can plan or go by feel. Choose deliberately at the start of each block so it stays a choice, not a drift.",
+    opn:"You balance proven drills with new ones \u2014 keep one stable core drill while you sample around it.",
+    agr:"You cooperate without losing your own line \u2014 useful for buddy work where safety needs candour.",
+    emo:"You read your body clearly without being thrown by it \u2014 a good platform for regulation training."};
+  return m[sd.dim]||"This sits mid-range \u2014 you can lean either way depending on what the session needs.";
+}
+
+/* ---------- construct table (coach tier) ---------- */
+function rptConstructs(r){
+  var c=r.c;
+  var rows=[["Somatic anxiety",c.somatic,"Physical activation before/around performance"],
+    ["Cognitive worry",c.worry,"Worry-based thought content"],
+    ["Concentration disruption",c.concentration,"Attention pulled off-task"],
+    ["Debilitative interpretation",c.debilitative,"Reads activation as harmful vs. helpful"],
+    ["Reinvestment / over-control",c.reinvestment,"Conscious control of automated movement"],
+    ["Self-efficacy",c.efficacy,"Belief in own capability"],
+    ["Sensation-seeking",c.sensation,"Draw toward novel/intense experience"]];
+  var out='<table class="rpt-tbl"><thead><tr><th>Construct</th><th style="width:34%">Score</th><th style="width:38%">What it indexes</th></tr></thead><tbody>';
+  rows.forEach(function(row){
+    var v=(row[1]==null||isNaN(row[1]))?null:row[1];
+    var w=v==null?2:Math.round(Math.max(2,(v-1)/4*100));
+    var band=v==null?"":(v>=4?"hi":v<=2?"lo":"mid");
+    out+='<tr><td class="rt-n">'+esc(row[0])+'</td>'
+      +'<td><div class="rt-bar"><div class="rt-tk"><span style="width:'+w+'%"></span></div>'
+        +'<span class="rt-v mono">'+(v==null?"—":v.toFixed(1))+'</span>'
+        +(band?'<span class="rt-band '+band+'">'+(band==="hi"?"High":band==="lo"?"Low":"Mid")+'</span>':'')+'</div></td>'
+      +'<td class="rt-d">'+esc(row[2])+'</td></tr>';
+  });
+  return out+'</tbody></table>';
+}
+
+/* ---------- plan (athlete + coach) ---------- */
+function rptPlan(r,detailed){
+  var fo=nfMod("foundation"), nf=nfMod(r.rec.nf), mw=mwProg(r.rec.mw);
+  var steps=[
+    ["1","Set your baseline","First session","A subjective check-in plus a short resting capture, so everything after is measured against your own starting point.","var(--current)"],
+    ["2",fo.n,"Foundation","A calm breathing lead-in that runs underneath every pathway — the platform the rest is built on.",fo.c],
+    ["3",nf.n,"Neurofeedback · exploratory",nfBlurb(r.rec.nf),nf.c],
+    ["4",mw.n,"Mind Work · CBT",mwBlurb(r.rec.mw)+(r.rec.swapped?" Body signals led here, so this leans on panic-literacy first.":""),mw.c]
+  ];
+  var out='<div class="rpt-plan">';
+  steps.forEach(function(s){
+    out+='<div class="rp-step"><div class="rp-num" style="background:'+s[4]+'">'+s[0]+'</div>'
+      +'<div class="rp-body"><div class="rp-k">'+esc(s[2])+'</div><div class="rp-t">'+esc(s[1])+'</div>'
+      +'<div class="rp-d">'+esc(s[3])+'</div></div></div>';
+  });
+  out+='</div>';
+  if(detailed&&r.mods.length){
+    out+='<div class="rpt-callout"><div class="rc-l">Personal adjustments</div>';
+    r.mods.forEach(function(m){out+='<div class="rc-i"><b>'+esc(m.tag)+':</b> '+esc(m.text)+'</div>';});
+    out+='</div>';
+  }
+  return out;
+}
+function nfBlurb(id){
+  return {calm:"Training that biases toward down-regulation — settling physical activation on demand rather than waiting for it to pass.",
+    focus:"Training that biases toward attentional stability — holding a steady focus without gripping it."}[id]
+    ||"Matched to your leading focus area.";}
+function mwBlurb(id){
+  return {nerves:"A CBT program for dive-day nerves: what the activation is, why it shows up, and how to work with it instead of against it.",
+    focus:"A CBT program for overthinking: loosening conscious control of movement that should already be automatic.",
+    confidence:"A CBT program for confidence and self-belief: building evidence-based belief rather than forced positivity.",
+    panic:"A CBT program on body sensations and panic literacy: learning to read your body's signals accurately."}[id]
+    ||"Matched to your leading focus area.";}
+
+/* ---------- drivers ---------- */
+function rptDrivers(r){
+  var top=r.rec.drivers.slice(0,3), tot=top.reduce(function(s,x){return s+x.contrib;},0)||1;
+  var out='<div class="rpt-drivers">';
+  top.forEach(function(d){
+    var share=Math.round(d.contrib/tot*100);
+    out+='<div class="rd-row"><span class="rd-l">'+esc(d.label)+'</span>'
+      +'<div class="rd-tk"><span style="width:'+Math.max(6,share)+'%"></span></div>'
+      +'<span class="rd-v mono">'+share+'%</span></div>';
+  });
+  return out+'</div>';
+}
+
+
+/* ============================================================
+   TIER COMPOSITIONS
+   ============================================================ */
+function buildReport(pid,tier){
+  var p=personById(pid), a=DB.assessments[pid];
+  var r=computeResult(a);
+  var body="";
+
+  if(tier==="athlete"){
+    body=rptCover(p,a,tier,{kicker:"Athlete report"})
+      +'<section class="rpt-pg">'
+        +rptSectionHead("01","Your profile","Where your mental training will pay off fastest.")
+        +rptProfileHero(r,tier)
+        +'<div class="rpt-why">'+rptSectionHead("02","Why this is your focus","The answers that pushed hardest toward this result.")
+          +rptDrivers(r)+'</div>'
+      +'</section>'
+      +'<section class="rpt-pg">'
+        +rptSectionHead("03","Your traits, and how to train with them",
+          "No trait here is better than another. Each one is a strength with a matched skill that turns it into an advantage.")
+        +rptTraits(r,true)
+      +'</section>'
+      +'<section class="rpt-pg">'
+        +rptSectionHead("04","Your training plan","Follow this in order. Each step builds the platform for the next.")
+        +rptPlan(r,true)
+        +rptTodayBlock(r)
+      +'</section>';
+  }
+
+  if(tier==="workshop"){
+    body=rptCover(p,a,tier,{kicker:"Workshop report"})
+      +'<section class="rpt-pg">'
+        +rptSectionHead("01","Your profile","The pattern your assessment revealed.")
+        +rptProfileHero(r,tier)
+        +'<div class="rpt-why">'+rptSectionHead("02","What shaped this result","The strongest contributors to your leading area.")
+          +rptDrivers(r)+'</div>'
+      +'</section>'
+      +'<section class="rpt-pg">'
+        +rptSectionHead("03","Your traits","Your natural tendencies, and the strength each one carries.")
+        +rptTraits(r,false)
+        +'<div class="rpt-callout soft"><div class="rc-l">Where this goes next</div>'
+          +'<div class="rc-i">Your profile points to a clear starting direction: <b>'+esc(nfMod(r.rec.nf).n)+'</b> paired with the <b>'+esc(mwProg(r.rec.mw).n)+'</b> program. '
+          +'The applied protocols — how to run each session, what to adjust when it isn\u2019t working, and practising them with feedback — are covered in the workshop.</div></div>'
+      +'</section>'
+      +rptWorkshopCTA(r);
+  }
+
+  if(tier==="coach"){
+    body=rptCover(p,a,tier,{kicker:"Coach \u00b7 confidential"})
+      +'<section class="rpt-pg">'
+        +'<div class="rpt-conf">Confidential \u00b7 prepared for the coach working with '+esc(p.name)+'. Contains full technical scoring and routing rationale.</div>'
+        +rptSectionHead("01","Profile summary","Leading pathway and distribution.")
+        +rptProfileHero(r,tier)
+        +rptRoutingPanel(r)
+      +'</section>'
+      +'<section class="rpt-pg">'
+        +rptSectionHead("02","Technical appendix \u00b7 construct scores",
+          "Raw construct means on the 1\u20135 response scale. These underlie the pathway distribution above.")
+        +rptConstructs(r)
+        +rptStateBlock(r)
+      +'</section>'
+      +'<section class="rpt-pg">'
+        +rptSectionHead("03","Athlete traits \u00b7 coaching implications",
+          "How this athlete is likely to respond to coaching, and what to pair with each tendency.")
+        +rptTraits(r,true)
+      +'</section>'
+      +'<section class="rpt-pg">'
+        +rptSectionHead("04","Session plan & progression","Recommended sequence, with markers for when to advance.")
+        +rptPlan(r,true)
+        +rptProgression(r)
+        +rptCoachNotes(r)
+      +'</section>';
+  }
+
+  return body+rptFooter(tier);
+}
+
+/* ---------- supporting blocks ---------- */
+function rptTodayBlock(r){
+  var sa=r.state.state_arousal||3;
+  var txt=sa>=4?"You reported arriving over-aroused. On days like that, lead with the breathing down-regulation before anything technical \u2014 the technical work lands better once activation settles."
+    :sa<=2?"You reported arriving flat. On days like that, a short activating routine before the main work will get more out of the session."
+    :"You reported arriving in a workable middle band \u2014 you can go straight into your focus area.";
+  return '<div class="rpt-callout"><div class="rc-l">On the day you were assessed</div><div class="rc-i">'+esc(txt)+'</div></div>';
+}
+function rptStateBlock(r){
+  var s=r.state, m={1:"Very low",2:"Low",3:"Mid",4:"High",5:"Very high"};
+  return '<div class="rpt-sub">Self-reported state at time of assessment</div>'
+    +'<table class="rpt-tbl compact"><tbody>'
+    +'<tr><td class="rt-n">Physical activation</td><td class="mono">'+(s.state_arousal||3)+' / 5</td><td class="rt-d">'+esc(m[s.state_arousal||3])+'</td></tr>'
+    +'<tr><td class="rt-n">Confidence</td><td class="mono">'+(s.state_conf||3)+' / 5</td><td class="rt-d">'+esc(m[s.state_conf||3])+'</td></tr>'
+    +'<tr><td class="rt-n">Focus</td><td class="mono">'+(s.state_focus||3)+' / 5</td><td class="rt-d">'+esc(m[s.state_focus||3])+'</td></tr>'
+    +'</tbody></table>'
+    +'<div class="rpt-fine">State measures are single-occasion self-report and should be read as context for the session, not as stable traits.</div>';
+}
+function rptRoutingPanel(r){
+  var res=r.resolved;
+  var g=(res.goal&&res.goal.id!=="none")?res.goal.label:"None stated";
+  return '<div class="rpt-routing">'
+    +'<div class="rr-h"><span class="rr-t">Routing rationale</span><span class="rr-tag">'+esc(basisTag(res.basis))+'</span></div>'
+    +'<div class="rr-g"><span>Stated goal</span><b>'+esc(g)+'</b></div>'
+    +'<div class="rr-n">'+esc(res.note)+'</div>'
+    +(res.secondaryPathway?'<div class="rr-n">Secondary thread queued: <b>'+esc(res.secondaryPathway)+'</b>.</div>':'')
+    +(res.mechanism?'<div class="rr-m">Response-style read: '+res.mechanism.ranked.map(function(x){return esc(x.label)+" "+Math.round(x.v*100)+"%";}).join(" \u00b7 ")+'</div>':'')
+    +'<div class="rr-f">v12 two-input routing (scores + stated goal). Blend margin and adapted items are provisional and awaiting validation against real intake data.</div>'
+  +'</div>';
+}
+function rptProgression(r){
+  var rows=[
+    ["Weeks 1\u20132","Baseline + foundation","Consistency is the marker \u2014 completed sessions matter more than session quality at this stage."],
+    ["Weeks 3\u20134","Add the matched module","Advance when the foundation runs without effort and the athlete can self-report state accurately."],
+    ["Weeks 5\u20138","Mind Work in parallel","Advance when the athlete applies the skill unprompted in a dry session, not just when cued."],
+    ["Review","Re-assess","Re-run the assessment and compare the construct profile, not just the leading pathway."]
+  ];
+  var out='<div class="rpt-sub">Progression markers</div><table class="rpt-tbl compact"><tbody>';
+  rows.forEach(function(x){out+='<tr><td class="rt-n" style="width:20%">'+esc(x[0])+'</td><td style="width:30%"><b>'+esc(x[1])+'</b></td><td class="rt-d">'+esc(x[2])+'</td></tr>';});
+  return out+'</tbody></table>';
+}
+function rptCoachNotes(r){
+  var notes=[];
+  var c=r.c;
+  if(c.debilitative!=null&&c.debilitative<=2)notes.push("Low debilitative score: this athlete reads activation as harmful. Reframing what the activation means is likely to move more than any relaxation technique.");
+  if(c.reinvestment!=null&&c.reinvestment>=4)notes.push("High reinvestment: avoid adding technical cues under pressure. More instruction will likely make performance worse, not better.");
+  if(c.efficacy!=null&&c.efficacy<=2)notes.push("Low self-efficacy: build from mastery evidence the athlete already has. Verbal reassurance tends not to hold at depth.");
+  if(c.somatic!=null&&c.somatic>=4)notes.push("High somatic loading: prioritise interoceptive accuracy \u2014 the athlete needs to read their own signals correctly before regulating them.");
+  if(c.sensation!=null&&c.sensation>=4)notes.push("High sensation-seeking: watch for progression outpacing skill. Structural limits will hold better than cautionary advice.");
+  if(!notes.length)notes.push("No individual flags from the construct profile. Follow the standard progression above.");
+  var out='<div class="rpt-callout"><div class="rc-l">Coaching notes</div>';
+  notes.forEach(function(n){out+='<div class="rc-i">'+esc(n)+'</div>';});
+  return out+'</div>';
+}
+function rptWorkshopCTA(r){
+  var covers=[
+    ["Running the protocols","Step-by-step delivery of the modules matched to your profile \u2014 with practice and live feedback."],
+    ["Adjusting under pressure","What to change when a session isn\u2019t working, and how to tell the difference between a bad day and a bad fit."],
+    ["Reading your own signals","Building interoceptive accuracy \u2014 the skill underneath every regulation technique."],
+    ["Building your own plan","Turning this profile into a training block you can run and review on your own."]
+  ];
+  var out='<section class="rpt-pg"><div class="rpt-cta">'
+    +'<div class="ct-k">Next step</div>'
+    +'<h2>Put this profile to work</h2>'
+    +'<p>Your report shows the pattern and the starting direction. The workshop is where the applied protocols get taught \u2014 practised, adjusted to you, and rehearsed with feedback until they hold up under pressure.</p>'
+    +'<div class="ct-grid">';
+  covers.forEach(function(c){out+='<div class="ct-i"><div class="ct-it">'+esc(c[0])+'</div><div class="ct-id">'+esc(c[1])+'</div></div>';});
+  out+='</div>'
+    +'<div class="ct-f">Bring this report with you \u2014 sessions are built around the profiles in the room.</div>'
+  +'</div></section>';
+  return out;
+}
+function rptFooter(tier){
+  var base="Provisional (v12). Built from self-report \u2014 tendencies, not fixed traits or clinical states. Routing weights are reasoned but not yet validated; treat recommendations as a considered starting point, not a verdict. Supports dry training and pre-dive mental preparation only \u2014 never in-water coaching or breath-hold supervision. Never dive alone.";
+  var extra=tier==="coach"?" Neurofeedback content is exploratory; EEG values from consumer hardware are approximations, not clinical measurements.":"";
+  return '<div class="rpt-legal">'+esc(base+extra)+'</div>';
+}
+
+
+/* ---------- SEED: one completed test user (demo) ---------- */
+async function seedDemo(){
+  if(DB.people&&DB.people.length)return; // don't overwrite real data
+  var pid=uid("p");
+  DB.people=[{id:pid,name:"Test Diver",email:"test.diver@example.com",phone:"",note:"Demo · attentional-control profile",created:Date.now()-86400000}];
+  var a=ensureAssessment(pid);
+  a.responses={"anx_som_1": 2, "anx_som_2": 2, "anx_wor_1": 2, "anx_wor_2": 2, "anx_con_1": 4, "anx_con_2": 4, "anx_dir_1": 4, "anx_dir_2": 2, "anx_dir_3": 4, "anx_dir_4": 2, "reinv_msc_1": 5, "reinv_msc_2": 5, "reinv_cmp_1": 5, "reinv_cmp_2": 5, "reinv_dec_1": 5, "reinv_dec_2": 5, "eff_1": 4, "eff_2": 4, "eff_3": 4, "ss_1": 3, "ss_2": 3, "ach_map_1": 3, "ach_pav_1": 3, "rf_pro_1": 3, "rf_pre_1": 3, "cope_mon_1": 3, "cope_blu_1": 3, "st_neg_1": 3, "st_ins_1": 3, "flow_1": 4, "avoid_beh_1": 3, "avoid_beh_2": 3, "p_ext_1": 3, "p_ext_2": 3, "p_con_1": 3, "p_con_2": 3, "p_opn_1": 3, "p_opn_2": 3, "p_agr_1": 3, "p_agr_2": 3, "p_emo_1": 3, "p_emo_2": 3};
+  var _ov_a={"p_ext_1": 2, "p_ext_2": 4, "p_con_1": 5, "p_con_2": 1, "p_opn_1": 2, "p_opn_2": 4, "p_agr_1": 2, "p_agr_2": 4, "p_emo_1": 2, "p_emo_2": 4}; for(var k in _ov_a){a.responses[k]=_ov_a[k];}
+  a.state={"state_arousal": 3, "state_conf": 4, "state_focus": 2};
+  a.goal="overthinking";
+  a.status="complete";
+  a.started=Date.now()-3600000;
+  a.completed=Date.now()-1800000;
+  snapshotProfile(a);
+  a.share={granted:true,mode:"curated",items:{summary:true,plan:true,drivers:true,style:true,neuro:false,resolution:true}};
+
+  /* second demo user — regulation-led (contrasting pathway), not yet shared */
+  var pid2=uid("p");
+  DB.people.push({id:pid2,name:"Nadia Reyes",email:"nadia.reyes@example.com",phone:"",note:"Demo \u00b7 arousal/worry-regulation profile",created:Date.now()-172800000});
+  var b=ensureAssessment(pid2);
+  b.responses={"anx_som_1": 5, "anx_som_2": 5, "anx_wor_1": 5, "anx_wor_2": 5, "anx_con_1": 2, "anx_con_2": 2, "anx_dir_1": 5, "anx_dir_2": 1, "anx_dir_3": 5, "anx_dir_4": 1, "reinv_msc_1": 2, "reinv_msc_2": 2, "reinv_cmp_1": 2, "reinv_cmp_2": 2, "reinv_dec_1": 2, "reinv_dec_2": 2, "eff_1": 4, "eff_2": 4, "eff_3": 4, "ss_1": 3, "ss_2": 3, "ach_map_1": 3, "ach_pav_1": 3, "rf_pro_1": 3, "rf_pre_1": 3, "cope_mon_1": 3, "cope_blu_1": 3, "st_neg_1": 3, "st_ins_1": 3, "flow_1": 4, "avoid_beh_1": 3, "avoid_beh_2": 3, "p_ext_1": 3, "p_ext_2": 3, "p_con_1": 3, "p_con_2": 3, "p_opn_1": 3, "p_opn_2": 3, "p_agr_1": 3, "p_agr_2": 3, "p_emo_1": 3, "p_emo_2": 3};
+  var _ov_b={"p_ext_1": 5, "p_ext_2": 1, "p_con_1": 2, "p_con_2": 4, "p_opn_1": 5, "p_opn_2": 1, "p_agr_1": 5, "p_agr_2": 1, "p_emo_1": 5, "p_emo_2": 1}; for(var k in _ov_b){b.responses[k]=_ov_b[k];}
+  b.state={"state_arousal": 5, "state_conf": 3, "state_focus": 3};
+  b.goal="calm_nerves";
+  b.status="complete";
+  b.started=Date.now()-7200000;
+  b.completed=Date.now()-5400000;
+  snapshotProfile(b);
+  b.share={granted:false,mode:"curated",items:defaultShareItems()};
+
+  await saveDB();
+}
+
+/* ---------- boot ---------- */
+window.addEventListener("hashchange",function(){MODAL=null;paint();});
+(async function boot(){
+  await loadDB();
+  await seedDemo();
+  paint();
+})();
+
+</script>
+</body>
+</html>
