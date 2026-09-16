@@ -572,6 +572,91 @@ a {
 }
 
 /* =========================
+   Live Home dive dashboard
+========================= */
+
+.home-metric-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.home-metric-card {
+  min-width: 0;
+  padding: 14px;
+  border: 1px solid var(--seafoam);
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 4px 14px -8px rgba(11, 42, 56, 0.28);
+}
+
+.home-metric-label {
+  color: var(--ink-soft);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.home-metric-value {
+  margin-top: 6px;
+  color: var(--abyss);
+  font-family: var(--display), Georgia, serif;
+  font-size: 1.55rem;
+  line-height: 1;
+}
+
+.home-metric-detail {
+  margin-top: 6px;
+  color: #718b94;
+  font-size: 0.66rem;
+  line-height: 1.35;
+}
+
+.home-recent-dives {
+  margin-top: 2px;
+}
+
+.home-view-log {
+  color: var(--current);
+  font-size: 0.74rem;
+  font-weight: 700;
+}
+
+.home-latest-dive {
+  position: relative;
+  padding: 21px 14px 0;
+  border: 1px solid var(--seafoam);
+  border-radius: 18px;
+  background: #fff;
+  box-shadow: 0 4px 14px -8px rgba(11, 42, 56, 0.28);
+}
+
+.home-latest-label {
+  position: absolute;
+  top: 9px;
+  left: 69px;
+  color: var(--tidal);
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.home-latest-dive .dive-card {
+  border-top: 0;
+}
+
+.home-recent-dives > .dive-list {
+  margin-top: 10px;
+}
+
+.home-view-log:focus-visible,
+.home-latest-dive .dive-card:focus-visible {
+  outline: 2px solid var(--current);
+  outline-offset: 2px;
+}
+
+/* =========================
    Authentication and onboarding
 ========================= */
 
