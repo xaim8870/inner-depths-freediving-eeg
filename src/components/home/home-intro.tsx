@@ -1,7 +1,7 @@
-export default function HomeIntro() {
+export default function HomeIntro({ displayName }: { displayName: string }) {
   return (
     <>
-      <h1 className="page-title">Good morning, Mara.</h1>
+      <h1 className="page-title">Good morning, {displayName}.</h1>
       <p className="page-subtitle">Your daily check-in · Tue 1 Jul</p>
       <div className="home-wave" aria-hidden="true">
         <svg viewBox="0 0 360 20" preserveAspectRatio="none" fill="none">
