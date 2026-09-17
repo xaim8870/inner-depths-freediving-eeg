@@ -5,7 +5,7 @@ import { getCurrentUser, getProfileForUser } from "@/lib/auth-session";
 
 export default async function SignUpPage() {
   const user = await getCurrentUser();
-  if (user) {
+  if (user?.emailVerified) {
     const profile = await getProfileForUser(user.id);
     redirect(profile ? "/app/home" : "/onboarding");
   }

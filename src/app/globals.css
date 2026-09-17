@@ -776,6 +776,95 @@ a {
   margin-top: 16px;
 }
 
+.auth-notice {
+  margin: 16px 0 0;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: var(--foam);
+  color: var(--depth);
+  font-size: 0.78rem;
+  line-height: 1.45;
+}
+
+.auth-inline-link {
+  align-self: flex-start;
+  margin-top: 9px;
+  color: var(--current);
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.auth-forgot-link {
+  margin-top: 12px;
+}
+
+.auth-state {
+  margin-top: 22px;
+  padding: 16px;
+  border: 1px solid var(--seafoam);
+  border-radius: 14px;
+  background: var(--foam);
+}
+
+.auth-state strong {
+  color: var(--depth);
+}
+
+.auth-state p {
+  margin: 6px 0 0;
+  color: var(--ink-soft);
+  font-size: 0.8rem;
+  line-height: 1.5;
+}
+
+.auth-state button {
+  margin-top: 12px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--current);
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.auth-primary-link {
+  display: block;
+  margin-top: 22px;
+  padding: 12px 16px;
+  border-radius: 999px;
+  background: var(--current);
+  color: #fff;
+  font-size: 0.88rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+.verification-navigation {
+  margin-top: 22px;
+  color: var(--ink-soft);
+  font-size: 0.82rem;
+  text-align: center;
+}
+
+.verification-navigation p {
+  margin: 7px 0 0;
+}
+
+.verification-navigation a,
+.verification-navigation button {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--current);
+  font: inherit;
+  font-weight: 700;
+}
+
+.verification-navigation button:disabled {
+  cursor: wait;
+  opacity: 0.6;
+}
+
 .auth-footer {
   margin: 22px 0 0;
   color: var(--ink-soft);
@@ -830,6 +919,11 @@ a {
 
 .sign-out-button:focus-visible,
 .auth-footer a:focus-visible,
+.auth-inline-link:focus-visible,
+.auth-primary-link:focus-visible,
+.auth-state button:focus-visible,
+.verification-navigation a:focus-visible,
+.verification-navigation button:focus-visible,
 .account-menu summary:focus-visible {
   outline: 2px solid var(--current);
   outline-offset: 2px;

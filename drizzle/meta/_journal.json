@@ -15,6 +15,13 @@
       "when": 1789298330696,
       "tag": "0001_curious_warpath",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1789667783044,
+      "tag": "0002_left_mongu",
+      "breakpoints": true
     }
   ]
 }

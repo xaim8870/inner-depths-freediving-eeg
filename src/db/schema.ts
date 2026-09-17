@@ -6,6 +6,7 @@ import {
   date,
   index,
   integer,
+  bigint,
   numeric,
   pgEnum,
   pgTable,
@@ -184,6 +185,17 @@ export const verifications = pgTable(
       .notNull(),
   },
   (table) => [index("verifications_identifier_idx").on(table.identifier)],
+);
+
+export const rateLimits = pgTable(
+  "rate_limits",
+  {
+    id: uuid("id").defaultRandom().primaryKey(),
+    key: text("key").notNull(),
+    count: integer("count").notNull(),
+    lastRequest: bigint("last_request", { mode: "number" }).notNull(),
+  },
+  (table) => [uniqueIndex("rate_limits_key_unique").on(table.key)],
 );
 
 export const usersRelations = relations(users, ({ one, many }) => ({

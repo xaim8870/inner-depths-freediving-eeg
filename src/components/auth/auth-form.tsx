@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState, type FormEvent } from "react";
 import { z } from "zod";
@@ -26,17 +27,25 @@ type FieldErrors = {
   confirmPassword?: string[];
 };
 
-export default function AuthForm({ mode }: { mode: "sign-in" | "sign-up" }) {
+export default function AuthForm({
+  mode,
+  notice,
+}: {
+  mode: "sign-in" | "sign-up";
+  notice?: string;
+}) {
   const router = useRouter();
   const [pending, setPending] = useState(false);
   const [error, setError] = useState("");
   const [fieldErrors, setFieldErrors] = useState<FieldErrors>({});
+  const [unverifiedEmail, setUnverifiedEmail] = useState("");
   const isSignUp = mode === "sign-up";
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setError("");
     setFieldErrors({});
+    setUnverifiedEmail("");
 
     const form = new FormData(event.currentTarget);
     const input = {
@@ -57,6 +66,7 @@ export default function AuthForm({ mode }: { mode: "sign-in" | "sign-up" }) {
             email: result.data.email,
             password: result.data.password,
             name: "Diver",
+            callbackURL: "/auth/verification-complete",
           })
         : await authClient.signIn.email({
             email: result.data.email,
@@ -64,11 +74,20 @@ export default function AuthForm({ mode }: { mode: "sign-in" | "sign-up" }) {
           });
 
       if (response.error) {
-        setError(response.error.message || "Authentication failed. Please try again.");
+        if (response.error.status === 429) {
+          setError("Too many attempts. Please try again shortly.");
+        } else if (response.error.code === "EMAIL_NOT_VERIFIED") {
+          setError("Please verify your email before signing in.");
+          setUnverifiedEmail(result.data.email);
+        } else {
+          setError(response.error.message || "Authentication failed. Please try again.");
+        }
         return;
       }
 
-      router.replace(isSignUp ? "/onboarding" : "/app/home");
+      router.replace(isSignUp
+        ? `/verify-email?email=${encodeURIComponent(result.data.email)}`
+        : "/app/home");
       router.refresh();
     } catch {
       setError("We could not connect right now. Please try again.");
@@ -111,7 +130,14 @@ export default function AuthForm({ mode }: { mode: "sign-in" | "sign-up" }) {
         </>
       )}
 
+      {notice && !error && <p className="auth-notice" role="status">{notice}</p>}
       {error && <p className="form-error auth-general-error" role="alert">{error}</p>}
+      {unverifiedEmail && (
+        <Link className="auth-inline-link" href={`/verify-email?email=${encodeURIComponent(unverifiedEmail)}`}>
+          Resend verification email
+        </Link>
+      )}
+      {!isSignUp && <Link className="auth-inline-link auth-forgot-link" href="/forgot-password">Forgot password?</Link>}
       <button type="submit" disabled={pending}>
         {pending ? "Please wait…" : isSignUp ? "Create account" : "Sign in"}
       </button>

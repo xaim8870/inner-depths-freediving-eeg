@@ -19,6 +19,7 @@ export async function getCurrentUser() {
 export async function requireCurrentUser() {
   const user = await getCurrentUser();
   if (!user) redirect("/sign-in");
+  if (!user.emailVerified) redirect("/verify-email");
   return user;
 }
 
