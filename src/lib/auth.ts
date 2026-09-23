@@ -2,10 +2,8 @@ import "server-only";
 
 import { drizzleAdapter } from "@better-auth/drizzle-adapter";
 import { betterAuth } from "better-auth/minimal";
-import { after } from "next/server";
 import { db } from "@/db";
 import { accounts, rateLimits, sessions, users, verifications } from "@/db/schema";
-import { sendPasswordResetEmail, sendVerificationEmail } from "@/lib/email";
 
 if (!process.env.BETTER_AUTH_SECRET) {
   throw new Error("BETTER_AUTH_SECRET is not configured");
@@ -35,29 +33,17 @@ export const auth = betterAuth({
     },
   }),
   trustedOrigins,
-  verification: {
-    storeIdentifier: "hashed",
-  },
-  emailVerification: {
-    sendVerificationEmail: async ({ user, url }) => {
-      await sendVerificationEmail({ to: user.email, verificationUrl: url });
-    },
-    sendOnSignUp: true,
-    sendOnSignIn: false,
-    autoSignInAfterVerification: true,
-    expiresIn: 60 * 60,
-  },
+  disabledPaths: [
+    "/send-verification-email",
+    "/verify-email",
+    "/request-password-reset",
+    "/reset-password",
+  ],
   emailAndPassword: {
     enabled: true,
-    requireEmailVerification: true,
-    autoSignIn: false,
+    autoSignIn: true,
     minPasswordLength: 8,
     maxPasswordLength: 128,
-    resetPasswordTokenExpiresIn: 60 * 60,
-    revokeSessionsOnPasswordReset: true,
-    sendResetPassword: async ({ user, url }) => {
-      await sendPasswordResetEmail({ to: user.email, resetUrl: url });
-    },
   },
   rateLimit: {
     enabled: true,
@@ -67,16 +53,10 @@ export const auth = betterAuth({
     customRules: {
       "/sign-in/email": { window: 10 * 60, max: 10 },
       "/sign-up/email": { window: 10 * 60, max: 5 },
-      "/send-verification-email": { window: 10 * 60, max: 3 },
-      "/request-password-reset": { window: 10 * 60, max: 3 },
-      "/reset-password": { window: 10 * 60, max: 5 },
     },
   },
   advanced: {
     useSecureCookies: process.env.NODE_ENV === "production",
-    backgroundTasks: {
-      handler: (promise) => after(() => promise),
-    },
     database: {
       generateId: "uuid",
     },
