@@ -1,0 +1,249 @@
+.page {
+  min-height: 100dvh;
+  padding: 28px 16px 48px;
+  background:
+    radial-gradient(circle at 85% 4%, rgba(127, 230, 222, 0.28), transparent 28rem),
+    linear-gradient(160deg, #e7f2ef, #d5e9e4);
+}
+
+.shell {
+  width: min(100%, 880px);
+  margin: 0 auto;
+}
+
+.siteHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 0 4px 20px;
+}
+
+.appLink,
+.footer a {
+  color: var(--current);
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.appLink {
+  padding: 8px 13px;
+  border: 1px solid rgba(46, 125, 151, 0.25);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.62);
+}
+
+.policy {
+  overflow: hidden;
+  border: 1px solid rgba(18, 69, 90, 0.12);
+  border-radius: 30px;
+  background: rgba(255, 255, 255, 0.93);
+  box-shadow: 0 28px 70px -45px rgba(11, 42, 56, 0.55);
+}
+
+.hero {
+  padding: 50px clamp(24px, 7vw, 68px) 38px;
+  background: linear-gradient(145deg, #0e3444, #12455a);
+  color: #fff;
+}
+
+.eyebrow,
+.sectionLabel {
+  margin: 0;
+  color: var(--lumen);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.hero h1 {
+  margin: 8px 0 0;
+  font-family: var(--display), Georgia, serif;
+  font-size: clamp(2.4rem, 8vw, 4.4rem);
+  font-weight: 400;
+  line-height: 1;
+}
+
+.updated {
+  margin: 15px 0 0;
+  color: rgba(234, 243, 241, 0.74);
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.introduction {
+  max-width: 640px;
+  margin: 24px 0 0;
+  color: rgba(234, 243, 241, 0.9);
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+.content {
+  padding: 16px clamp(24px, 7vw, 68px) 54px;
+}
+
+.content section {
+  padding: 31px 0;
+  border-bottom: 1px solid var(--seafoam);
+}
+
+.content section:last-child {
+  border-bottom: 0;
+}
+
+.content h2,
+.content h3 {
+  color: var(--abyss);
+  font-family: var(--display), Georgia, serif;
+  font-weight: 400;
+}
+
+.content h2 {
+  margin: 0 0 13px;
+  font-size: 1.55rem;
+}
+
+.content h3 {
+  margin: 27px 0 10px;
+  font-size: 1.15rem;
+}
+
+.content p,
+.content li {
+  color: var(--ink-soft);
+  font-size: 0.91rem;
+  line-height: 1.72;
+}
+
+.content p {
+  margin: 11px 0 0;
+}
+
+.content ul {
+  margin: 14px 0 0;
+  padding-left: 1.25rem;
+}
+
+.content li + li {
+  margin-top: 7px;
+}
+
+.content strong {
+  color: var(--depth);
+}
+
+.content code {
+  padding: 0.12rem 0.35rem;
+  border-radius: 5px;
+  background: var(--seafoam);
+  color: var(--depth);
+  font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+  font-size: 0.8em;
+}
+
+.whoopSection {
+  position: relative;
+  margin: 12px -22px;
+  padding: 30px 22px !important;
+  border: 1px solid #cfe6e1 !important;
+  border-radius: 22px;
+  background: var(--mist);
+}
+
+.sectionLabel {
+  color: var(--tidal);
+}
+
+.whoopSection h2 {
+  margin-top: 6px;
+}
+
+.scopeList {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px 22px;
+  padding-left: 0 !important;
+  list-style: none;
+}
+
+.scopeList li + li {
+  margin-top: 0;
+}
+
+.contactSection a {
+  color: var(--current);
+  font-weight: 700;
+  text-decoration: underline;
+  text-decoration-color: rgba(46, 125, 151, 0.35);
+  text-underline-offset: 3px;
+}
+
+.contactNotice {
+  padding: 13px 15px;
+  border: 1px solid #edd9b9;
+  border-radius: 12px;
+  background: #fff8ec;
+  color: #725a37 !important;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 20px 5px 0;
+  color: var(--ink-soft);
+  font-size: 0.75rem;
+}
+
+.appLink:focus-visible,
+.footer a:focus-visible,
+.siteHeader > a:first-child:focus-visible,
+.contactSection a:focus-visible {
+  outline: 2px solid var(--current);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+@media (max-width: 620px) {
+  .page {
+    padding: 18px 10px 32px;
+  }
+
+  .siteHeader {
+    padding: 0 6px 16px;
+  }
+
+  .policy {
+    border-radius: 24px;
+  }
+
+  .hero {
+    padding-top: 38px;
+  }
+
+  .content {
+    padding-bottom: 35px;
+  }
+
+  .scopeList {
+    grid-template-columns: 1fr;
+  }
+
+  .whoopSection {
+    margin-right: -12px;
+    margin-left: -12px;
+    padding-right: 12px !important;
+    padding-left: 12px !important;
+  }
+}
+
+@media (max-width: 380px) {
+  .siteHeader,
+  .footer {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}

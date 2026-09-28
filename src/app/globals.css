@@ -789,6 +789,19 @@ a {
   font-weight: 600;
 }
 
+.auth-privacy-link {
+  margin: 12px 0 0;
+  color: var(--ink-soft);
+  font-size: 0.74rem;
+  text-align: center;
+}
+
+.auth-privacy-link a {
+  text-decoration: underline;
+  text-decoration-color: rgba(46, 125, 151, 0.3);
+  text-underline-offset: 3px;
+}
+
 .onboarding-sign-out {
   margin-top: 18px;
   text-align: center;
@@ -813,12 +826,21 @@ a {
   top: calc(100% + 8px);
   right: 0;
   z-index: 20;
-  min-width: 130px;
+  min-width: 145px;
+  display: grid;
+  gap: 7px;
   padding: 10px 12px;
   border: 1px solid var(--seafoam);
   border-radius: 12px;
   background: #fff;
   box-shadow: 0 10px 30px -14px rgba(11, 42, 56, 0.3);
+}
+
+.account-menu-link {
+  padding: 5px 4px;
+  color: var(--current);
+  font-size: 0.82rem;
+  font-weight: 600;
 }
 
 .sign-out-button {
@@ -829,10 +851,186 @@ a {
 }
 
 .sign-out-button:focus-visible,
+.account-menu-link:focus-visible,
 .auth-footer a:focus-visible,
 .account-menu summary:focus-visible {
   outline: 2px solid var(--current);
   outline-offset: 2px;
+}
+
+/* =========================
+   Account connections
+========================= */
+
+.account-page {
+  padding-top: 24px;
+}
+
+.account-page-header {
+  padding: 0 2px;
+}
+
+.account-eyebrow,
+.whoop-connection-label {
+  color: var(--tidal);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.account-page-header h1 {
+  margin: 5px 0 4px;
+  color: var(--abyss);
+  font-family: var(--display), Georgia, serif;
+  font-size: 2.1rem;
+  font-weight: 400;
+}
+
+.account-page-header p,
+.whoop-connection-detail {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 0.78rem;
+  line-height: 1.5;
+}
+
+.account-page-links {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  margin-top: 20px;
+}
+
+.account-privacy-link {
+  color: var(--ink-soft);
+  font-size: 0.72rem;
+  font-weight: 600;
+}
+
+.account-status-message {
+  margin: 18px 0 0;
+  padding: 10px 12px;
+  border: 1px solid var(--seafoam);
+  border-radius: 12px;
+  background: #fff;
+  color: var(--depth);
+  font-size: 0.76rem;
+  line-height: 1.45;
+}
+
+.whoop-connection-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  margin-top: 22px;
+  padding: 17px;
+  border: 1px solid var(--seafoam);
+  border-radius: 20px;
+  background: #fff;
+  box-shadow: 0 12px 30px -26px rgba(11, 42, 56, 0.55);
+}
+
+.whoop-connection-card > div {
+  min-width: 0;
+}
+
+.whoop-connection-card h2 {
+  margin: 5px 0 0;
+  color: var(--abyss);
+  font-family: var(--display), Georgia, serif;
+  font-size: 1.3rem;
+  font-weight: 400;
+}
+
+.whoop-status {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 7px 0 0;
+  color: var(--ink-soft);
+  font-size: 0.76rem;
+  font-weight: 700;
+}
+
+.whoop-status span {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #9db8bf;
+}
+
+.whoop-status.connected {
+  color: var(--current);
+}
+
+.whoop-status.connected span {
+  background: var(--tidal);
+}
+
+.whoop-connection-detail {
+  max-width: 29ch;
+  margin-top: 7px;
+  font-size: 0.7rem;
+}
+
+.whoop-connection-card form {
+  flex: 0 0 auto;
+}
+
+.whoop-button {
+  display: inline-flex;
+  min-height: 39px;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  padding: 0 13px;
+  border: 1px solid var(--current);
+  border-radius: 999px;
+  background: var(--current);
+  color: #fff;
+  font-size: 0.74rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.whoop-button-secondary {
+  border-color: var(--seafoam);
+  background: #fff;
+  color: var(--current);
+}
+
+.whoop-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.whoop-button:focus-visible,
+.account-back-link:focus-visible {
+  outline: 2px solid var(--current);
+  outline-offset: 2px;
+}
+
+.account-back-link {
+  display: inline-block;
+  margin: 20px 2px 0;
+  color: var(--current);
+  font-size: 0.76rem;
+  font-weight: 700;
+}
+
+@media (max-width: 360px) {
+  .whoop-connection-card {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .whoop-button,
+  .whoop-connection-card form {
+    width: 100%;
+  }
 }
 
 /* =========================

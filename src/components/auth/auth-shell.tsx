@@ -31,6 +31,9 @@ export default function AuthShell({
             {footerText} <Link href={footerHref}>{footerLinkText}</Link>
           </p>
         )}
+        <p className="auth-privacy-link">
+          <Link href="/privacy">Privacy</Link>
+        </p>
       </div>
     </main>
   );

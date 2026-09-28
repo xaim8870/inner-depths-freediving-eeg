@@ -1,0 +1,40 @@
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.brandmark {
+  height: 28px;
+  width: auto;
+  display: block;
+}
+
+.brandtext {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.05;
+}
+
+.bt1 {
+  font-family: var(--display, "DM Serif Display", Georgia, serif);
+  font-size: 1.02rem;
+  color: #12455a;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.bt1 span {
+  color: #2e7d97;
+}
+
+.bt2 {
+  font-family: var(--body, "DM Sans", system-ui, -apple-system, sans-serif);
+  font-size: 0.54rem;
+  font-weight: 600;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: #3b5b67;
+  margin-top: 3px;
+  margin-left: 1px;
+}

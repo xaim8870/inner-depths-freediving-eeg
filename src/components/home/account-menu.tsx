@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import SignOutButton from "@/components/auth/sign-out-button";
 
 export default function AccountMenu() {
@@ -20,6 +21,7 @@ export default function AccountMenu() {
         </svg>
       </summary>
       <div className="account-menu-panel">
+        <Link className="account-menu-link" href="/app/account">Connections</Link>
         <SignOutButton />
       </div>
     </details>

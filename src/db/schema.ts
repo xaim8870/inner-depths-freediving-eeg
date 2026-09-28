@@ -198,8 +198,34 @@ export const rateLimits = pgTable(
   (table) => [uniqueIndex("rate_limits_key_unique").on(table.key)],
 );
 
+export const whoopConnections = pgTable(
+  "whoop_connections",
+  {
+    id: uuid("id").defaultRandom().primaryKey(),
+    userId: uuid("user_id")
+      .notNull()
+      .references(() => users.id, { onDelete: "cascade" }),
+    whoopUserId: varchar("whoop_user_id", { length: 64 }).notNull(),
+    accessTokenEncrypted: text("access_token_encrypted").notNull(),
+    refreshTokenEncrypted: text("refresh_token_encrypted").notNull(),
+    accessTokenExpiresAt: timestamp("access_token_expires_at", { withTimezone: true }).notNull(),
+    scopes: text("scopes").notNull(),
+    refreshLeaseExpiresAt: timestamp("refresh_lease_expires_at", { withTimezone: true }),
+    connectedAt: timestamp("connected_at", { withTimezone: true }).defaultNow().notNull(),
+    updatedAt: timestamp("updated_at", { withTimezone: true })
+      .defaultNow()
+      .$onUpdate(() => new Date())
+      .notNull(),
+  },
+  (table) => [
+    uniqueIndex("whoop_connections_user_id_unique").on(table.userId),
+    uniqueIndex("whoop_connections_whoop_user_id_unique").on(table.whoopUserId),
+  ],
+);
+
 export const usersRelations = relations(users, ({ one, many }) => ({
   profile: one(profiles),
+  whoopConnection: one(whoopConnections),
   dives: many(dives),
   trainingSessions: many(trainingSessions),
   sessions: many(sessions),
@@ -224,4 +250,8 @@ export const sessionsRelations = relations(sessions, ({ one }) => ({
 
 export const accountsRelations = relations(accounts, ({ one }) => ({
   user: one(users, { fields: [accounts.userId], references: [users.id] }),
+}));
+
+export const whoopConnectionsRelations = relations(whoopConnections, ({ one }) => ({
+  user: one(users, { fields: [whoopConnections.userId], references: [users.id] }),
 }));
