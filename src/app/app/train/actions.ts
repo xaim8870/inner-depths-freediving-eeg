@@ -68,6 +68,7 @@ export async function updateTrainingSession(
         and(
           eq(trainingSessions.id, idResult.data),
           eq(trainingSessions.userId, user.id),
+          eq(trainingSessions.sessionCategory, "training"),
         ),
       )
       .returning({ id: trainingSessions.id });
@@ -102,6 +103,7 @@ export async function deleteTrainingSession(
       and(
         eq(trainingSessions.id, idResult.data),
         eq(trainingSessions.userId, user.id),
+        eq(trainingSessions.sessionCategory, "training"),
       ),
     )
     .returning({ id: trainingSessions.id });

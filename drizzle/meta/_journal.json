@@ -29,6 +29,20 @@
       "when": 1790197433954,
       "tag": "0003_whoop_connections",
       "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1790628191951,
+      "tag": "0004_consumer_core",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1791234276741,
+      "tag": "0005_lean_martin_li",
+      "breakpoints": true
     }
   ]
 }

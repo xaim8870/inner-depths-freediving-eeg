@@ -7,22 +7,11 @@ import { z } from "zod";
 import { db } from "@/db";
 import { dives } from "@/db/schema";
 import { requireCurrentUser } from "@/lib/auth-session";
-import { parseDiveFormData, toDiveValues } from "@/lib/dive-validation";
+import { parseDiveFormData, toDiveValues, type DiveFormInput } from "@/lib/dive-validation";
 
 export type DiveActionState = {
   error: string;
-  fieldErrors: Partial<Record<
-    | "diveDate"
-    | "discipline"
-    | "depthMeters"
-    | "durationMinutes"
-    | "durationRemainderSeconds"
-    | "location"
-    | "perceivedEffort"
-    | "comfort"
-    | "notes",
-    string
-  >>;
+  fieldErrors: Partial<Record<keyof DiveFormInput, string>>;
 };
 
 function invalidState(result: ReturnType<typeof parseDiveFormData>): DiveActionState {
@@ -51,7 +40,8 @@ export async function createDive(
   }
 
   revalidatePath("/app/log");
-  redirect("/app/log");
+  revalidatePath("/app/home");
+  redirect("/app/log?saved=dive");
 }
 
 export async function updateDive(
@@ -79,7 +69,8 @@ export async function updateDive(
 
   revalidatePath("/app/log");
   revalidatePath(`/app/log/${idResult.data}`);
-  redirect(`/app/log/${idResult.data}`);
+  revalidatePath("/app/home");
+  redirect(`/app/log/${idResult.data}?saved=1`);
 }
 
 export async function deleteDive(
@@ -101,5 +92,6 @@ export async function deleteDive(
   if (deleted.length === 0) return { error: "Dive not found." };
 
   revalidatePath("/app/log");
+  revalidatePath("/app/home");
   redirect("/app/log");
 }

@@ -1,37 +1,39 @@
 import Link from "next/link";
 import EmptyTrainingState from "@/components/training/empty-training-state";
 import TrainingList from "@/components/training/training-list";
+import TrainingFoundation from "@/components/training/training-foundation";
 import { getTrainingSessionsForUser } from "@/db/training-sessions";
+import { getTrainingGoalsForUser } from "@/db/training-goals";
 import { requireCurrentUser } from "@/lib/auth-session";
+import { performanceProfilePlanProvider } from "@/lib/training-plan-server";
 
 export default async function TrainPage() {
   const user = await requireCurrentUser();
-  const sessions = await getTrainingSessionsForUser(user.id);
+  const [sessions, goals] = await Promise.all([
+    getTrainingSessionsForUser(user.id),
+    getTrainingGoalsForUser(user.id),
+  ]);
+  const selectedGoals = goals.map((goal) => goal.goal as import("@/lib/training-goals").TrainingGoalId);
+  const plan = await performanceProfilePlanProvider.getPlan({ userId: user.id, goals: selectedGoals });
 
   return (
     <section className="training-page">
       <header className="training-page-header">
         <div>
-          <div className="training-eyebrow">Training journal</div>
-          <h1>Train</h1>
-          <p>Sessions you completed, recorded in one place.</p>
+          <div className="training-eyebrow">Goals → Baseline → Plan</div>
+          <h1>Training</h1>
+          <p>Set your direction, establish a truthful baseline, and keep your completed training history.</p>
         </div>
         <Link href="/app/train/new" className="training-add-button">
           <span aria-hidden="true">+</span> Add session
         </Link>
       </header>
 
-      <div className="training-scope-note">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" aria-hidden="true">
-          <circle cx="12" cy="12" r="9" />
-          <path d="M12 8v4M12 16h.01" />
-        </svg>
-        <span>This journal records completed sessions. It does not prescribe breath-hold training.</span>
-      </div>
+      <TrainingFoundation selectedGoals={selectedGoals} planResult={plan} />
 
       {sessions.length > 0 ? (
         <div className="training-history-section">
-          <h2>Training history</h2>
+          <div className="section-title-row"><h2>Completed training</h2><span>Manual log</span></div>
           <TrainingList sessions={sessions} />
         </div>
       ) : <EmptyTrainingState />}

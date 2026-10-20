@@ -10,7 +10,7 @@ export async function getTrainingSessionsForUser(userId: string) {
   return db
     .select()
     .from(trainingSessions)
-    .where(eq(trainingSessions.userId, userId))
+    .where(and(eq(trainingSessions.userId, userId), eq(trainingSessions.sessionCategory, "training")))
     .orderBy(desc(trainingSessions.sessionDate), desc(trainingSessions.createdAt));
 }
 
@@ -18,7 +18,7 @@ export async function getTrainingSessionForUser(userId: string, sessionId: strin
   const [session] = await db
     .select()
     .from(trainingSessions)
-    .where(and(eq(trainingSessions.id, sessionId), eq(trainingSessions.userId, userId)))
+    .where(and(eq(trainingSessions.id, sessionId), eq(trainingSessions.userId, userId), eq(trainingSessions.sessionCategory, "training")))
     .limit(1);
 
   return session ?? null;

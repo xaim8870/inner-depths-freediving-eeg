@@ -2,6 +2,7 @@ import "server-only";
 
 import { asc, eq } from "drizzle-orm";
 import { db } from "@/db";
+import { getLatestPerformanceAssessment } from "@/db/performance-assessments";
 import { dives, trainingSessions } from "@/db/schema";
 
 export type ProgressActivity =
@@ -20,12 +21,13 @@ export type ProgressActivity =
       date: string;
       createdAt: Date;
       sessionType: string;
+      sessionCategory: string;
       durationMinutes: number;
       difficulty: number | null;
     };
 
 export async function getProgressDashboard(userId: string) {
-  const [diveRows, trainingRows] = await Promise.all([
+  const [diveRows, trainingRows, performanceProfile] = await Promise.all([
     db
       .select({
         id: dives.id,
@@ -33,7 +35,11 @@ export async function getProgressDashboard(userId: string) {
         discipline: dives.discipline,
         depthMeters: dives.depthMeters,
         durationSeconds: dives.durationSeconds,
-        comfort: dives.comfort,
+        overallFeel: dives.overallFeel,
+        calmAtDepth: dives.calmAtDepth,
+        focus: dives.focus,
+        equalization: dives.equalization,
+        mentalPreparation: dives.mentalPreparation,
         createdAt: dives.createdAt,
       })
       .from(dives)
@@ -44,6 +50,7 @@ export async function getProgressDashboard(userId: string) {
         id: trainingSessions.id,
         date: trainingSessions.sessionDate,
         sessionType: trainingSessions.sessionType,
+        sessionCategory: trainingSessions.sessionCategory,
         durationMinutes: trainingSessions.durationMinutes,
         difficulty: trainingSessions.difficulty,
         createdAt: trainingSessions.createdAt,
@@ -51,6 +58,7 @@ export async function getProgressDashboard(userId: string) {
       .from(trainingSessions)
       .where(eq(trainingSessions.userId, userId))
       .orderBy(asc(trainingSessions.sessionDate), asc(trainingSessions.createdAt)),
+    getLatestPerformanceAssessment(userId),
   ]);
 
   const today = new Date();
@@ -67,10 +75,14 @@ export async function getProgressDashboard(userId: string) {
   const averageDepth = diveRows.length > 0
     ? diveRows.reduce((sum, dive) => sum + dive.depthMeters, 0) / diveRows.length
     : null;
-  const ratedDives = diveRows.filter((dive) => dive.comfort !== null);
-  const averageComfort = ratedDives.length > 0
-    ? ratedDives.reduce((sum, dive) => sum + (dive.comfort ?? 0), 0) / ratedDives.length
+  const ratedDives = diveRows.filter((dive) => dive.overallFeel !== null);
+  const averageOverallFeel = ratedDives.length > 0
+    ? ratedDives.reduce((sum, dive) => sum + (dive.overallFeel ?? 0), 0) / ratedDives.length
     : null;
+  const averageRating = (key: "calmAtDepth" | "focus" | "equalization") => {
+    const rows = diveRows.filter((dive) => dive[key] !== null);
+    return rows.length ? rows.reduce((sum, dive) => sum + (dive[key] ?? 0), 0) / rows.length : null;
+  };
 
   const disciplineCounts = new Map<string, number>();
   for (const dive of diveRows) {
@@ -127,6 +139,7 @@ export async function getProgressDashboard(userId: string) {
       date: session.date,
       createdAt: session.createdAt,
       sessionType: session.sessionType,
+      sessionCategory: session.sessionCategory,
       durationMinutes: session.durationMinutes,
       difficulty: session.difficulty,
     })),
@@ -141,7 +154,7 @@ export async function getProgressDashboard(userId: string) {
       averageDepth,
       totalDiveTimeSeconds,
       divesLast30Days: diveRows.filter((dive) => dive.date >= thirtyDayStart).length,
-      averageComfort,
+      averageOverallFeel,
     },
     trainingMetrics: {
       totalTrainingSessions: trainingRows.length,
@@ -157,10 +170,10 @@ export async function getProgressDashboard(userId: string) {
       date: dive.date,
       value: dive.depthMeters,
     })),
-    comfortSeries: ratedDives.map((dive) => ({
+    overallFeelSeries: ratedDives.map((dive) => ({
       id: dive.id,
       date: dive.date,
-      value: dive.comfort as number,
+      value: dive.overallFeel as number,
     })),
     trainingFrequency,
     disciplineBreakdown: [...disciplineCounts.entries()]
@@ -170,6 +183,18 @@ export async function getProgressDashboard(userId: string) {
       }))
       .sort((a, b) => b.count - a.count || a.discipline.localeCompare(b.discipline)),
     recentActivity,
+    performanceProfile: performanceProfile ? {
+      completedAt: performanceProfile.completedAt,
+      dominantLabel: performanceProfile.result.pathways.blend ? "Balanced profile" : performanceProfile.result.dominant.label,
+      planLabel: performanceProfile.result.plan.program,
+    } : null,
+    ratingAverages: {
+      overallFeel: averageOverallFeel,
+      calmAtDepth: averageRating("calmAtDepth"),
+      focus: averageRating("focus"),
+      equalization: averageRating("equalization"),
+      ratedDiveCount: ratedDives.length,
+    },
   };
 }
 

@@ -27,7 +27,7 @@ export default function TrainingSummary({
       >
         Training activity
       </SectionHeading>
-      <Link href={`/app/train/${latestSession.id}`} className="home-training-card">
+      <Link href={latestSession.sessionCategory === "training" ? `/app/train/${latestSession.id}` : `/app/log/sessions/${latestSession.id}`} className="home-training-card">
         <div className="home-training-count">
           <strong>{sessionsLast30Days}</strong>
           <span>Last 30 days</span>

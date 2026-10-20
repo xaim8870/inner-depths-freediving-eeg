@@ -6,13 +6,14 @@ import DiveForm from "@/components/dives/dive-form";
 import { getDiveForUser } from "@/db/dives";
 import { requireCurrentUser } from "@/lib/auth-session";
 
-export default async function DiveDetailPage({ params }: { params: Promise<{ id: string }> }) {
+export default async function DiveDetailPage({ params, searchParams }: { params: Promise<{ id: string }>; searchParams: Promise<{ saved?: string }> }) {
   const user = await requireCurrentUser();
   const { id } = await params;
   if (!z.uuid().safeParse(id).success) notFound();
 
   const dive = await getDiveForUser(user.id, id);
   if (!dive) notFound();
+  const query = await searchParams;
 
   return (
     <section className="dive-editor-page">
@@ -21,6 +22,7 @@ export default async function DiveDetailPage({ params }: { params: Promise<{ id:
         <h1>Edit dive</h1>
         <p>Update the details and reflection saved with this dive.</p>
       </header>
+      {query.saved ? <p className="save-success save-banner" role="status">Dive changes saved.</p> : null}
 
       <DiveForm
         action={updateDive.bind(null, dive.id)}

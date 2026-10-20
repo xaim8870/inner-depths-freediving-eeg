@@ -34,7 +34,7 @@ export default function RecentActivity({ activity }: { activity: ProgressActivit
             : `${item.durationMinutes} min · Difficulty ${item.difficulty ?? "–"}/5`;
           return (
             <Link
-              href={isDive ? `/app/log/${item.id}` : `/app/train/${item.id}`}
+              href={isDive ? `/app/log/${item.id}` : item.sessionCategory === "training" ? `/app/train/${item.id}` : `/app/log/sessions/${item.id}`}
               className="progress-activity-item"
               key={`${item.kind}-${item.id}`}
             >
