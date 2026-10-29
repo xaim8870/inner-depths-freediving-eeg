@@ -3,8 +3,9 @@
 import Link from "next/link";
 import { useActionState } from "react";
 import type { CompletedSessionActionState } from "@/app/app/log/sessions/actions";
-import { ChoiceGroup, FieldError, TextArea, TextField } from "@/components/ui/form";
+import { ChoiceGroup, FieldError, RatingScale, TextArea, TextField } from "@/components/ui/form";
 import { Icon } from "@/components/ui/icons";
+import { keepValuesOnSubmit } from "@/components/ui/keep-values-on-submit";
 import type { CompletedSession } from "@/db/completed-sessions";
 import { completedSessionLabels, holdPositions, poolDisciplines, tableTypes, type CompletedSessionCategory } from "@/lib/completed-session-options";
 
@@ -28,7 +29,7 @@ export default function CompletedSessionForm({ category, action, initialValues }
   const num = (n: number | null | undefined) => (n == null ? "" : n);
 
   return (
-    <form action={formAction} className="ui-stack" noValidate>
+    <form action={formAction} onSubmit={keepValuesOnSubmit(formAction)} className="ui-stack" noValidate>
       <input type="hidden" name="sessionCategory" value={category} />
       {state.error ? <p className="ui-banner ui-banner-error" role="alert">{state.error}</p> : null}
 
@@ -54,7 +55,7 @@ export default function CompletedSessionForm({ category, action, initialValues }
                 <TextField label="Distance (m)" type="number" name="distanceMeters" min={1} max={5000} step={0.1} inputMode="decimal" defaultValue={num(v?.distanceMeters)} required error={errors.distanceMeters} />
                 <ChoiceGroup variant="seg" legend="Pool length" name="poolLengthMeters" options={[{ value: "25", label: "25 m" }, { value: "50", label: "50 m" }]} value={v?.poolLengthMeters ? String(v.poolLengthMeters) : null} required error={errors.poolLengthMeters} />
               </div>
-              <Rating name="sessionEffort" label="Session effort" hint="1 easy · 5 hard" value={v?.sessionEffort} error={errors.sessionEffort} />
+              <RatingScale legend="Session effort" name="sessionEffort" value={v?.sessionEffort} low="Easy" high="Hard" required error={errors.sessionEffort} />
             </>
           ) : null}
           {category === "dry_hold" ? (
@@ -64,7 +65,7 @@ export default function CompletedSessionForm({ category, action, initialValues }
                 <TextField label="Number of holds" type="number" name="holdCount" min={1} max={100} inputMode="numeric" defaultValue={num(v?.holdCount)} required error={errors.holdCount} />
               </div>
               <ChoiceGroup variant="seg" legend="Position" name="holdPosition" options={holdPositions} value={v?.holdPosition} required error={errors.holdPosition} />
-              <Rating name="urgeToBreathe" label="Urge to breathe" hint="1 low · 5 high" value={v?.urgeToBreathe} error={errors.urgeToBreathe} />
+              <RatingScale legend="Urge to breathe" name="urgeToBreathe" value={v?.urgeToBreathe} low="Low" high="High" required error={errors.urgeToBreathe} />
             </>
           ) : null}
           {category === "table" ? (

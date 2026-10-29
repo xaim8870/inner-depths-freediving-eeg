@@ -62,7 +62,8 @@ test("owned read, update, and delete paths retain both id and user ownership pre
 
 test("goal persistence is authenticated and transaction-backed", () => {
   const source = readFileSync("src/app/app/train/goals-actions.ts", "utf8");
-  assert.match(source, /requireCurrentUser/); assert.match(source, /db\.transaction/); assert.match(source, /userId: user\.id/);
+  // atomic via db.batch: neon-http does not support db.transaction
+  assert.match(source, /requireCurrentUser/); assert.match(source, /db\.batch\(/); assert.match(source, /userId: user\.id/);
 });
 
 test("Home exposes connected and disconnected WHOOP states without sample biometrics", () => {

@@ -13,10 +13,14 @@ export async function saveTrainingGoals(_state: GoalActionState, formData: FormD
   const result = trainingGoalSelectionSchema.safeParse(formData.getAll("goals"));
   if (!result.success) return { error: result.error.issues[0]?.message ?? "Choose up to three goals.", saved: false };
   try {
-    await db.transaction(async (tx) => {
-      await tx.delete(trainingGoalsTable).where(eq(trainingGoalsTable.userId, user.id));
-      if (result.data.length) await tx.insert(trainingGoalsTable).values(result.data.map((goal, position) => ({ userId: user.id, goal, position })));
-    });
+    // neon-http has no interactive transactions (db.transaction throws); db.batch runs
+    // these statements in one HTTP request as a single atomic transaction.
+    const clear = db.delete(trainingGoalsTable).where(eq(trainingGoalsTable.userId, user.id));
+    if (result.data.length) {
+      await db.batch([clear, db.insert(trainingGoalsTable).values(result.data.map((goal, position) => ({ userId: user.id, goal, position })))]);
+    } else {
+      await clear;
+    }
   } catch {
     return { error: "Your goals could not be saved. Please try again.", saved: false };
   }

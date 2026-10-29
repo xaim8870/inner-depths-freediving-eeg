@@ -5,6 +5,7 @@ import { useActionState } from "react";
 import type { TrainingActionState } from "@/app/app/train/actions";
 import { ChoiceGroup, RatingScale, TextArea, TextField } from "@/components/ui/form";
 import { Icon } from "@/components/ui/icons";
+import { keepValuesOnSubmit } from "@/components/ui/keep-values-on-submit";
 import { trainingSessionTypes } from "@/lib/training-options";
 
 const initialActionState: TrainingActionState = { error: "", fieldErrors: {} };
@@ -30,7 +31,7 @@ export default function TrainingForm({ action, initialValues, defaultType, submi
   const today = new Date().toISOString().slice(0, 10);
 
   return (
-    <form action={formAction} className="ui-stack" noValidate>
+    <form action={formAction} onSubmit={keepValuesOnSubmit(formAction)} className="ui-stack" noValidate>
       {state.error ? <p className="ui-banner ui-banner-error" role="alert">{state.error}</p> : null}
       <section className="ui-section">
         <h2 className="ui-label">Session</h2>

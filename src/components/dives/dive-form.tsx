@@ -6,6 +6,7 @@ import type { DiveActionState } from "@/app/app/log/actions";
 import EquipmentPicker from "@/components/dives/equipment-picker";
 import { ChoiceGroup, FieldError, RatingScale, Switch, TextArea, TextField } from "@/components/ui/form";
 import { Icon } from "@/components/ui/icons";
+import { keepValuesOnSubmit } from "@/components/ui/keep-values-on-submit";
 import { disciplineLabels, diveDisciplines } from "@/lib/profile-options";
 import {
   currentOptions,
@@ -121,7 +122,7 @@ export default function DiveForm({ action, initialValues, submitLabel, cancelHre
   const seconds = v ? v.durationSeconds % 60 : "";
 
   return (
-    <form ref={form} action={formAction} className="ui-flow" noValidate>
+    <form ref={form} action={formAction} onSubmit={keepValuesOnSubmit(formAction)} className="ui-flow" noValidate>
       <div className="ui-flow-top ui-stack">
         <Link href={cancelHref} className="ui-link"><Icon name="back" size={18} /> Log a session</Link>
         <div className="ui-progress" role="progressbar" aria-label="Log progress" aria-valuemin={1} aria-valuemax={4} aria-valuenow={step + 1}>
