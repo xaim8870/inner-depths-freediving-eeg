@@ -1,4 +1,5 @@
-import { ButtonLink, PageHead, SafetyNote } from "@/components/ui/page";
+import Link from "next/link";
+import { PageHead, SafetyNote } from "@/components/ui/page";
 
 const principles: Array<[string, string]> = [
   ["Never dive alone", "Always dive with a trained buddy watching you, every time."],
@@ -18,7 +19,7 @@ export default function AboutPage() {
           {principles.map(([title, detail]) => <li key={title}><div className="ui-row"><span>{title}<small>{detail}</small></span></div></li>)}
         </ul>
       </section>
-      <ButtonLink href="/privacy" variant="ghost" size="sm">Read the privacy policy</ButtonLink>
+      <Link href="/privacy" className="ui-link">Read the privacy policy</Link>
       <SafetyNote />
     </div>
   );

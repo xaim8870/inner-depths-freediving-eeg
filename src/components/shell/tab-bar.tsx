@@ -2,14 +2,14 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { isActive, primaryNav } from "@/components/shell/nav-items";
+import { isActive, isFormRoute, primaryNav } from "@/components/shell/nav-items";
 import { Icon } from "@/components/ui/icons";
 
 // Phone/tablet bottom navigation; hidden on desktop by ui.css.
 export default function TabBar() {
   const pathname = usePathname();
-  // the multi-step dive flow has its own sticky action bar instead (as in the design)
-  if (pathname === "/app/log/new" || /^\/app\/log\/[^/]+\/edit$/.test(pathname)) return null;
+  // form screens are focus mode: their sticky Save bar replaces the tab bar, so neither covers the other
+  if (isFormRoute(pathname)) return null;
   return (
     <nav className="ui-tabbar" aria-label="Primary">
       {primaryNav.map((item) => (

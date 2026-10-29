@@ -8,7 +8,8 @@ import { trainingGoals, type TrainingGoalId } from "@/lib/training-goals";
 
 const initialState: GoalActionState = { error: "", saved: false };
 
-export default function TrainingGoalsForm({ selected }: { selected: TrainingGoalId[] }) {
+// `secondary`: used when changing goals later, where saving them isn't the screen's main action
+export default function TrainingGoalsForm({ selected, secondary }: { selected: TrainingGoalId[]; secondary?: boolean }) {
   const [chosen, setChosen] = useState(selected);
   const [state, action, pending] = useActionState(saveTrainingGoals, initialState);
   const router = useRouter();
@@ -37,7 +38,7 @@ export default function TrainingGoalsForm({ selected }: { selected: TrainingGoal
       <p className="ui-sub" aria-live="polite"><strong className="ui-count">{chosen.length}</strong> / 3 chosen · Choose up to three for a focused plan.</p>
       {state.error ? <p className="ui-error" role="alert">{state.error}</p> : null}
       {state.saved ? <p className="ui-banner" role="status">Goals saved.</p> : null}
-      <button className="ui-btn ui-btn-primary ui-btn-block" disabled={pending}>{pending ? "Saving…" : "Save goals"} <Icon name="next" size={18} /></button>
+      <button className={`ui-btn ${secondary ? "ui-btn-ghost" : "ui-btn-primary"} ui-btn-block`} disabled={pending}>{pending ? "Saving…" : "Save goals"} <Icon name="next" size={18} /></button>
     </form>
   );
 }

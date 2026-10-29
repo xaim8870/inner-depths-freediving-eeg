@@ -26,6 +26,11 @@ export const secondaryNav: Array<{ title: string; items: Array<{ href: string; l
   ] },
 ];
 
+// create/edit screens: dive flow, completed sessions, training sessions
+export function isFormRoute(pathname: string) {
+  return /^\/app\/(log\/new|log\/[^/]+\/edit|log\/sessions\/[^/]+|train\/[^/]+)$/.test(pathname);
+}
+
 export function isActive(pathname: string, href: string) {
   return pathname === href || pathname.startsWith(href + "/");
 }

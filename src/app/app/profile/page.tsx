@@ -1,5 +1,6 @@
 import Link from "next/link";
 import SignOutButton from "@/components/auth/sign-out-button";
+import { Icon } from "@/components/ui/icons";
 import { PageHead } from "@/components/ui/page";
 import { getProfileForUser, requireCurrentUser } from "@/lib/auth-session";
 import { disciplineLabels } from "@/lib/profile-options";
@@ -20,12 +21,12 @@ export default async function ProfilePage() {
         <h2 className="ui-label">You</h2>
         <dl className="ui-dl">{rows.map(([k, v]) => <div key={k}><dt>{k}</dt><dd>{v}</dd></div>)}</dl>
       </section>
-      <div className="ui-actions">
-        <Link className="ui-btn ui-btn-ghost ui-btn-sm" href="/app/account">Connections &amp; settings</Link>
-        <Link className="ui-btn ui-btn-ghost ui-btn-sm" href="/app/performance-profile">Performance profile</Link>
-        <Link className="ui-link" href="/privacy">Privacy policy</Link>
-      </div>
-      <div><SignOutButton /></div>
+      <nav className="ui-card ui-card-list" aria-label="Account">
+        {[["/app/account", "Connections & settings"], ["/app/performance-profile", "Performance profile"], ["/privacy", "Privacy policy"]].map(([href, label]) => (
+          <Link key={href} className="ui-row" href={href}><span>{label}</span><Icon name="chevron" size={18} /></Link>
+        ))}
+      </nav>
+      <div><SignOutButton quiet /></div>
     </div>
   );
 }

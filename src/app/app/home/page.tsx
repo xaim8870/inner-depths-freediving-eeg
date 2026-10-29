@@ -1,6 +1,7 @@
 import Link from "next/link";
 import DiveRow from "@/components/dives/dive-row";
 import Greeting from "@/components/home/greeting";
+import { Icon } from "@/components/ui/icons";
 import { ButtonLink, Empty, Info, SafetyNote, Section } from "@/components/ui/page";
 import TrendChart from "@/components/ui/trend-chart";
 import { getHomeDashboard } from "@/db/home";
@@ -13,7 +14,10 @@ export default async function HomePage() {
   const user = await requireCurrentUser();
   const home = await getHomeDashboard(user.id);
   const dive = home.dive;
-  const insight = deriveHomeInsight(home.overallFeelSeries.map((point) => point.value));
+  const feel = home.overallFeelSeries.map((point) => point.value);
+  const insight = feel.length >= 3 ? deriveHomeInsight(feel) : null; // the "log more" placeholder adds nothing
+  const showTrend = home.overallFeelSeries.length >= 2;
+  const hasDives = dive.totalDives > 0;
   const goals = home.goals.map((g) => trainingGoals.find((t) => t.id === g.goal)?.label).filter((label): label is (typeof trainingGoals)[number]["label"] => Boolean(label));
 
   return (
@@ -21,10 +25,8 @@ export default async function HomePage() {
       <section className="ui-hero">
         <div className="ui-head">
           <Greeting name={firstName(home.profile?.displayName ?? user.name)} />
-          <div className="ui-actions ui-hero-actions">
-            <ButtonLink href="/app/train" variant="ghost" icon="train">Start training</ButtonLink>
-            <ButtonLink href="/app/log/new" icon="plus">Log a dive</ButtonLink>
-          </div>
+          {/* the screen's one main action; with no dives yet, the empty state below carries it instead */}
+          {hasDives ? <div className="ui-actions ui-hero-actions"><ButtonLink href="/app/log/new" icon="plus">Log a dive</ButtonLink></div> : null}
         </div>
         <div className="ui-section">
           <div className="ui-section-head">
@@ -40,33 +42,33 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {dive.totalDives === 0 ? (
+      {!hasDives ? (
         <Empty title="Your log starts here" action={<ButtonLink href="/app/log/new" icon="plus">Log your first dive</ButtonLink>}>
           Record a dive you completed with your buddy. Your trends and descriptive patterns build from real entries.
         </Empty>
       ) : null}
 
-      <div className="ui-grid ui-grid-main">
-        <Section label="Performance progress">
+      {showTrend || insight ? <div className={showTrend && insight ? "ui-grid ui-grid-main" : "ui-grid"}>
+        {showTrend ? <Section label="Performance progress">
           <TrendChart title="Overall feel" points={home.overallFeelSeries} min={1} max={5} ranges={false}
             caption="Your own overall-feel ratings from recent dives. Descriptive only — not a clinical score." />
-        </Section>
-        <Section label="Training insight">
+        </Section> : null}
+        {insight ? <Section label="Training insight">
           <article className="ui-card ui-card-dark ui-stack">
             <span className="ui-pill ui-pill-lumen">Descriptive insight</span>
             <h3 className="ui-h-lg">{insight.title}</h3>
             <p className="ui-on-dark">{insight.body}</p>
-            <ButtonLink href="/app/progress" variant="accent" icon="next" size="sm">See progress</ButtonLink>
+            <Link href="/app/progress" className="ui-link ui-link-lumen">See progress <Icon name="next" size={16} /></Link>
           </article>
-        </Section>
-      </div>
+        </Section> : null}
+      </div> : null}
 
       <div className="ui-grid ui-grid-2">
-        <Section label="Recent dives" aside={dive.totalDives ? <Link href="/app/log" className="ui-link">View log</Link> : null}>
+        {hasDives ? <Section label="Recent dives" aside={<Link href="/app/log" className="ui-link">View log</Link>}>
           <div className="ui-card ui-card-list">
-            {dive.recentDives.length ? dive.recentDives.map((d) => <DiveRow key={d.id} dive={d} />) : <p className="ui-sub ui-pad-y">No dives yet.</p>}
+            {dive.recentDives.map((d) => <DiveRow key={d.id} dive={d} />)}
           </div>
-        </Section>
+        </Section> : null}
         <Section label="Training status" aside={<Link href="/app/train" className="ui-link">Open training</Link>}>
           <div className="ui-card ui-stack">
             <div>

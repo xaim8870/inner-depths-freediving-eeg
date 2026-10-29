@@ -5,6 +5,7 @@ import { useActionState, useEffect, useRef, useState } from "react";
 import type { DiveActionState } from "@/app/app/log/actions";
 import EquipmentPicker from "@/components/dives/equipment-picker";
 import { ChoiceGroup, FieldError, RatingScale, Switch, TextArea, TextField } from "@/components/ui/form";
+import { More } from "@/components/ui/disclosure";
 import { Icon } from "@/components/ui/icons";
 import { keepValuesOnSubmit } from "@/components/ui/keep-values-on-submit";
 import { disciplineLabels, diveDisciplines } from "@/lib/profile-options";
@@ -118,6 +119,7 @@ export default function DiveForm({ action, initialValues, submitLabel, cancelHre
     setStep((s) => Math.min(STEPS.length - 1, s + 1));
   }
 
+  const detailOpen = [v?.preDiveNerves, v?.calmAtDepth, v?.focus, v?.equalization, errors.preDiveNerves, errors.calmAtDepth, errors.focus, errors.equalization].some((x) => x != null && x !== "");
   const minutes = v ? Math.floor(v.durationSeconds / 60) : "";
   const seconds = v ? v.durationSeconds % 60 : "";
 
@@ -181,10 +183,11 @@ export default function DiveForm({ action, initialValues, submitLabel, cancelHre
                     <ChoiceGroup variant="seg" legend="Current" name="currentStrength" options={currentOptions} value={v?.currentStrength} error={errors.currentStrength} />
                   </div>
                 </section>
-                <section className="ui-section">
-                  <h2 className="ui-label">Equipment</h2>
-                  <div className="ui-card"><EquipmentPicker defaultValue={v?.equipment ?? null} error={errors.equipment} /></div>
-                </section>
+                <div className="ui-card">
+                  <More summary="Add equipment" hint="optional" open={Boolean(v?.equipment || errors.equipment)} plain>
+                    <EquipmentPicker defaultValue={v?.equipment ?? null} error={errors.equipment} />
+                  </More>
+                </div>
               </>
             ) : null}
 
@@ -195,11 +198,13 @@ export default function DiveForm({ action, initialValues, submitLabel, cancelHre
                   <div className="ui-card ui-stack">
                     <RatingScale legend="Comfort" name="comfort" value={v?.comfort} low="Uncomfortable" high="Comfortable" required error={errors.comfort} />
                     <RatingScale legend="Perceived effort" name="perceivedEffort" max={10} value={v?.perceivedEffort} low="Easy" high="Maximal" required error={errors.perceivedEffort} />
-                    <RatingScale legend="Pre-dive nerves" name="preDiveNerves" value={v?.preDiveNerves} low="Calm" high="Nervous" error={errors.preDiveNerves} />
-                    <RatingScale legend="Calm at depth" name="calmAtDepth" value={v?.calmAtDepth} low="Anxious" high="Calm" error={errors.calmAtDepth} />
-                    <RatingScale legend="Focus" name="focus" value={v?.focus} low="Scattered" high="Locked-in" error={errors.focus} />
-                    <RatingScale legend="Equalization" name="equalization" value={v?.equalization} low="Struggled" high="Easy" error={errors.equalization} />
                     <RatingScale legend="Overall feel" name="overallFeel" value={v?.overallFeel} low="Rough" high="Great" error={errors.overallFeel} />
+                    <More summary="More about how it felt" hint="nerves, calm, focus, equalization" open={detailOpen}>
+                      <RatingScale legend="Pre-dive nerves" name="preDiveNerves" value={v?.preDiveNerves} low="Calm" high="Nervous" error={errors.preDiveNerves} />
+                      <RatingScale legend="Calm at depth" name="calmAtDepth" value={v?.calmAtDepth} low="Anxious" high="Calm" error={errors.calmAtDepth} />
+                      <RatingScale legend="Focus" name="focus" value={v?.focus} low="Scattered" high="Locked-in" error={errors.focus} />
+                      <RatingScale legend="Equalization" name="equalization" value={v?.equalization} low="Struggled" high="Easy" error={errors.equalization} />
+                    </More>
                   </div>
                 </section>
               </>
@@ -230,12 +235,11 @@ export default function DiveForm({ action, initialValues, submitLabel, cancelHre
         ))}
 
         <div className="ui-actionbar">
-          <Link href={cancelHref} className="ui-link ui-discard">Cancel and discard</Link>
+          {/* Cancel is a quiet link; on phones it only shows on step 1, where there's no Back */}
+          <Link href={cancelHref} className={`ui-link ui-discard${step === 0 ? " ui-discard-show" : ""}`}>Cancel</Link>
           {step > 0 ? (
             <button type="button" className="ui-btn ui-btn-ghost" onClick={() => setStep((s) => s - 1)}><Icon name="back" size={18} /> Back</button>
-          ) : (
-            <Link href={cancelHref} className="ui-btn ui-btn-ghost ui-hide-desktop">Cancel</Link>
-          )}
+          ) : null}
           {step < STEPS.length - 1 ? (
             <button type="button" className="ui-btn ui-btn-primary" onClick={next}>Continue <Icon name="next" size={18} /></button>
           ) : (

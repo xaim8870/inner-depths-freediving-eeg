@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { z } from "zod";
 import { Icon } from "@/components/ui/icons";
@@ -20,7 +21,7 @@ export default async function DiveDetailPage({ params, searchParams }: { params:
     ["Discipline", disciplineLabels[dive.discipline]],
     ["Max depth", formatDepth(dive.depthMeters)],
     ["Dive time", formatDuration(dive.durationSeconds)],
-    ["Where", dive.location ?? "—"],
+    ...(dive.location ? [["Where", dive.location] as [string, string]] : []),
     ["When", `${formatDate(dive.diveDate, true)}${dive.diveTime ? ` · ${dive.diveTime}` : ""}`],
     ...(dive.waterCondition ? [["Water", dive.waterCondition] as [string, string]] : []),
     ...(dive.visibility ? [["Visibility", dive.visibility] as [string, string]] : []),
@@ -41,9 +42,12 @@ export default async function DiveDetailPage({ params, searchParams }: { params:
           <p className="ui-sub">Nice work. It&apos;s in your log and counted in Progress.</p>
         </header>
       ) : (
+        <>
+        <Link href="/app/log" className="ui-link"><Icon name="back" size={18} /> Log</Link>
         <PageHead eyebrow={`Dive · ${formatDate(dive.diveDate, true)}${dive.isPersonalBest ? " · Personal best" : ""}`} title={disciplineLabels[dive.discipline]}
           sub={`${formatDepth(dive.depthMeters)}${dive.location ? ` · ${dive.location}` : ""}`}
-          actions={<ButtonLink href={`/app/log/${dive.id}/edit`} variant="ghost" size="sm">Edit dive</ButtonLink>} />
+          actions={<ButtonLink href={`/app/log/${dive.id}/edit`} size="sm">Edit dive</ButtonLink>} />
+        </>
       )}
       {query.saved === "1" ? <p className="ui-banner" role="status">Dive changes saved.</p> : null}
 
@@ -70,14 +74,9 @@ export default async function DiveDetailPage({ params, searchParams }: { params:
         <>
           <Info>Patterns in Progress are descriptive and build as you log more dives.</Info>
           <ButtonLink href="/app/progress" icon="progress" block>View progress</ButtonLink>
-          <div className="ui-fields-2">
-            <ButtonLink href="/app/log/new" variant="ghost" icon="plus" block>Log another</ButtonLink>
-            <ButtonLink href="/app/home" variant="ghost" icon="home" block>Home</ButtonLink>
-          </div>
+          <p className="ui-secondary-links"><Link href="/app/log/new" className="ui-link"><Icon name="plus" size={16} /> Log another dive</Link></p>
         </>
-      ) : (
-        <ButtonLink href="/app/log" variant="ghost" icon="back">Back to log</ButtonLink>
-      )}
+      ) : null}
       <SafetyNote />
     </div>
   );

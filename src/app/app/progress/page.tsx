@@ -23,7 +23,7 @@ export default async function ProgressPage() {
   return (
     <div className="ui-page ui-page-wide">
       <PageHead eyebrow="Your data" title="Progress" sub="A factual view of the dives and training sessions you have logged."
-        actions={<ButtonLink href="/app/log/new" icon="plus">Log a dive</ButtonLink>} />
+        actions={hasDives || hasTraining ? <ButtonLink href="/app/log/new" icon="plus">Log a dive</ButtonLink> : undefined} />
 
       {!hasDives && !hasTraining ? (
         <Empty title="Nothing to chart yet" action={<ButtonLink href="/app/log/new" icon="plus">Log your first dive</ButtonLink>}>
@@ -39,28 +39,28 @@ export default async function ProgressPage() {
           </div>
 
           {hasDives ? (
-            <div className="ui-grid ui-grid-main">
+            <div className={ratings.length ? "ui-grid ui-grid-main" : "ui-grid"}>
               <TrendChart title="Overall feel" points={d.overallFeelSeries} min={1} max={5}
                 caption="Your own 1–5 ratings after each dive. Higher is better — descriptive, not a clinical score." />
-              <Section label="Dive experience" aside={<span className="ui-pill">Your averages</span>}>
+              {ratings.length ? <Section label="Dive experience" aside={<span className="ui-pill">Your averages</span>}>
                 <div className="ui-card ui-stack">
-                  {ratings.length ? <BarList rows={ratings} max={5} /> : <p className="ui-sub">Rate how dives felt to see averages here.</p>}
+                  <BarList rows={ratings} max={5} />
                   <p className="ui-info">From {d.ratingAverages.ratedDiveCount} rated dives. Averages describe your entries; they don&apos;t show cause and effect.</p>
                 </div>
-              </Section>
+              </Section> : null}
             </div>
           ) : null}
 
           {hasDives ? (
-            <div className="ui-grid ui-grid-2">
+            <div className={d.disciplineBreakdown.length > 1 ? "ui-grid ui-grid-2" : "ui-grid"}>
               <TrendChart title="Depth" unit="m" points={d.depthSeries} min={0} max={Math.max(10, Math.ceil((d.diveMetrics.deepestDive ?? 10) / 10) * 10)}
                 caption={`${d.diveMetrics.divesLast30Days} dives in the last 30 days · average ${d.diveMetrics.averageDepth === null ? "–" : formatDepth(d.diveMetrics.averageDepth)} · ${formatDuration(d.diveMetrics.totalDiveTimeSeconds)} total dive time`} />
-              <Section label="Disciplines">
+              {d.disciplineBreakdown.length > 1 ? <Section label="Disciplines">
                 <div className="ui-card">
                   <BarList max={Math.max(...d.disciplineBreakdown.map((b) => b.count))}
                     rows={d.disciplineBreakdown.map((b) => ({ label: disciplineLabels[b.discipline], value: b.count, display: `${b.count} ${b.count === 1 ? "dive" : "dives"}` }))} />
                 </div>
-              </Section>
+              </Section> : null}
             </div>
           ) : null}
 
@@ -104,7 +104,7 @@ export default async function ProgressPage() {
                 : "Complete the assessment to add your mental-training baseline here."}
             </p>
           </div>
-          <ButtonLink href="/app/performance-profile" variant="ghost" size="sm">{d.performanceProfile ? "View profile" : "Complete Performance Profile"}</ButtonLink>
+          <Link href="/app/performance-profile" className="ui-link">{d.performanceProfile ? "View profile" : "Complete Performance Profile"} <Icon name="next" size={16} /></Link>
         </div>
       </Section>
 

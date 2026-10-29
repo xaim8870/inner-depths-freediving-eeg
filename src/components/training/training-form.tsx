@@ -1,8 +1,8 @@
 "use client";
 
-import Link from "next/link";
 import { useActionState } from "react";
 import type { TrainingActionState } from "@/app/app/train/actions";
+import { FormActions, More } from "@/components/ui/disclosure";
 import { ChoiceGroup, RatingScale, TextArea, TextField } from "@/components/ui/form";
 import { Icon } from "@/components/ui/icons";
 import { keepValuesOnSubmit } from "@/components/ui/keep-values-on-submit";
@@ -44,16 +44,14 @@ export default function TrainingForm({ action, initialValues, defaultType, submi
           <RatingScale legend="Difficulty" name="difficulty" value={initialValues?.difficulty} low="Easy" high="Hard" required error={errors.difficulty} />
         </div>
       </section>
-      <section className="ui-section">
-        <h2 className="ui-label">Notes</h2>
-        <div className="ui-card">
+      <div className="ui-card">
+        <More summary="Add notes" hint="optional" open={Boolean(initialValues?.notes || errors.notes)} plain>
           <TextArea label="Session notes" optional name="notes" maxLength={2000} rows={5} placeholder="How the session felt, what you noticed, or context worth remembering." defaultValue={initialValues?.notes ?? ""} error={errors.notes} />
-        </div>
-      </section>
-      <div className="ui-actions">
-        <Link href="/app/train" className="ui-btn ui-btn-ghost">Cancel</Link>
-        <button className="ui-btn ui-btn-primary" type="submit" disabled={pending}><Icon name="check" size={18} /> {pending ? "Saving…" : submitLabel}</button>
+        </More>
       </div>
+      <FormActions cancelHref="/app/train">
+        <button className="ui-btn ui-btn-primary" type="submit" disabled={pending}><Icon name="check" size={18} /> {pending ? "Saving…" : submitLabel}</button>
+      </FormActions>
     </form>
   );
 }

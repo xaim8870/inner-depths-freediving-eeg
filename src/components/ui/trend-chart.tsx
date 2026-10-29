@@ -25,6 +25,9 @@ export default function TrendChart({ title, points, unit = "", min, max, ranges 
   caption?: string;
 }) {
   const [range, setRange] = useState<(typeof RANGES)[number]["id"]>("3m");
+  // range tabs only matter once there is more than 8 weeks of history
+  const spanDays = points.length > 1 ? (Date.parse(points[points.length - 1].date) - Date.parse(points[0].date)) / 86400000 : 0;
+  ranges = ranges && spanDays > 56;
   const days = RANGES.find((r) => r.id === range)?.days ?? 91;
   // ranges count back from the latest logged point, so the chart is the same on server and client
   const latest = points.at(-1)?.date;

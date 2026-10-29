@@ -1,8 +1,8 @@
 "use client";
 
-import Link from "next/link";
 import { useActionState } from "react";
 import type { CompletedSessionActionState } from "@/app/app/log/sessions/actions";
+import { FormActions, More } from "@/components/ui/disclosure";
 import { ChoiceGroup, FieldError, RatingScale, TextArea, TextField } from "@/components/ui/form";
 import { Icon } from "@/components/ui/icons";
 import { keepValuesOnSubmit } from "@/components/ui/keep-values-on-submit";
@@ -27,6 +27,8 @@ export default function CompletedSessionForm({ category, action, initialValues }
   const v = initialValues;
   const today = new Date().toISOString().slice(0, 10);
   const num = (n: number | null | undefined) => (n == null ? "" : n);
+  const feltOpen = Boolean(v?.preSessionNerves ?? v?.calmRating ?? v?.focusRating ?? v?.overallFeel ?? v?.notes)
+    || Boolean(errors.preSessionNerves ?? errors.calmRating ?? errors.focusRating ?? errors.overallFeel ?? errors.notes);
 
   return (
     <form action={formAction} onSubmit={keepValuesOnSubmit(formAction)} className="ui-stack" noValidate>
@@ -82,16 +84,15 @@ export default function CompletedSessionForm({ category, action, initialValues }
         </div>
       </section>
 
-      <section className="ui-section">
-        <h2 className="ui-label">How it felt</h2>
-        <div className="ui-card ui-stack">
+      <div className="ui-card">
+        <More summary="How it felt & notes" hint="optional" open={feltOpen}>
           <Rating name="preSessionNerves" label="Pre-session nerves" hint="1 calm · 5 nervous" value={v?.preSessionNerves} error={errors.preSessionNerves} />
           <Rating name="calmRating" label="Calm" hint="1 anxious · 5 calm" value={v?.calmRating} error={errors.calmRating} />
           <Rating name="focusRating" label="Focus" hint="1 scattered · 5 focused" value={v?.focusRating} error={errors.focusRating} />
           <Rating name="overallFeel" label="Overall feel" hint="1 rough · 5 great" value={v?.overallFeel} error={errors.overallFeel} />
           <TextArea label="Notes" optional name="notes" rows={4} maxLength={2000} defaultValue={v?.notes ?? ""} error={errors.notes} />
-        </div>
-      </section>
+        </More>
+      </div>
 
       <div className="ui-card">
         <label className="ui-switch">
@@ -101,10 +102,9 @@ export default function CompletedSessionForm({ category, action, initialValues }
         <FieldError message={errors.supervisionAttested} />
       </div>
 
-      <div className="ui-actions">
-        <Link href="/app/log" className="ui-btn ui-btn-ghost">Cancel</Link>
+      <FormActions cancelHref="/app/log">
         <button type="submit" disabled={pending} className="ui-btn ui-btn-primary"><Icon name="check" size={18} /> {pending ? "Saving…" : v ? "Save changes" : `Save ${completedSessionLabels[category].toLowerCase()}`}</button>
-      </div>
+      </FormActions>
     </form>
   );
 }

@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { authClient } from "@/lib/auth-client";
 
-export default function SignOutButton() {
+export default function SignOutButton({ quiet }: { quiet?: boolean } = {}) {
   const router = useRouter();
   const [pending, setPending] = useState(false);
   const [error, setError] = useState("");
@@ -29,7 +29,7 @@ export default function SignOutButton() {
 
   return (
     <>
-      <button type="button" className="ui-btn ui-btn-ghost ui-btn-sm" onClick={handleSignOut} disabled={pending}>
+      <button type="button" className={quiet ? "ui-text-btn" : "ui-btn ui-btn-ghost ui-btn-sm"} onClick={handleSignOut} disabled={pending}>
         {pending ? "Signing out…" : "Sign out"}
       </button>
       {error && <p className="ui-error" role="alert">{error}</p>}
