@@ -17,12 +17,12 @@ export default function DeleteTrainingButton({
       onSubmit={(event) => {
         if (!window.confirm("Delete this training session permanently?")) event.preventDefault();
       }}
-      className="delete-training-form"
+     
     >
-      <button type="submit" disabled={pending} className="delete-training-button">
+      <button type="submit" disabled={pending} className="ui-btn ui-btn-danger ui-btn-sm">
         {pending ? "Deleting…" : "Delete session"}
       </button>
-      {state.error ? <p className="form-error" role="alert">{state.error}</p> : null}
+      {state.error ? <p className="ui-error" role="alert">{state.error}</p> : null}
     </form>
   );
 }

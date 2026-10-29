@@ -29,10 +29,10 @@ export default function SignOutButton() {
 
   return (
     <>
-      <button type="button" className="sign-out-button" onClick={handleSignOut} disabled={pending}>
+      <button type="button" className="ui-btn ui-btn-ghost ui-btn-sm" onClick={handleSignOut} disabled={pending}>
         {pending ? "Signing out…" : "Sign out"}
       </button>
-      {error && <p className="form-error" role="alert">{error}</p>}
+      {error && <p className="ui-error" role="alert">{error}</p>}
     </>
   );
 }

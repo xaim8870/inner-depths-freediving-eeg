@@ -17,12 +17,12 @@ export default function DeleteDiveButton({
       onSubmit={(event) => {
         if (!window.confirm("Delete this dive permanently?")) event.preventDefault();
       }}
-      className="delete-dive-form"
+     
     >
-      <button type="submit" disabled={pending} className="delete-dive-button">
+      <button type="submit" disabled={pending} className="ui-btn ui-btn-danger ui-btn-sm">
         {pending ? "Deleting…" : "Delete dive"}
       </button>
-      {state.error ? <p className="form-error" role="alert">{state.error}</p> : null}
+      {state.error ? <p className="ui-error" role="alert">{state.error}</p> : null}
     </form>
   );
 }

@@ -14,8 +14,8 @@
   --ink: #0b2a38;
   --ink-soft: #3b5b67;
 
-  --display: var(--font-dm-serif);
-  --body: var(--font-dm-sans);
+  --display: var(--font-display);
+  --body: var(--font-sans);
 }
 
 /* Performance Profile */

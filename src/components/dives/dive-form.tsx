@@ -1,8 +1,11 @@
 "use client";
 
 import Link from "next/link";
-import { useActionState } from "react";
+import { useActionState, useEffect, useRef, useState } from "react";
 import type { DiveActionState } from "@/app/app/log/actions";
+import EquipmentPicker from "@/components/dives/equipment-picker";
+import { ChoiceGroup, FieldError, RatingScale, Switch, TextArea, TextField } from "@/components/ui/form";
+import { Icon } from "@/components/ui/icons";
 import { disciplineLabels, diveDisciplines } from "@/lib/profile-options";
 import {
   currentOptions,
@@ -10,6 +13,7 @@ import {
   notableEventOptions,
   visibilityOptions,
   waterConditions,
+  type DiveFormInput,
 } from "@/lib/dive-validation";
 
 const initialDiveActionState: DiveActionState = { error: "", fieldErrors: {} };
@@ -42,252 +46,213 @@ type DiveFormProps = {
   action: (state: DiveActionState, formData: FormData) => Promise<DiveActionState>;
   initialValues?: DiveFormValues;
   submitLabel: string;
+  cancelHref?: string;
 };
 
-function FieldError({ message }: { message?: string }) {
-  return message ? <p className="form-error">{message}</p> : null;
+const STEPS = [
+  { title: "The dive", short: "Session", sub: "Where, what and how deep." },
+  { title: "Conditions & gear", short: "Conditions & gear", sub: "What the water was like and what you wore." },
+  { title: "Body & feel", short: "Body & feel", sub: "How the dive felt to you." },
+  { title: "Prep & notes", short: "Prep & notes", sub: "Last step — what you did beforehand and anything worth remembering." },
+] as const;
+
+// Which step shows each server-side field error, so a failed save jumps to the right place.
+const FIELD_STEP: Partial<Record<keyof DiveFormInput, number>> = {
+  diveDate: 0, diveTime: 0, location: 0, discipline: 0, depthMeters: 0, durationMinutes: 0, durationRemainderSeconds: 0, isPersonalBest: 0,
+  waterCondition: 1, visibility: 1, currentStrength: 1, equipment: 1,
+  preDiveNerves: 2, calmAtDepth: 2, focus: 2, equalization: 2, overallFeel: 2, comfort: 2, perceivedEffort: 2,
+  mentalPreparation: 3, notableEvent: 3, notes: 3,
+};
+
+function localToday() {
+  const d = new Date();
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
 }
 
-export default function DiveForm({ action, initialValues, submitLabel }: DiveFormProps) {
-  const [state, formAction, pending] = useActionState(action, initialDiveActionState);
-  const minutes = initialValues ? Math.floor(initialValues.durationSeconds / 60) : "";
-  const seconds = initialValues ? initialValues.durationSeconds % 60 : "";
+function DepthStepper({ defaultValue, error }: { defaultValue: number | ""; error?: string }) {
+  const input = useRef<HTMLInputElement>(null);
+  function step(by: number) {
+    const el = input.current;
+    if (!el) return;
+    el.value = String(Math.min(300, Math.max(0, (Number(el.value) || 0) + by)));
+  }
+  return (
+    <div className="ui-panel">
+      <span id="depth-label">Max depth (m)</span>
+      <div className="ui-stepper">
+        <button type="button" className="ui-icon-btn" aria-label="Decrease max depth" onClick={() => step(-1)}><Icon name="minus" /></button>
+        <input ref={input} type="number" name="depthMeters" inputMode="decimal" min={0} max={300} step={0.1} defaultValue={defaultValue} aria-labelledby="depth-label" aria-invalid={error ? true : undefined} required placeholder="0" />
+        <button type="button" className="ui-icon-btn" aria-label="Increase max depth" onClick={() => step(1)}><Icon name="plus" /></button>
+      </div>
+      <FieldError message={error} />
+    </div>
+  );
+}
+
+export default function DiveForm({ action, initialValues, submitLabel, cancelHref = "/app/log" }: DiveFormProps) {
+  const [step, setStep] = useState(0);
+  // after a failed save, jump to the first step that has an error
+  const [state, formAction, pending] = useActionState(async (previous: DiveActionState, formData: FormData) => {
+    const next = await action(previous, formData);
+    const failed = Object.keys(next.fieldErrors).map((f) => FIELD_STEP[f as keyof DiveFormInput] ?? 0);
+    if (failed.length) setStep(Math.min(...failed));
+    return next;
+  }, initialDiveActionState);
+  const form = useRef<HTMLFormElement>(null);
+  const errors = state.fieldErrors;
+  const v = initialValues;
+
+  const firstRender = useRef(true);
+  useEffect(() => {
+    if (firstRender.current) { firstRender.current = false; return; }
+    window.scrollTo({ top: 0 });
+    form.current?.querySelector<HTMLElement>(`[data-step="${step}"] h1`)?.focus();
+  }, [step]);
+
+  function next() {
+    // browser validation for the current step only; the server validates everything again on save
+    const panel = form.current?.querySelector<HTMLElement>(`[data-step="${step}"]`);
+    const invalid = Array.from(panel?.querySelectorAll<HTMLInputElement>("input, textarea") ?? []).find((el) => !el.checkValidity());
+    if (invalid) { invalid.reportValidity(); return; }
+    setStep((s) => Math.min(STEPS.length - 1, s + 1));
+  }
+
+  const minutes = v ? Math.floor(v.durationSeconds / 60) : "";
+  const seconds = v ? v.durationSeconds % 60 : "";
 
   return (
-    <form action={formAction} className="dive-form" noValidate>
-      <section className="dive-form-card" aria-labelledby="session-heading">
-        <h2 id="session-heading">Session</h2>
-
-        <div className="dive-field-grid">
-          <label className="dive-field">
-            <span>Dive date</span>
-            <input
-              type="date"
-              name="diveDate"
-              max={new Date().toISOString().slice(0, 10)}
-              defaultValue={initialValues?.diveDate ?? new Date().toISOString().slice(0, 10)}
-              aria-invalid={Boolean(state.fieldErrors.diveDate)}
-              required
-            />
-            <FieldError message={state.fieldErrors.diveDate} />
-          </label>
-
-          <label className="dive-field">
-            <span>Location <small>Optional</small></span>
-            <input
-              type="text"
-              name="location"
-              maxLength={200}
-              placeholder="Blue Hole, Dahab"
-              defaultValue={initialValues?.location ?? ""}
-              aria-invalid={Boolean(state.fieldErrors.location)}
-            />
-            <FieldError message={state.fieldErrors.location} />
-          </label>
-          <label className="dive-field">
-            <span>Time <small>Optional</small></span>
-            <input type="time" name="diveTime" defaultValue={initialValues?.diveTime ?? ""} />
-            <FieldError message={state.fieldErrors.diveTime} />
-          </label>
+    <form ref={form} action={formAction} className="ui-flow" noValidate>
+      <div className="ui-flow-top ui-stack">
+        <Link href={cancelHref} className="ui-link"><Icon name="back" size={18} /> Log a session</Link>
+        <div className="ui-progress" role="progressbar" aria-label="Log progress" aria-valuemin={1} aria-valuemax={4} aria-valuenow={step + 1}>
+          {STEPS.map((s, i) => <span key={s.short} className={i <= step ? "on" : undefined} />)}
         </div>
-
-        <fieldset className="dive-fieldset">
-          <legend>Discipline</legend>
-          <div className="dive-discipline-options">
-            {diveDisciplines.map((discipline) => (
-              <label key={discipline}>
-                <input
-                  type="radio"
-                  name="discipline"
-                  value={discipline}
-                  defaultChecked={(initialValues?.discipline ?? "constant_weight") === discipline}
-                />
-                <span>{disciplineLabels[discipline]}</span>
-              </label>
-            ))}
-          </div>
-          <FieldError message={state.fieldErrors.discipline} />
-        </fieldset>
-      </section>
-
-      <section className="dive-form-card" aria-labelledby="performance-heading">
-        <h2 id="performance-heading">Dive</h2>
-        <div className="dive-field-grid dive-field-grid-three">
-          <label className="dive-field">
-            <span>Depth <small>m</small></span>
-            <input
-              type="number"
-              name="depthMeters"
-              min="0"
-              max="300"
-              step="0.1"
-              inputMode="decimal"
-              defaultValue={initialValues?.depthMeters ?? ""}
-              aria-invalid={Boolean(state.fieldErrors.depthMeters)}
-              required
-            />
-            <FieldError message={state.fieldErrors.depthMeters} />
-          </label>
-
-          <label className="dive-field">
-            <span>Minutes</span>
-            <input
-              type="number"
-              name="durationMinutes"
-              min="0"
-              max="719"
-              step="1"
-              inputMode="numeric"
-              defaultValue={minutes}
-              aria-invalid={Boolean(state.fieldErrors.durationMinutes)}
-              required
-            />
-            <FieldError message={state.fieldErrors.durationMinutes} />
-          </label>
-
-          <label className="dive-field">
-            <span>Seconds</span>
-            <input
-              type="number"
-              name="durationRemainderSeconds"
-              min="0"
-              max="59"
-              step="1"
-              inputMode="numeric"
-              defaultValue={seconds}
-              aria-invalid={Boolean(state.fieldErrors.durationRemainderSeconds)}
-              required
-            />
-            <FieldError message={state.fieldErrors.durationRemainderSeconds} />
-          </label>
-        </div>
-        <label className="dive-check-row">
-          <input type="checkbox" name="isPersonalBest" defaultChecked={initialValues?.isPersonalBest} />
-          <span>Discipline personal best</span>
-        </label>
-      </section>
-
-      <section className="dive-form-card" aria-labelledby="conditions-heading">
-        <h2 id="conditions-heading">Conditions &amp; equipment</h2>
-        <div className="dive-field-grid dive-field-grid-three">
-          {([
-            ["waterCondition", "Water", waterConditions, initialValues?.waterCondition],
-            ["visibility", "Visibility", visibilityOptions, initialValues?.visibility],
-            ["currentStrength", "Current", currentOptions, initialValues?.currentStrength],
-          ] as const).map(([name, label, options, value]) => (
-            <label className="dive-field" key={name}>
-              <span>{label} <small>Optional</small></span>
-              <select name={name} defaultValue={value ?? ""}>
-                <option value="">Not recorded</option>
-                {options.map((option) => <option key={option} value={option}>{option}</option>)}
-              </select>
-            </label>
-          ))}
-        </div>
-        <label className="dive-field">
-          <span>Equipment / gear <small>Optional</small></span>
-          <input name="equipment" maxLength={500} placeholder="Fins, wetsuit, weight setup" defaultValue={initialValues?.equipment ?? ""} />
-          <FieldError message={state.fieldErrors.equipment} />
-        </label>
-      </section>
-
-      <section className="dive-form-card" aria-labelledby="reflection-heading">
-        <h2 id="reflection-heading">Post-dive reflection</h2>
-        <div className="dive-field-grid">
-          <label className="dive-field">
-            <span>Perceived effort <small>1 easy · 10 maximal</small></span>
-            <select
-              name="perceivedEffort"
-              defaultValue={initialValues?.perceivedEffort ?? ""}
-              aria-invalid={Boolean(state.fieldErrors.perceivedEffort)}
-              required
-            >
-              <option value="" disabled>Choose 1–10</option>
-              {Array.from({ length: 10 }, (_, index) => index + 1).map((value) => (
-                <option key={value} value={value}>{value}</option>
-              ))}
-            </select>
-            <FieldError message={state.fieldErrors.perceivedEffort} />
-          </label>
-
-          <label className="dive-field">
-            <span>Comfort <small>1 low · 5 high</small></span>
-            <select
-              name="comfort"
-              defaultValue={initialValues?.comfort ?? ""}
-              aria-invalid={Boolean(state.fieldErrors.comfort)}
-              required
-            >
-              <option value="" disabled>Choose 1–5</option>
-              {Array.from({ length: 5 }, (_, index) => index + 1).map((value) => (
-                <option key={value} value={value}>{value}</option>
-              ))}
-            </select>
-            <FieldError message={state.fieldErrors.comfort} />
-          </label>
-        </div>
-
-        <div className="dive-rating-grid">
-          {([
-            ["preDiveNerves", "Pre-dive nerves", "1 calm · 5 nervous"],
-            ["calmAtDepth", "Calm at depth", "1 anxious · 5 calm"],
-            ["focus", "Focus", "1 scattered · 5 locked-in"],
-            ["equalization", "Equalization", "1 struggled · 5 easy"],
-            ["overallFeel", "Overall feel", "1 rough · 5 great"],
-          ] as const).map(([name, label, hint]) => (
-            <label className="dive-field" key={name}>
-              <span>{label} <small>{hint}</small></span>
-              <select name={name} defaultValue={initialValues?.[name] ?? ""}>
-                <option value="">Not rated</option>
-                {[1, 2, 3, 4, 5].map((value) => <option key={value} value={value}>{value}</option>)}
-              </select>
-              <FieldError message={state.fieldErrors[name]} />
-            </label>
-          ))}
-        </div>
-
-        <fieldset className="dive-fieldset">
-          <legend>Mental preparation <small>Select any</small></legend>
-          <div className="dive-discipline-options">
-            {mentalPreparationOptions.map((option) => (
-              <label key={option}>
-                <input type="checkbox" name="mentalPreparation" value={option} defaultChecked={initialValues?.mentalPreparation?.includes(option)} />
-                <span>{option}</span>
-              </label>
-            ))}
-          </div>
-        </fieldset>
-
-        <label className="dive-field">
-          <span>Anything notable? <small>Optional</small></span>
-          <select name="notableEvent" defaultValue={initialValues?.notableEvent ?? ""}>
-            <option value="">Not recorded</option>
-            {notableEventOptions.map((option) => <option key={option} value={option}>{option}</option>)}
-          </select>
-        </label>
-
-        <label className="dive-field dive-notes-field">
-          <span>Notes <small>Optional</small></span>
-          <textarea
-            name="notes"
-            maxLength={2000}
-            rows={5}
-            placeholder="How the dive felt, what worked, or what you would change."
-            defaultValue={initialValues?.notes ?? ""}
-            aria-invalid={Boolean(state.fieldErrors.notes)}
-          />
-          <FieldError message={state.fieldErrors.notes} />
-        </label>
-      </section>
-
-      {state.error ? <p className="form-error dive-form-error" role="alert">{state.error}</p> : null}
-
-      <div className="dive-form-actions">
-        <Link href="/app/log" className="dive-button dive-button-secondary">Cancel</Link>
-        <button className="dive-button dive-button-primary" type="submit" disabled={pending}>
-          {pending ? "Saving…" : submitLabel}
-        </button>
       </div>
+
+      <div className="ui-stack">
+        {state.error ? <p className="ui-banner ui-banner-error" role="alert">{state.error}</p> : null}
+
+        {STEPS.map((s, i) => (
+          <div key={s.short} data-step={i} className="ui-flow-panel" hidden={i !== step}>
+            <header className="ui-head">
+              <div>
+                <span className="ui-eyebrow">Step {i + 1} of 4</span>
+                <h1 className="ui-title" tabIndex={-1}>{s.title}</h1>
+                <p className="ui-sub">{s.sub}</p>
+              </div>
+            </header>
+
+            {i === 0 ? (
+              <section className="ui-section">
+                <h2 className="ui-label">Session</h2>
+                <div className="ui-card ui-stack">
+                  <div className="ui-fields-2">
+                    <TextField label="Date" type="date" name="diveDate" max={localToday()} defaultValue={v?.diveDate ?? localToday()} required error={errors.diveDate} />
+                    <TextField label="Time" optional type="time" name="diveTime" defaultValue={v?.diveTime ?? ""} error={errors.diveTime} />
+                  </div>
+                  <TextField label="Location" optional name="location" maxLength={200} defaultValue={v?.location ?? ""} placeholder="e.g. Blue Hole, Dahab" error={errors.location} />
+                  <ChoiceGroup legend="Discipline" name="discipline" required value={v?.discipline ?? "constant_weight"} error={errors.discipline}
+                    options={diveDisciplines.map((d) => ({ value: d, label: disciplineLabels[d] }))} />
+                  <div className="ui-fields-2">
+                    <DepthStepper defaultValue={v?.depthMeters ?? ""} error={errors.depthMeters} />
+                    <div className="ui-panel">
+                      <span id="time-label">Dive time (m:ss)</span>
+                      <div className="ui-duration" role="group" aria-labelledby="time-label">
+                        <input type="number" name="durationMinutes" min={0} max={719} inputMode="numeric" defaultValue={minutes} aria-label="Minutes" required placeholder="0" />
+                        <span aria-hidden="true">:</span>
+                        <input type="number" name="durationRemainderSeconds" min={0} max={59} inputMode="numeric" defaultValue={seconds === "" ? "" : String(seconds).padStart(2, "0")} aria-label="Seconds" required placeholder="00" />
+                      </div>
+                      <FieldError message={errors.durationMinutes ?? errors.durationRemainderSeconds} />
+                    </div>
+                  </div>
+                  <Switch name="isPersonalBest" label="Discipline PB?" hint="Mark if this beat your best" defaultChecked={v?.isPersonalBest} />
+                </div>
+              </section>
+            ) : null}
+
+            {i === 1 ? (
+              <>
+                <section className="ui-section">
+                  <h2 className="ui-label">In the water</h2>
+                  <div className="ui-card ui-stack">
+                    <ChoiceGroup variant="seg" legend="Water" name="waterCondition" options={waterConditions} value={v?.waterCondition} error={errors.waterCondition} />
+                    <ChoiceGroup variant="seg" legend="Visibility" name="visibility" options={visibilityOptions} value={v?.visibility} error={errors.visibility} />
+                    <ChoiceGroup variant="seg" legend="Current" name="currentStrength" options={currentOptions} value={v?.currentStrength} error={errors.currentStrength} />
+                  </div>
+                </section>
+                <section className="ui-section">
+                  <h2 className="ui-label">Equipment</h2>
+                  <div className="ui-card"><EquipmentPicker defaultValue={v?.equipment ?? null} error={errors.equipment} /></div>
+                </section>
+              </>
+            ) : null}
+
+            {i === 2 ? (
+              <>
+                <section className="ui-section">
+                  <h2 className="ui-label">How it felt</h2>
+                  <div className="ui-card ui-stack">
+                    <RatingScale legend="Comfort" name="comfort" value={v?.comfort} low="Uncomfortable" high="Comfortable" required error={errors.comfort} />
+                    <RatingScale legend="Perceived effort" name="perceivedEffort" max={10} value={v?.perceivedEffort} low="Easy" high="Maximal" required error={errors.perceivedEffort} />
+                    <RatingScale legend="Pre-dive nerves" name="preDiveNerves" value={v?.preDiveNerves} low="Calm" high="Nervous" error={errors.preDiveNerves} />
+                    <RatingScale legend="Calm at depth" name="calmAtDepth" value={v?.calmAtDepth} low="Anxious" high="Calm" error={errors.calmAtDepth} />
+                    <RatingScale legend="Focus" name="focus" value={v?.focus} low="Scattered" high="Locked-in" error={errors.focus} />
+                    <RatingScale legend="Equalization" name="equalization" value={v?.equalization} low="Struggled" high="Easy" error={errors.equalization} />
+                    <RatingScale legend="Overall feel" name="overallFeel" value={v?.overallFeel} low="Rough" high="Great" error={errors.overallFeel} />
+                  </div>
+                </section>
+              </>
+            ) : null}
+
+            {i === 3 ? (
+              <>
+                <section className="ui-section">
+                  <h2 className="ui-label">Mental prep beforehand</h2>
+                  <div className="ui-card">
+                    <ChoiceGroup legend="Select any that you did before this dive." name="mentalPreparation" multiple options={mentalPreparationOptions} value={v?.mentalPreparation ?? []} error={errors.mentalPreparation} />
+                  </div>
+                </section>
+                <section className="ui-section">
+                  <h2 className="ui-label">Anything notable?</h2>
+                  <div className="ui-card">
+                    <ChoiceGroup legend="Pick the one that fits best." name="notableEvent" options={notableEventOptions} value={v?.notableEvent ?? "Nothing notable"} error={errors.notableEvent} />
+                  </div>
+                </section>
+                <section className="ui-section">
+                  <div className="ui-card">
+                    <TextArea label="Notes" optional name="notes" rows={4} maxLength={2000} defaultValue={v?.notes ?? ""} placeholder="How did the dive feel? Anything you want to remember…" error={errors.notes} />
+                  </div>
+                </section>
+              </>
+            ) : null}
+          </div>
+        ))}
+
+        <div className="ui-actionbar">
+          <Link href={cancelHref} className="ui-link ui-discard">Cancel and discard</Link>
+          {step > 0 ? (
+            <button type="button" className="ui-btn ui-btn-ghost" onClick={() => setStep((s) => s - 1)}><Icon name="back" size={18} /> Back</button>
+          ) : (
+            <Link href={cancelHref} className="ui-btn ui-btn-ghost ui-hide-desktop">Cancel</Link>
+          )}
+          {step < STEPS.length - 1 ? (
+            <button type="button" className="ui-btn ui-btn-primary" onClick={next}>Continue <Icon name="next" size={18} /></button>
+          ) : (
+            <button type="submit" className="ui-btn ui-btn-primary" disabled={pending}><Icon name="check" size={18} /> {pending ? "Saving…" : submitLabel}</button>
+          )}
+        </div>
+      </div>
+
+      <aside className="ui-flow-aside ui-card ui-stack" aria-label="Steps">
+        <h2 className="ui-label">Step {step + 1} of 4</h2>
+        <ol className="ui-steps-list">
+          {STEPS.map((s, i) => (
+            <li key={s.short} aria-current={i === step ? "step" : undefined} className={i < step ? "done" : undefined}>
+              {i < step ? <button type="button" onClick={() => setStep(i)}><span>{i + 1}</span>{s.short}</button> : <><span>{i + 1}</span>{s.short}</>}
+            </li>
+          ))}
+        </ol>
+      </aside>
     </form>
   );
 }

@@ -1,7 +1,0 @@
-import Link from "next/link";
-import SectionHeading from "./section-heading";
-export default function OverallFeelChart({ points }: { points: Array<{ id: string; date: string; value: number }> }) {
-  const width = 320, height = 120, pad = 18;
-  const coords = points.map((point, index) => ({ ...point, x: points.length === 1 ? width / 2 : pad + index * ((width - pad * 2) / (points.length - 1)), y: height - pad - ((point.value - 1) / 4) * (height - pad * 2) }));
-  return <section><SectionHeading accessory={<Link href="/app/progress" className="home-view-log">View Progress</Link>}>Performance progress</SectionHeading><div className="home-feel-chart"><div className="chart-head"><h3>Overall dive feel</h3><span>Self-reported · 1–5</span></div>{points.length < 2 ? <div className="chart-low-data"><strong>More data needed</strong><p>Record overall feel on at least two dives to see a trend.</p></div> : <svg viewBox={`0 0 ${width} ${height}`} role="img" aria-label="Overall dive feel over time"><g className="chart-grid"><line x1={pad} y1={pad} x2={width-pad} y2={pad}/><line x1={pad} y1={height/2} x2={width-pad} y2={height/2}/><line x1={pad} y1={height-pad} x2={width-pad} y2={height-pad}/></g><polyline points={coords.map((p) => `${p.x},${p.y}`).join(" ")} /><g>{coords.map((p) => <circle key={p.id} cx={p.x} cy={p.y} r="4"><title>{p.date}: {p.value}/5</title></circle>)}</g></svg>}<p className="chart-caption">Only your recorded overall-feel rating is shown. This is not the prototype’s multi-signal Dive comfort index.</p></div></section>;
-}

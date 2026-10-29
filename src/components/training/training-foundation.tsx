@@ -1,38 +1,91 @@
 import Link from "next/link";
 import TrainingGoalsForm from "@/components/training/training-goals-form";
+import { Icon } from "@/components/ui/icons";
+import { ButtonLink, Section } from "@/components/ui/page";
 import type { TrainingGoalId } from "@/lib/training-goals";
 import type { TrainingPlanResult } from "@/lib/training-plan";
 
 const library = [
-  { title: "Relaxation & breathing", detail: "Dry down-regulation and breath awareness", status: "Log session", href: "/app/train/new?type=Breathwork" },
-  { title: "Cognitive anchoring", detail: "Pre-dive cue development", status: "Coming later" },
-  { title: "Cognitive training", detail: "Performance-focused cognitive skills", status: "Coming later" },
-  { title: "Visualization & rehearsal", detail: "Dry mental rehearsal", status: "Coming later" },
-  { title: "Focus & attention", detail: "Attention-control practice", status: "Coming later" },
-  { title: "Neurofeedback", detail: "Requires a future device integration", status: "Device phase" },
+  { title: "Relaxation & breathing", detail: "Dry down-regulation and breath awareness", href: "/app/train/new?type=Breathwork" },
+  { title: "Cognitive anchoring", detail: "Pre-dive cue development" },
+  { title: "Cognitive training", detail: "Performance-focused cognitive skills", href: "/app/coming-soon/cognitive-training" },
+  { title: "Visualization & rehearsal", detail: "Dry mental rehearsal" },
+  { title: "Focus & attention", detail: "Attention-control practice" },
+  { title: "Neurofeedback", detail: "Requires a future device integration", href: "/app/coming-soon/neurofeedback" },
 ] as const;
 
+// Goals → Baseline (Performance Profile) → Plan, as in the design's Train flow.
 export default function TrainingFoundation({ selectedGoals, planResult }: { selectedGoals: TrainingGoalId[]; planResult: TrainingPlanResult }) {
   const profileComplete = planResult.status === "ready";
-  return <div className="training-foundation">
-    <div className="training-stepper" aria-label="Training setup progress"><span className="active">1 <b>Goals</b></span><i /><span>2 <b>Baseline</b></span><i /><span>3 <b>Plan</b></span></div>
-    <TrainingGoalsForm selected={selectedGoals} />
-    {selectedGoals.length || profileComplete ? <>
-    <section className="baseline-panel">
-      <div className="train-section-heading"><div><span>Step 2</span><h2>Your starting point</h2></div><small>{profileComplete ? "Completed" : "Not completed"}</small></div>
-      {profileComplete ? <><strong className="training-profile-focus">{planResult.plan.dominantFocus}</strong><p>{planResult.plan.explanation}</p><Link href="/app/performance-profile" className="training-button training-button-secondary">View Performance Profile</Link></> : <><p>Complete your Performance Profile to establish a real baseline for the reference training pathways.</p><Link href="/app/performance-profile" className="training-button training-button-secondary">Complete Performance Profile</Link></>}
-    </section>
-    <section className="weekly-plan-panel">
-      <div className="train-section-heading"><div><span>Step 3</span><h2>Profile focus</h2></div><small>{profileComplete ? "Profile mapped" : "Setup incomplete"}</small></div>
-      {profileComplete ? <>{planResult.plan.items.map((item) => <div className="training-plan-item" key={item.id}><strong>{item.title}</strong><p>{item.detail}</p></div>)}<p className="training-scope-note compact">This mapping follows the assessment reference. Guided programs and neurofeedback remain future modules.</p></> : <p>Your training direction will be mapped after your Performance Profile is completed. No focus has been invented.</p>}
-    </section>
-    </> : null}
-    <section className="training-library"><div className="section-title-row"><h2>All Training</h2><span>Dry &amp; pre-dive</span></div>
-      <div className="training-library-list">{library.map((item) => {
-        const content = <><span className="library-icon" aria-hidden="true">◎</span><span><strong>{item.title}</strong><small>{item.detail}</small></span><b>{item.status}</b></>;
-        return "href" in item ? <Link href={item.href} className="training-library-card" key={item.title}>{content}</Link> : <div className="training-library-card future" key={item.title}>{content}</div>;
-      })}</div>
-      <p className="training-scope-note compact">Training modules are dry or pre-dive experiences. Breath-hold work remains retrospective in Log and under direct supervision.</p>
-    </section>
-  </div>;
+  const step = profileComplete ? 3 : selectedGoals.length ? 2 : 1;
+  return (
+    <>
+      <ol className="ui-stepper-steps" aria-label="Setup steps">
+        {["Goals", "Baseline", "Plan"].map((label, i) => (
+          <li key={label} aria-current={step === i + 1 ? "step" : undefined} className={step > i + 1 ? "done" : undefined}><span>{i + 1}</span>{label}</li>
+        ))}
+      </ol>
+
+      <div className="ui-grid ui-grid-2">
+        <Section label="Step 1 · Goals">
+          <div className="ui-stack">
+            <h2 className="ui-title ui-title-md">What are you training for?</h2>
+            <p className="ui-sub">Pick what matters most right now. You can change it at any time.</p>
+            <TrainingGoalsForm selected={selectedGoals} />
+          </div>
+        </Section>
+
+        <div className="ui-stack">
+          <Section label="Step 2 · Baseline" aside={<span className="ui-pill">{profileComplete ? "Completed" : "Not completed"}</span>}>
+            <div className="ui-card ui-stack">
+              {profileComplete ? (
+                <>
+                  <h3>{planResult.plan.dominantFocus}</h3>
+                  <p className="ui-sub">{planResult.plan.explanation}</p>
+                  <ButtonLink href="/app/performance-profile" variant="ghost" size="sm">View Performance Profile</ButtonLink>
+                </>
+              ) : (
+                <>
+                  <h3>Your starting point</h3>
+                  <p className="ui-sub">Complete your Performance Profile to set a real baseline for your training pathway.</p>
+                  <ButtonLink href="/app/performance-profile" size="sm" icon="next">Complete Performance Profile</ButtonLink>
+                </>
+              )}
+            </div>
+          </Section>
+
+          <Section label="Step 3 · Plan" aside={<span className="ui-pill">{profileComplete ? "Mapped" : "Setup incomplete"}</span>}>
+            <div className="ui-card ui-stack">
+              {profileComplete ? (
+                <>
+                  {planResult.plan.items.map((item) => <div key={item.id}><h3>{item.title}</h3><p className="ui-sub">{item.detail}</p></div>)}
+                  <p className="ui-info">This mapping follows the assessment reference. Guided programs and neurofeedback are future modules.</p>
+                </>
+              ) : (
+                <p className="ui-sub">Your training focus is mapped after your Performance Profile is complete.</p>
+              )}
+            </div>
+          </Section>
+        </div>
+      </div>
+
+      <Section label="All training" aside={<span className="ui-pill">Dry &amp; pre-dive</span>}>
+        <div className="ui-card ui-card-list">
+          {library.map((item) => {
+            const body = (
+              <>
+                <span className="ui-kind"><Icon name="train" size={16} /></span>
+                <span>{item.title}<small>{item.detail}</small></span>
+                {"href" in item ? <Icon name="chevron" size={18} /> : <span className="ui-pill">Later</span>}
+              </>
+            );
+            return "href" in item
+              ? <Link href={item.href} className="ui-row" key={item.title}>{body}</Link>
+              : <div className="ui-row" key={item.title}>{body}</div>;
+          })}
+        </div>
+        <p className="ui-note">Training modules are dry or pre-dive experiences. Breath-hold work stays retrospective in Log and under direct supervision.</p>
+      </Section>
+    </>
+  );
 }

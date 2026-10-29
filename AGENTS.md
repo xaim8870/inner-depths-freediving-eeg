@@ -76,11 +76,22 @@ Use the design tokens already defined for:
 
 Typography:
 
-- DM Sans for UI/body
-- DM Serif Display for display headings
+- Manrope for UI/body (`--font-sans`)
+- Fraunces for display headings (`--font-display`)
 
-The mobile application should visually match
-`reference/inner-depths-prototype-v14.html`.
+The application should visually match the current design references:
+
+- `reference/inner-depths-design-mobile.html` (phones and tablets)
+- `reference/inner-depths-design-web.html` (desktop, 1024px and wider)
+
+`reference/inner-depths-prototype-v14.html` is the earlier prototype; keep it for
+behavior history only.
+
+UI building blocks live in `src/components/ui` (page headers, sections, form
+controls, trend chart) and `src/components/shell` (sidebar, top bar, tab bar).
+Styles are in `src/app/ui.css` with the `ui-` class prefix. Where the design shows
+sample data the backend does not have (wearable biometrics, cycle phase,
+correlations, community), show real data or an honest empty state instead.
 
 ## MVP priorities
 

@@ -1,24 +1,32 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import "./ui.css";
 
-const dmSans = localFont({
-  src: "../fonts/dm-sans-latin.woff2",
-  weight: "100 1000",
-  variable: "--font-dm-sans",
+const sans = localFont({
+  src: "../fonts/manrope-latin.woff2",
+  weight: "200 800",
+  variable: "--font-sans",
   display: "swap",
 });
 
-const dmSerif = localFont({
-  src: "../fonts/dm-serif-display-latin.woff2",
-  weight: "400",
-  variable: "--font-dm-serif",
+const display = localFont({
+  src: [
+    { path: "../fonts/fraunces-latin.woff2", weight: "300 600", style: "normal" },
+    { path: "../fonts/fraunces-italic-latin.woff2", weight: "300 600", style: "italic" },
+  ],
+  variable: "--font-display",
   display: "swap",
 });
 
 export const metadata: Metadata = {
   title: "Inner Depths",
   description: "Freediving training and performance platform",
+};
+
+export const viewport: Viewport = {
+  themeColor: "#0B2A38",
+  viewportFit: "cover",
 };
 
 export default function RootLayout({
@@ -28,7 +36,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${dmSans.variable} ${dmSerif.variable}`}>
+      <body className={`${sans.variable} ${display.variable}`}>
         {children}
       </body>
     </html>

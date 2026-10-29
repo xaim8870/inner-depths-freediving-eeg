@@ -66,13 +66,13 @@ test("goal persistence is authenticated and transaction-backed", () => {
 });
 
 test("Home exposes connected and disconnected WHOOP states without sample biometrics", () => {
-  const source = readFileSync("src/components/home/whoop-status.tsx", "utf8");
-  assert.match(source, /WHOOP connected/); assert.match(source, /WHOOP not connected/);
+  const source = readFileSync("src/app/app/home/page.tsx", "utf8");
+  assert.match(source, /WHOOP connected/); assert.match(source, /Connect WHOOP/);
   assert.doesNotMatch(source, /HRV|Recovery|Strain|Sleep/);
 });
 
 test("drawer destinations and session filters are explicit", () => {
-  const drawer = readFileSync("src/components/app/app-header.tsx", "utf8");
+  const drawer = readFileSync("src/components/shell/nav-items.ts", "utf8") + readFileSync("src/components/shell/top-bar.tsx", "utf8");
   for (const href of ["/app/profile", "/app/performance-profile", "/app/account", "/privacy"]) assert.match(drawer, new RegExp(href.replaceAll("/", "\\/")));
   const log = readFileSync("src/app/app/log/page.tsx", "utf8");
   for (const type of ["dive", "pool", "dry_hold", "table"]) assert.match(log, new RegExp(type));
@@ -116,14 +116,14 @@ test("Train and Progress load stored Performance Profile and real overall-feel d
 
 test("Home loads the saved Performance Profile instead of hard-coding incomplete", () => {
   const homeQuery = readFileSync("src/db/home.ts", "utf8");
-  const trainingStatus = readFileSync("src/components/home/training-status.tsx", "utf8");
+  const trainingStatus = readFileSync("src/app/app/home/page.tsx", "utf8");
   assert.match(homeQuery, /getLatestPerformanceAssessment/);
   assert.doesNotMatch(homeQuery, /performanceProfileStatus:\s*"not_completed"/);
   assert.match(trainingStatus, /performanceProfile \?/);
 });
 
-test("hamburger retains the prototype dimensions and centered icon", () => {
-  const css = readFileSync("src/app/globals.css", "utf8");
-  assert.match(css, /\.app-global-header \.menu-button \{[^}]*width: 38px;[^}]*height: 38px;[^}]*align-items: center;[^}]*justify-content: center;/);
-  assert.match(css, /\.app-global-header \.menu-button span \{[^}]*width: 19px;[^}]*height: 1\.5px;/);
+test("menu button keeps a 44px touch target with a centered icon", () => {
+  const css = readFileSync("src/app/ui.css", "utf8");
+  assert.match(css, /\.ui-icon-btn \{[^}]*width: 44px;[^}]*height: 44px;[^}]*align-items: center;[^}]*justify-content: center;/);
+  assert.match(readFileSync("src/components/shell/top-bar.tsx", "utf8"), /aria-label="Open menu"/);
 });

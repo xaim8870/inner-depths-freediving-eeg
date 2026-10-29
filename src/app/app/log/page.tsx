@@ -1,53 +1,66 @@
 import Link from "next/link";
 import SessionHistory from "@/components/log/session-history";
-import { getDivesForUser } from "@/db/dives";
+import { Icon, type IconName } from "@/components/ui/icons";
+import { ButtonLink, Empty, PageHead, SafetyNote, Section } from "@/components/ui/page";
 import { getCompletedSessionsForUser } from "@/db/completed-sessions";
+import { getDivesForUser } from "@/db/dives";
 import { requireCurrentUser } from "@/lib/auth-session";
 
-const types = [
-  { id: "dive", label: "Dive", href: "/app/log/new" },
-  { id: "pool", label: "Pool", href: "/app/log/sessions/new?type=pool" },
-  { id: "dry_hold", label: "Dry hold", href: "/app/log/sessions/new?type=dry_hold" },
-  { id: "table", label: "Table", href: "/app/log/sessions/new?type=table" },
-] as const;
+const types: Array<{ id: string; label: string; detail: string; href: string; icon: IconName }> = [
+  { id: "dive", label: "Dive", detail: "Open-water depth dive", href: "/app/log/new", icon: "drop" },
+  { id: "pool", label: "Pool", detail: "Dynamic or static in the pool", href: "/app/log/sessions/new?type=pool", icon: "wave" },
+  { id: "dry_hold", label: "Dry hold", detail: "Breath-hold on land", href: "/app/log/sessions/new?type=dry_hold", icon: "lungs" },
+  { id: "table", label: "Table", detail: "CO₂ / O₂ table session", href: "/app/log/sessions/new?type=table", icon: "table" },
+];
 
 export default async function LogPage({ searchParams }: { searchParams: Promise<{ type?: string; saved?: string }> }) {
   const user = await requireCurrentUser();
   const [dives, sessions, params] = await Promise.all([getDivesForUser(user.id), getCompletedSessionsForUser(user.id), searchParams]);
   const filter = ["all", ...types.map((type) => type.id)].includes(params.type ?? "all") ? params.type ?? "all" : "all";
+  const total = dives.length + sessions.length;
 
   return (
-    <section className="dive-log-page">
-      <header className="dive-page-header">
-        <div>
-          <div className="dive-eyebrow">Completed sessions</div>
-          <h1>Session Log</h1>
-          <p>Record what already happened. This log never prescribes a session.</p>
+    <div className="ui-page ui-page-wide">
+      <PageHead eyebrow="New entry" title="Log a session" sub="What did you do? Pick a type to begin. This log records what already happened — it never prescribes a session." />
+      {params.saved ? <p className="ui-banner" role="status">{params.saved === "dive" ? "Dive" : "Session"} saved to your log.</p> : null}
+
+      <div className="ui-grid ui-grid-main">
+        <div className="ui-stack">
+          <nav className="ui-types" aria-label="Add a completed session">
+            {types.map((type) => (
+              <Link key={type.id} href={type.href} className="ui-type">
+                <span><Icon name={type.icon} /></span>
+                <span><strong>{type.label}</strong><small>{type.detail}</small></span>
+              </Link>
+            ))}
+          </nav>
+          <SafetyNote>Dives are records of dives you completed with a buddy and safety in place. Pool, dry-hold and table records require supervision.</SafetyNote>
         </div>
-      </header>
-      {params.saved ? <p className="save-success save-banner" role="status">{params.saved === "dive" ? "Dive" : "Session"} saved to your log.</p> : null}
-
-      <div className="dive-safety-note">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" aria-hidden="true">
-          <circle cx="12" cy="12" r="9" />
-          <path d="M12 8v4M12 16h.01" />
-        </svg>
-        <span>Dives require buddy safety. Pool, dry-hold, and table records require supervision attestation.</span>
+        <aside className="ui-card ui-stack">
+          <h2 className="ui-label">4 quick steps · about 2 min</h2>
+          <ol className="ui-steps-list">
+            {["Session", "Conditions & gear", "Body & feel", "Prep & notes"].map((step, i) => <li key={step}><span>{i + 1}</span>{step}</li>)}
+          </ol>
+          <ButtonLink href="/app/log/new" icon="next" block>Start logging a dive</ButtonLink>
+        </aside>
       </div>
 
-      <div className="session-type-grid" aria-label="Add completed session">
-        {types.map((type) => <Link key={type.id} href={type.href} className="session-type-card"><span aria-hidden="true">+</span><strong>{type.label}</strong></Link>)}
-      </div>
-
-      {(dives.length || sessions.length) ? (
-        <div className="dive-history-section">
-          <div className="section-title-row"><h2>History</h2><span>{dives.length + sessions.length} logged</span></div>
-          <nav className="history-filters" aria-label="Filter session history">
-            {[{ id: "all", label: "All" }, ...types].map((type) => <Link key={type.id} href={type.id === "all" ? "/app/log" : `/app/log?type=${type.id}`} className={filter === type.id ? "active" : ""}>{type.label}</Link>)}
+      {total ? (
+        <Section label="History" aside={<span className="ui-pill">{total} logged</span>}>
+          <nav className="ui-tags" aria-label="Filter history">
+            {[{ id: "all", label: "All" }, ...types].map((type) => (
+              <Link key={type.id} href={type.id === "all" ? "/app/log" : `/app/log?type=${type.id}`} className="ui-choice" aria-current={filter === type.id ? "true" : undefined}>
+                <span className={filter === type.id ? "ui-choice-on" : undefined}>{type.label}</span>
+              </Link>
+            ))}
           </nav>
           <SessionHistory dives={dives} sessions={sessions} filter={filter} />
-        </div>
-      ) : <div className="session-empty-state"><h2>Your log starts here</h2><p>Add a dive or completed training session. Your history and descriptive patterns will build from real records.</p><Link href="/app/log/new" className="dive-button dive-button-primary">Log your first dive</Link></div>}
-    </section>
+        </Section>
+      ) : (
+        <Empty title="Your log starts here" action={<ButtonLink href="/app/log/new" icon="plus">Log your first dive</ButtonLink>}>
+          Add a dive or a completed training session. Your history and patterns build from real records.
+        </Empty>
+      )}
+    </div>
   );
 }

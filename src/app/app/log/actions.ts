@@ -33,15 +33,21 @@ export async function createDive(
   const result = parseDiveFormData(formData);
   if (!result.success) return invalidState(result);
 
+  let diveId: string;
   try {
-    await db.insert(dives).values({ userId: user.id, ...toDiveValues(result.data) });
+    const [created] = await db
+      .insert(dives)
+      .values({ userId: user.id, ...toDiveValues(result.data) })
+      .returning({ id: dives.id });
+    diveId = created.id;
   } catch {
     return { error: "We could not save this dive. Please try again.", fieldErrors: {} };
   }
 
   revalidatePath("/app/log");
   revalidatePath("/app/home");
-  redirect("/app/log?saved=dive");
+  revalidatePath("/app/progress");
+  redirect(`/app/log/${diveId}?saved=new`);
 }
 
 export async function updateDive(
@@ -70,6 +76,7 @@ export async function updateDive(
   revalidatePath("/app/log");
   revalidatePath(`/app/log/${idResult.data}`);
   revalidatePath("/app/home");
+  revalidatePath("/app/progress");
   redirect(`/app/log/${idResult.data}?saved=1`);
 }
 

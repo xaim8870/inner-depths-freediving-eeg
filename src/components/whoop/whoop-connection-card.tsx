@@ -10,35 +10,23 @@ export default function WhoopConnectionCard({
   const connected = connectedAt !== null;
 
   return (
-    <section className="whoop-connection-card" aria-labelledby="whoop-connection-title">
+    <section className="ui-card ui-head" aria-labelledby="whoop-connection-title">
       <div>
-        <div className="whoop-connection-label">Wearable connection</div>
-        <h2 id="whoop-connection-title">WHOOP</h2>
-        <p className={connected ? "whoop-status connected" : "whoop-status"}>
-          <span aria-hidden="true" />
-          {connected ? "Connected" : "Not connected"}
+        <span className="ui-eyebrow">Wearable connection</span>
+        <h2 id="whoop-connection-title" className="ui-title ui-title-md">WHOOP</h2>
+        <p className="ui-sub">
+          <strong>{connected ? "Connected" : "Not connected"}</strong>
+          {connectedAt ? ` · since ${connectedAt.toLocaleDateString("en-GB", { dateStyle: "medium" })}` : " · connect securely. WHOOP data isn't shown on Home or Progress yet."}
         </p>
-        {connectedAt ? (
-          <p className="whoop-connection-detail">
-            Connected {connectedAt.toLocaleDateString("en", { dateStyle: "medium" })}
-          </p>
-        ) : (
-          <p className="whoop-connection-detail">
-            Connect your account securely. WHOOP data is not shown on Home or Progress yet.
-          </p>
-        )}
       </div>
-
       {connected ? (
         <form action={disconnectWhoop}>
-          <button className="whoop-button whoop-button-secondary" type="submit">
-            Disconnect
-          </button>
+          <button className="ui-btn ui-btn-ghost ui-btn-sm" type="submit">Disconnect</button>
         </form>
       ) : configured ? (
-        <a className="whoop-button" href="/api/whoop/connect">Connect WHOOP</a>
+        <a className="ui-btn ui-btn-primary ui-btn-sm" href="/api/whoop/connect">Connect WHOOP</a>
       ) : (
-        <button className="whoop-button" type="button" disabled>Unavailable</button>
+        <button className="ui-btn ui-btn-ghost ui-btn-sm" type="button" disabled>Unavailable</button>
       )}
     </section>
   );

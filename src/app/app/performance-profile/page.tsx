@@ -9,13 +9,13 @@ export default async function PerformanceProfilePage({ searchParams }: { searchP
   const params = await searchParams;
   if (params.retake === "1") {
     const profile = await getProfileForUser(user.id);
-    return <AssessmentFlow firstName={(profile?.displayName ?? user.name ?? "Diver").split(" ")[0]} />;
+    return <div className="ui-page ui-page-narrow"><AssessmentFlow firstName={(profile?.displayName ?? user.name ?? "Diver").split(" ")[0]} /></div>;
   }
   const assessment = params.completed
     ? await getOwnedPerformanceAssessment(user.id, params.completed)
     : await getLatestPerformanceAssessment(user.id);
   if (params.completed && !assessment) notFound();
-  if (assessment) return <ProfileResult result={assessment.result} completedAt={assessment.completedAt} />;
+  if (assessment) return <div className="ui-page ui-page-narrow"><ProfileResult result={assessment.result} completedAt={assessment.completedAt} /></div>;
   const profile = await getProfileForUser(user.id);
-  return <AssessmentFlow firstName={(profile?.displayName ?? user.name ?? "Diver").split(" ")[0]} />;
+  return <div className="ui-page ui-page-narrow"><AssessmentFlow firstName={(profile?.displayName ?? user.name ?? "Diver").split(" ")[0]} /></div>;
 }

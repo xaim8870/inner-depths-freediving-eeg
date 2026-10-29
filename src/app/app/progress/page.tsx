@@ -1,71 +1,114 @@
-import ComfortTrend from "@/components/progress/comfort-trend";
-import DepthTrend from "@/components/progress/depth-trend";
-import DisciplineBreakdown from "@/components/progress/discipline-breakdown";
-import ProgressEmptyState from "@/components/progress/progress-empty-state";
-import ProgressSummary from "@/components/progress/progress-summary";
-import RecentActivity from "@/components/progress/recent-activity";
-import TrainingConsistency from "@/components/progress/training-consistency";
+import Link from "next/link";
+import { BarList, MonthColumns } from "@/components/progress/bars";
+import { Icon } from "@/components/ui/icons";
+import { ButtonLink, Empty, PageHead, Section } from "@/components/ui/page";
+import TrendChart from "@/components/ui/trend-chart";
 import { getProgressDashboard } from "@/db/progress";
 import { requireCurrentUser } from "@/lib/auth-session";
-import Link from "next/link";
+import { formatDate, formatDepth, formatDuration } from "@/lib/format";
+import { disciplineLabels } from "@/lib/profile-options";
 
 export default async function ProgressPage() {
   const user = await requireCurrentUser();
-  const dashboard = await getProgressDashboard(user.id);
-  const hasDives = dashboard.diveMetrics.totalDives > 0;
-  const hasTraining = dashboard.trainingMetrics.totalTrainingSessions > 0;
+  const d = await getProgressDashboard(user.id);
+  const hasDives = d.diveMetrics.totalDives > 0;
+  const hasTraining = d.trainingMetrics.totalTrainingSessions > 0;
+  const ratings = ([
+    ["Overall feel", d.ratingAverages.overallFeel],
+    ["Calm at depth", d.ratingAverages.calmAtDepth],
+    ["Focus", d.ratingAverages.focus],
+    ["Equalization", d.ratingAverages.equalization],
+  ] as const).flatMap(([label, value]) => (value === null ? [] : [{ label, value, display: `${Number(value).toFixed(1)} / 5` }]));
 
   return (
-    <section className="progress-page">
-      <header className="progress-page-header">
-        <div className="progress-eyebrow">Your data</div>
-        <h1>Progress</h1>
-        <p>A factual view of the dives and training sessions you have logged.</p>
-      </header>
+    <div className="ui-page ui-page-wide">
+      <PageHead eyebrow="Your data" title="Progress" sub="A factual view of the dives and training sessions you have logged."
+        actions={<ButtonLink href="/app/log/new" icon="plus">Log a dive</ButtonLink>} />
 
       {!hasDives && !hasTraining ? (
-        <ProgressEmptyState />
+        <Empty title="Nothing to chart yet" action={<ButtonLink href="/app/log/new" icon="plus">Log your first dive</ButtonLink>}>
+          Progress fills in from your own dives and training sessions.
+        </Empty>
       ) : (
         <>
-          <ProgressSummary
-            diveMetrics={dashboard.diveMetrics}
-            trainingMetrics={dashboard.trainingMetrics}
-          />
+          <div className="ui-metrics ui-metrics-4">
+            <div className="ui-metric"><b>{d.diveMetrics.totalDives}</b><span>Dives logged</span></div>
+            <div className="ui-metric"><b>{d.diveMetrics.deepestDive === null ? "–" : formatDepth(d.diveMetrics.deepestDive)}</b><span>Deepest</span></div>
+            <div className="ui-metric"><b>{d.diveMetrics.averageOverallFeel === null ? "–" : d.diveMetrics.averageOverallFeel.toFixed(1)}</b><span>Avg overall feel</span></div>
+            <div className="ui-metric ui-metric-hide-sm"><b>{d.trainingMetrics.totalTrainingSessions}</b><span>Training sessions</span></div>
+          </div>
+
           {hasDives ? (
-            <>
-              <DepthTrend
-                depthSeries={dashboard.depthSeries}
-                divesLast30Days={dashboard.diveMetrics.divesLast30Days}
-              />
-              <ComfortTrend
-                overallFeelSeries={dashboard.overallFeelSeries}
-                averageOverallFeel={dashboard.diveMetrics.averageOverallFeel}
-              />
-              <DisciplineBreakdown breakdown={dashboard.disciplineBreakdown} />
-            </>
+            <div className="ui-grid ui-grid-main">
+              <TrendChart title="Overall feel" points={d.overallFeelSeries} min={1} max={5}
+                caption="Your own 1–5 ratings after each dive. Higher is better — descriptive, not a clinical score." />
+              <Section label="Dive experience" aside={<span className="ui-pill">Your averages</span>}>
+                <div className="ui-card ui-stack">
+                  {ratings.length ? <BarList rows={ratings} max={5} /> : <p className="ui-sub">Rate how dives felt to see averages here.</p>}
+                  <p className="ui-info">From {d.ratingAverages.ratedDiveCount} rated dives. Averages describe your entries; they don&apos;t show cause and effect.</p>
+                </div>
+              </Section>
+            </div>
           ) : null}
+
+          {hasDives ? (
+            <div className="ui-grid ui-grid-2">
+              <TrendChart title="Depth" unit="m" points={d.depthSeries} min={0} max={Math.max(10, Math.ceil((d.diveMetrics.deepestDive ?? 10) / 10) * 10)}
+                caption={`${d.diveMetrics.divesLast30Days} dives in the last 30 days · average ${d.diveMetrics.averageDepth === null ? "–" : formatDepth(d.diveMetrics.averageDepth)} · ${formatDuration(d.diveMetrics.totalDiveTimeSeconds)} total dive time`} />
+              <Section label="Disciplines">
+                <div className="ui-card">
+                  <BarList max={Math.max(...d.disciplineBreakdown.map((b) => b.count))}
+                    rows={d.disciplineBreakdown.map((b) => ({ label: disciplineLabels[b.discipline], value: b.count, display: `${b.count} ${b.count === 1 ? "dive" : "dives"}` }))} />
+                </div>
+              </Section>
+            </div>
+          ) : null}
+
           {hasTraining ? (
-            <TrainingConsistency
-              frequency={dashboard.trainingFrequency}
-              sessionsLast30Days={dashboard.trainingMetrics.trainingSessionsLast30Days}
-              mostFrequentType={dashboard.trainingMetrics.mostFrequentTrainingType}
-            />
+            <Section label="Training consistency" aside={<span className="ui-pill">{d.trainingMetrics.trainingSessionsLast30Days} in 30 days</span>}>
+              <div className="ui-card ui-stack">
+                <MonthColumns months={d.trainingFrequency} />
+                <p className="ui-info">{d.trainingMetrics.totalTrainingMinutes} minutes logged{d.trainingMetrics.mostFrequentTrainingType ? ` · most often ${d.trainingMetrics.mostFrequentTrainingType}` : ""}.</p>
+              </div>
+            </Section>
           ) : null}
-          {dashboard.ratingAverages.ratedDiveCount > 0 ? <section className="progress-section" aria-labelledby="ratings-progress-heading">
-            <div className="progress-section-heading"><div><span>Logged ratings</span><h2 id="ratings-progress-heading">Dive experience</h2></div><div className="progress-stat-pill">Descriptive</div></div>
-            <div className="progress-panel"><div className="progress-rating-grid">{[
-              ["Overall feel", dashboard.ratingAverages.overallFeel], ["Calm at depth", dashboard.ratingAverages.calmAtDepth], ["Focus", dashboard.ratingAverages.focus], ["Equalization", dashboard.ratingAverages.equalization],
-            ].map(([label, value]) => value === null ? null : <div key={String(label)}><strong>{Number(value).toFixed(1)}/5</strong><span>{label}</span></div>)}</div><p className="progress-data-note">Averages from your own logged ratings. Exploratory and correlational only; they do not show cause and effect.</p></div>
-          </section> : null}
-          <RecentActivity activity={dashboard.recentActivity} />
+
+          <Section label="Recent activity">
+            <div className="ui-card ui-card-list">
+              {d.recentActivity.map((item) => {
+                const isDive = item.kind === "dive";
+                const href = isDive ? `/app/log/${item.id}` : item.sessionCategory === "training" ? `/app/train/${item.id}` : `/app/log/sessions/${item.id}`;
+                return (
+                  <Link href={href} className="ui-row" key={`${item.kind}-${item.id}`}>
+                    <span className="ui-kind">{isDive ? "Dive" : "Train"}</span>
+                    <span>
+                      {isDive ? disciplineLabels[item.discipline] : item.sessionType}
+                      <small>{formatDate(item.date, true)} · {isDive ? `${formatDepth(item.depthMeters)} · ${formatDuration(item.durationSeconds)}` : `${item.durationMinutes} min`}</small>
+                    </span>
+                    <Icon name="chevron" size={18} />
+                  </Link>
+                );
+              })}
+            </div>
+          </Section>
         </>
       )}
-      <section className="progress-section" aria-labelledby="profile-progress-heading">
-        <div className="progress-section-heading"><div><span>Baseline</span><h2 id="profile-progress-heading">Performance Profile</h2></div></div>
-        <div className="progress-panel">
-          {dashboard.performanceProfile ? <><strong>{dashboard.performanceProfile.dominantLabel}</strong><p className="progress-data-note">Completed {dashboard.performanceProfile.completedAt.toLocaleDateString("en-GB")}. This describes tendencies and does not diagnose performance or health.</p><Link href="/app/performance-profile" className="training-button training-button-secondary">View profile</Link></> : <><strong>Not completed</strong><p className="progress-data-note">Complete the assessment to add your mental-training baseline here.</p><Link href="/app/performance-profile" className="training-button training-button-secondary">Complete Performance Profile</Link></>}
+
+      <Section label="Baseline · Performance profile">
+        <div className="ui-card ui-head">
+          <div>
+            <h3>{d.performanceProfile ? d.performanceProfile.dominantLabel : "Not completed"}</h3>
+            <p className="ui-sub">
+              {d.performanceProfile
+                ? `Completed ${d.performanceProfile.completedAt.toLocaleDateString("en-GB")}. Describes tendencies; it does not diagnose performance or health.`
+                : "Complete the assessment to add your mental-training baseline here."}
+            </p>
+          </div>
+          <ButtonLink href="/app/performance-profile" variant="ghost" size="sm">{d.performanceProfile ? "View profile" : "Complete Performance Profile"}</ButtonLink>
         </div>
-      </section>
-    </section>
+      </Section>
+
+      <p className="ui-note ui-note-box"><Icon name="info" size={16} /><span>Everything here is descriptive and exploratory — patterns from your own logs, not clinical conclusions.</span></p>
+    </div>
   );
 }

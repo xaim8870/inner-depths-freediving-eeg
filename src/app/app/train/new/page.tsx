@@ -1,15 +1,15 @@
 import { createTrainingSession } from "@/app/app/train/actions";
 import TrainingForm from "@/components/training/training-form";
+import { PageHead } from "@/components/ui/page";
+import { trainingSessionTypes } from "@/lib/training-options";
 
-export default function NewTrainingSessionPage() {
+export default async function NewTrainingSessionPage({ searchParams }: { searchParams: Promise<{ type?: string }> }) {
+  const { type } = await searchParams;
+  const defaultType = trainingSessionTypes.find((t) => t === type);
   return (
-    <section className="training-editor-page">
-      <header className="training-editor-header">
-        <div className="training-eyebrow">Training journal</div>
-        <h1>Log a session</h1>
-        <p>Record a training session you have already completed.</p>
-      </header>
-      <TrainingForm action={createTrainingSession} submitLabel="Save session" />
-    </section>
+    <div className="ui-page ui-page-narrow">
+      <PageHead eyebrow="Training journal" title="Log a training session" sub="Record a training session you have already completed." />
+      <TrainingForm action={createTrainingSession} defaultType={defaultType} submitLabel="Save session" />
+    </div>
   );
 }
